@@ -15,6 +15,30 @@ export interface GithubRepo {
   topics: string[];
 }
 
+export const CURATED_REPO_NAMES = [
+  "devsubstrate",
+  "bitzdots",
+  "tiv",
+  "oha",
+  "hyprconfig",
+  "minegpt",
+];
+
+const FALLBACK_DEVSUBSTRATE: GithubRepo = {
+  id: 1449997967,
+  name: "devSubstrate",
+  full_name: "bitzzdev/devSubstrate",
+  description: "A research substrate for modern engineering: AI API architectures, terminal-native agents, and OS repair notes.",
+  html_url: "https://github.com/bitzzdev/devSubstrate",
+  language: "Shell",
+  stargazers_count: 0,
+  forks_count: 0,
+  fork: false,
+  archived: false,
+  pushed_at: new Date().toISOString(),
+  topics: [],
+};
+
 export async function getPublicRepos(): Promise<GithubRepo[]> {
   try {
     const res = await fetch(
@@ -24,23 +48,28 @@ export async function getPublicRepos(): Promise<GithubRepo[]> {
         next: { revalidate: 60 },
       }
     );
-    if (!res.ok) return [];
+    if (!res.ok) return [FALLBACK_DEVSUBSTRATE];
     const data: GithubRepo[] = await res.json();
     return filterRepos(data);
   } catch {
-    return [];
+    return [FALLBACK_DEVSUBSTRATE];
   }
 }
 
-export const CURATED_REPO_NAMES = ["tiv", "oha", "bitzdots", "hyprconfig", "minegpt", "nexui"];
-
 export function filterRepos(data: GithubRepo[]): GithubRepo[] {
-  // Filter for curated repos specified: tiv, oha, bitzdots, hyprconfig, minegpt
   const curated = data.filter((repo) =>
     CURATED_REPO_NAMES.includes(repo.name.toLowerCase())
   );
 
-  // Maintain consistent priority ordering: tiv, oha, bitzdots, hyprconfig, minegpt
+  // If devSubstrate isn't returned by GitHub API cache, inject it
+  const hasDevSubstrate = curated.some(
+    (repo) => repo.name.toLowerCase() === "devsubstrate"
+  );
+  if (!hasDevSubstrate) {
+    curated.push(FALLBACK_DEVSUBSTRATE);
+  }
+
+  // Ensure strict ordering: devSubstrate, bitzdots, then others
   return curated.sort((a, b) => {
     const idxA = CURATED_REPO_NAMES.indexOf(a.name.toLowerCase());
     const idxB = CURATED_REPO_NAMES.indexOf(b.name.toLowerCase());

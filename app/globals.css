@@ -1,5 +1,7 @@
 /* ============================================================
    ASCII-MAGIC INSPIRED DESIGN SYSTEM & VARIABLES
+   Using Paper Mono (https://paper.design/mono)
+   Features: Coding ligatures on, Small arrows off, Slashed zero on
    ============================================================ */
 :root {
   --bg: #040406;
@@ -14,11 +16,13 @@
   --text-40: rgba(255, 255, 255, 0.4);
   --accent: #ffffff;
   --accent-text: #040406;
-  --font-display: var(--font-display), "GeistPixel-Square", ui-monospace, "SF Mono", Menlo, monospace;
-  --font-body: var(--font-body), "Satoshi", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: var(--font-paper), "Paper Mono", ui-monospace, monospace;
 
-  /* Layout dimensions */
+  /* Paper Mono font settings */
+  --font-mono: var(--font-paper), "Paper Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-display: var(--font-mono);
+  --font-body: var(--font-mono);
+
+  /* Layout dimensions mirroring ascii-magic */
   --max-w: 1728px;
   --side-pad: 129px;
   --content-w: 1470px;
@@ -65,14 +69,22 @@ html {
   text-size-adjust: 100%;
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
+  font-family: var(--font-mono);
+  /* Paper Mono OpenType feature configuration:
+     - Coding ligatures: on ('calt' 1, 'liga' 1)
+     - Small arrows: off ('ss01' 0)
+     - Slashed zero: on ('zero' 1)
+  */
+  font-feature-settings: "calt" 1, "liga" 1, "ss01" 0, "zero" 1;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.5;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  font-feature-settings: "calt" 1, "liga" 1, "ss01" 0, "zero" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -118,7 +130,7 @@ body {
   right: var(--side-pad);
 }
 
-/* Base sections and lines */
+/* Base sections & dividers */
 .nav,
 .am-section,
 .am-footer {
@@ -127,7 +139,7 @@ body {
 }
 
 .am-section {
-  padding: 80px 0 0;
+  padding: 88px 0 0;
   position: relative;
 }
 
@@ -151,78 +163,33 @@ body {
 
 .am-section-head {
   padding: 0 var(--text-inset);
-  margin-bottom: 40px;
+  margin-bottom: 44px;
 }
 
 .am-eyebrow {
   display: inline-block;
-  font-family: var(--font-display);
   font-size: 13px;
-  line-height: 1.5;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.14em;
   color: var(--text-50);
   text-transform: uppercase;
   margin: 0 0 12px;
 }
 
 .am-h2 {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 2.4vw + 12px, 44px);
-  line-height: 1.2;
+  font-size: clamp(24px, 2.2vw + 12px, 42px);
+  line-height: 1.22;
   color: var(--text);
   margin: 0;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
 .am-desc {
   color: var(--text-80);
-  font-size: clamp(14px, 0.3vw + 12px, 16px);
+  font-size: clamp(14px, 0.3vw + 12px, 15px);
   line-height: 1.6;
   margin: 16px 0 0;
   max-width: 680px;
-}
-
-/* ============================================================
-   TOP BAR (ascii-magic v1 notice strip)
-   ============================================================ */
-.am-strip {
-  border-bottom: 1px solid var(--border-faint);
-  background: var(--bg);
-  position: relative;
-  z-index: 101;
-}
-
-.am-strip__inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 8px calc(var(--side-pad) + var(--text-inset));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  font-size: 13px;
-  color: var(--text-70);
-}
-
-.am-strip__tag {
-  font-family: var(--font-display);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 2px 6px;
-  background: var(--border-faint);
-  color: var(--text);
-  margin-right: 8px;
-}
-
-.am-strip__cta {
-  font-family: var(--font-display);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 12px;
-  border-bottom: 1px solid currentColor;
-  white-space: nowrap;
 }
 
 /* ============================================================
@@ -256,13 +223,13 @@ body {
 }
 
 .nav__brand {
-  font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 17px;
+  font-weight: 600;
   color: var(--text);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .nav__links {
@@ -318,7 +285,6 @@ body {
   border: 0;
   display: inline-flex;
   align-items: center;
-  font-family: var(--font-display);
   font-size: 13px;
   text-decoration: none;
   white-space: nowrap;
@@ -331,7 +297,7 @@ body {
 }
 
 /* ============================================================
-   HERO SECTION
+   HERO SECTION (ascii-magic slider-wrap & textblock)
    ============================================================ */
 .hero {
   position: relative;
@@ -342,53 +308,46 @@ body {
 
 .hero__wrap {
   position: relative;
-  padding: 40px var(--text-inset) 60px;
+  padding: 0 0 56px;
 }
 
-.hero__slider-frame {
+.hero__slider-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1477 / 676;
   max-height: 640px;
   background: #000000;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-faint);
   overflow: hidden;
-  margin-bottom: 40px;
+  margin-top: 24px;
 }
 
-.hero__slider-frame::after {
+.hero__slider-wrap::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
   bottom: 0;
-  height: 120px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(4, 4, 6, 0.8) 100%);
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background: var(--border-faint);
   pointer-events: none;
-  z-index: 3;
+  z-index: 9;
 }
 
-.hero__label {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  padding: 6px 12px;
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: rgba(4, 4, 6, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(8px);
-  z-index: 4;
+.hero__textblock {
+  display: flow-root;
+  padding: 36px var(--text-inset) 24px;
+  position: relative;
+  z-index: 7;
+  background: var(--bg);
 }
 
 .hero__textrow {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
-  column-gap: 40px;
+  column-gap: 48px;
   row-gap: 24px;
 }
 
@@ -399,21 +358,19 @@ body {
 }
 
 .hero__title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 56px);
-  line-height: 1.15;
+  font-weight: 500;
+  font-size: clamp(26px, 3.2vw, 52px);
+  line-height: 1.18;
   color: var(--text);
   margin: 0;
   letter-spacing: -0.01em;
 }
 
 .hero__subtitle {
-  max-width: 74ch;
+  max-width: 72ch;
   color: var(--text-80);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.65;
   margin: 20px 0 0;
 }
 
@@ -446,9 +403,9 @@ body {
   background: var(--text);
   color: var(--accent-text);
   padding: 0 20px;
-  font-family: var(--font-display);
   font-size: 14px;
   white-space: nowrap;
+  font-weight: 500;
 }
 
 .hero__cta-secondary {
@@ -456,7 +413,6 @@ body {
   padding: 0 20px;
   background: transparent;
   color: var(--text);
-  font-family: var(--font-display);
   font-size: 14px;
   border: 1px solid var(--text);
   display: inline-flex;
@@ -471,7 +427,7 @@ body {
 }
 
 /* ============================================================
-   WORK SECTION (ascii-magic 3-column styles grid with 1px border lines)
+   WORK SECTION (ascii-magic 3-column styles grid with border lines)
    ============================================================ */
 .work-grid {
   display: grid;
@@ -529,10 +485,14 @@ body {
 }
 
 .work-card__media {
+  width: 100%;
   aspect-ratio: 16 / 10;
   background: #000000;
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .work-card__body {
@@ -543,8 +503,8 @@ body {
 }
 
 .work-card__title {
-  font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 500;
   line-height: 1.3;
   color: var(--text);
   margin: 0 0 10px;
@@ -564,7 +524,6 @@ body {
 }
 
 .work-card__desc {
-  font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.5;
   color: var(--text-70);
@@ -582,7 +541,6 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-display);
   font-size: 14px;
   color: var(--text);
   padding: 12px 24px;
@@ -596,7 +554,7 @@ body {
 }
 
 /* ============================================================
-   ABOUT SECTION (Interactive 2-column layout + dossier grid)
+   ABOUT SECTION & DOSSIER
    ============================================================ */
 .about-grid {
   display: grid;
@@ -613,7 +571,7 @@ body {
 }
 
 .about-bio {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.7;
   color: var(--text-80);
 }
@@ -663,7 +621,6 @@ body {
 }
 
 .dossier-label {
-  font-family: var(--font-display);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -673,7 +630,6 @@ body {
 .dossier-val {
   font-size: 14px;
   color: var(--text);
-  font-family: var(--font-body);
 }
 
 .dossier-val a {
@@ -698,7 +654,6 @@ body {
 }
 
 .edu-badge {
-  font-family: var(--font-display);
   font-size: 11px;
   text-transform: uppercase;
   background: var(--border-faint);
@@ -739,7 +694,6 @@ body {
 }
 
 .mini-skills-cat {
-  font-family: var(--font-display);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -805,19 +759,18 @@ body {
 }
 
 .am-flow-num {
-  font-family: var(--font-display);
   font-size: 14px;
   color: var(--text-50);
 }
 
 .am-flow-title {
-  font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 19px;
+  font-weight: 500;
   color: var(--text);
 }
 
 .am-flow-desc {
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 1.6;
   color: var(--text-80);
   margin: 0;
@@ -852,7 +805,6 @@ body {
 }
 
 .am-table th {
-  font-family: var(--font-display);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -861,13 +813,13 @@ body {
 }
 
 .am-table td {
-  font-size: 15px;
+  font-size: 14.5px;
   color: var(--text-80);
 }
 
 .am-table td:first-child {
-  font-family: var(--font-display);
   color: var(--text);
+  font-weight: 500;
 }
 
 /* ============================================================
@@ -899,13 +851,12 @@ body {
 
 .am-quote-card p {
   margin: 0;
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 1.6;
   color: var(--text-80);
 }
 
 .am-quote-card .quote-author {
-  font-family: var(--font-display);
   font-size: 13px;
   color: var(--text-50);
   letter-spacing: 0.02em;
@@ -932,7 +883,6 @@ body {
   text-underline-offset: 3px;
 }
 
-/* Terminal form styling */
 .am-form {
   display: flex;
   flex-direction: column;
@@ -949,7 +899,6 @@ body {
 }
 
 .am-field label {
-  font-family: var(--font-display);
   font-size: 12px;
   letter-spacing: 0.05em;
   color: var(--text-50);
@@ -959,8 +908,8 @@ body {
   width: 100%;
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-body);
-  font-size: 15px;
+  font-family: inherit;
+  font-size: 14.5px;
   padding: 12px 14px;
   border: 1px solid var(--border);
   outline: none;
@@ -977,10 +926,11 @@ body {
   padding: 0 24px;
   background: var(--text);
   color: var(--accent-text);
-  font-family: var(--font-display);
   font-size: 13px;
   border: 0;
   cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
   transition: opacity 0.15s;
 }
 

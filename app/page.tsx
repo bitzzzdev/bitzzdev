@@ -14,19 +14,6 @@ export default async function Home() {
       {/* Structural side rails (faint vertical lines that run the full page height) */}
       <div className="rails" aria-hidden="true" />
 
-      {/* Top status notification strip */}
-      <div className="am-strip">
-        <div className="am-strip__inner">
-          <div>
-            <span className="am-strip__tag">Status</span>
-            <span>Open for freelance contracts, fullstack web applications, and systems design</span>
-          </div>
-          <a className="am-strip__cta" href="#contact">
-            Initiate contact &rarr;
-          </a>
-        </div>
-      </div>
-
       {/* Navigation header */}
       <header className="nav">
         <div className="nav__inner">
@@ -60,30 +47,31 @@ export default async function Home() {
         {/* Hero section */}
         <section className="hero" id="top">
           <div className="hero__wrap">
-            <div className="hero__slider-frame">
-              <span className="hero__label">Selected scene / kyoto dusk</span>
+            <div className="hero__slider-wrap">
               <CpuAsciiArt />
             </div>
 
-            <div className="hero__textrow">
-              <div>
-                <h1 className="hero__title">
-                  Dev Borah (Bitupan Borah), Software &amp; Web Developer
-                </h1>
-                <p className="hero__subtitle">
-                  Great founders changing the world deserve a digital presence as powerful as what they&apos;re building.
-                  I engineer highly-optimized, pixel-perfect freelance web solutions: speed-obsessed development designed to scale businesses,
-                  connect services, and convert users. No noise, no bloat. Just exceptional code that loads in milliseconds.
-                </p>
-              </div>
+            <div className="hero__textblock">
+              <div className="hero__textrow">
+                <div>
+                  <h1 className="hero__title">
+                    Dev Borah (Bitupan Borah), Software &amp; Web Developer
+                  </h1>
+                  <p className="hero__subtitle">
+                    Great founders changing the world deserve a digital presence as powerful as what they&apos;re building.
+                    I engineer highly-optimized, pixel-perfect freelance web solutions: speed-obsessed development designed to scale businesses,
+                    connect services, and convert users. No noise, no bloat. Just exceptional code that loads in milliseconds.
+                  </p>
+                </div>
 
-              <div className="hero__ctas">
-                <a className="hero__cta-primary" href="#contact">
-                  <span className="hero__cta-primary-label">Transmit terminal</span>
-                </a>
-                <a className="hero__cta-secondary" href="#work">
-                  Explore work
-                </a>
+                <div className="hero__ctas">
+                  <a className="hero__cta-primary" href="#contact">
+                    <span className="hero__cta-primary-label">Transmit terminal</span>
+                  </a>
+                  <a className="hero__cta-secondary" href="#work">
+                    Explore work
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -93,7 +81,7 @@ export default async function Home() {
         <section className="am-section" id="work" aria-labelledby="work-heading">
           <div className="am-inner">
             <div className="am-section-head">
-              <span className="am-eyebrow">Portfolio</span>
+              <span className="am-eyebrow">/PORTFOLIO</span>
               <h2 className="am-h2" id="work-heading">Selected projects ({repos.length})</h2>
               <p className="am-desc">Featured open-source repositories and production web platforms.</p>
             </div>
@@ -105,7 +93,7 @@ export default async function Home() {
         <section className="am-section" id="about" aria-labelledby="about-heading">
           <div className="am-inner">
             <div className="am-section-head">
-              <span className="am-eyebrow">Identity</span>
+              <span className="am-eyebrow">/IDENTITY</span>
               <h2 className="am-h2" id="about-heading">About the developer</h2>
               <p className="am-desc">Origin, technical philosophy, and verifiable creator dossier.</p>
             </div>
@@ -213,7 +201,7 @@ export default async function Home() {
         <section className="am-section" id="services" aria-labelledby="services-heading">
           <div className="am-inner">
             <div className="am-section-head">
-              <span className="am-eyebrow">Capabilities</span>
+              <span className="am-eyebrow">/CAPABILITIES</span>
               <h2 className="am-h2" id="services-heading">Services &amp; capabilities</h2>
               <p className="am-desc">Direct technical offerings engineered for fast turnarounds and durability.</p>
             </div>
@@ -253,7 +241,7 @@ export default async function Home() {
         <section className="am-section" id="process" aria-labelledby="process-heading">
           <div className="am-inner">
             <div className="am-section-head">
-              <span className="am-eyebrow">Methodology</span>
+              <span className="am-eyebrow">/METHODOLOGY</span>
               <h2 className="am-h2" id="process-heading">How we build together</h2>
               <p className="am-desc">Three structured phases to go from blueprint to deployment.</p>
             </div>
@@ -293,7 +281,7 @@ export default async function Home() {
         <section className="am-section" id="metrics" aria-labelledby="metrics-heading">
           <div className="am-inner">
             <div className="am-section-head">
-              <span className="am-eyebrow">Verification</span>
+              <span className="am-eyebrow">/VERIFICATION</span>
               <h2 className="am-h2" id="metrics-heading">Performance benchmarks</h2>
               <p className="am-desc">Empirical standards upheld across production deployments.</p>
             </div>
@@ -338,7 +326,7 @@ export default async function Home() {
         <section className="am-section" id="testimonials" aria-labelledby="feedback-heading">
           <div className="am-inner">
             <div className="am-section-head">
-              <span className="am-eyebrow">Citations</span>
+              <span className="am-eyebrow">/CITATIONS</span>
               <h2 className="am-h2" id="feedback-heading">Client feedback</h2>
               <p className="am-desc">Verified commentary from collaborators and founders.</p>
             </div>
@@ -375,7 +363,7 @@ export default async function Home() {
         <section className="am-section" id="contact" aria-labelledby="contact-heading">
           <div className="am-inner">
             <div className="am-section-head">
-              <span className="am-eyebrow">Dispatch</span>
+              <span className="am-eyebrow">/DISPATCH</span>
               <h2 className="am-h2" id="contact-heading">Transmission terminal</h2>
               <p className="am-desc">Direct line for contracts, audits, and engineering partnerships.</p>
             </div>

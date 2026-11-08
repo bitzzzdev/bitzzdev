@@ -4,40 +4,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const geistPixel = localFont({
-  src: [
-    {
-      path: "../public/fonts/GeistPixel-Square.woff2",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const satoshi = localFont({
-  src: [
-    {
-      path: "../public/fonts/Satoshi-400.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Satoshi-500.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Satoshi-700.woff2",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-body",
-  display: "swap",
-});
-
 const paperMono = localFont({
   src: [
     {
@@ -159,10 +125,17 @@ const personJsonLd = {
   "creator": [
     {
       "@type": "SoftwareSourceCode",
-      "name": "NexUI",
-      "codeRepository": "https://github.com/bitzzdev/NexUI",
-      "programmingLanguage": "Java",
-      "description": "Customizable modern HUD and dynamic UI ecosystem for Minecraft."
+      "name": "devSubstrate",
+      "codeRepository": "https://github.com/bitzzdev/devSubstrate",
+      "programmingLanguage": "Shell",
+      "description": "A research substrate for modern engineering: AI API architectures, terminal-native agents, and OS repair notes."
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "bitzdots",
+      "codeRepository": "https://github.com/bitzzdev/bitzzdev",
+      "programmingLanguage": "Shell",
+      "description": "Lean Arch Linux Hyprland dotfiles with automatic wallust theming."
     },
     {
       "@type": "SoftwareSourceCode",
@@ -180,10 +153,10 @@ const personJsonLd = {
     },
     {
       "@type": "SoftwareSourceCode",
-      "name": "bitzdots",
-      "codeRepository": "https://github.com/bitzzdev/bitzzdev",
+      "name": "hyprconfig",
+      "codeRepository": "https://github.com/bitzzdev/hyprconfig",
       "programmingLanguage": "Shell",
-      "description": "Lean Arch Linux Hyprland dotfiles with automatic wallust theming."
+      "description": "Dynamic Arch Linux Hyprland workstation configuration and tooling."
     },
     {
       "@type": "SoftwareSourceCode",
@@ -191,13 +164,6 @@ const personJsonLd = {
       "codeRepository": "https://github.com/bitzzdev/MineGPT",
       "programmingLanguage": "Java",
       "description": "In-game AI assistant for Minecraft supporting multi-provider LLMs."
-    },
-    {
-      "@type": "SoftwareSourceCode",
-      "name": "hyprconfig",
-      "codeRepository": "https://github.com/bitzzdev/hyprconfig",
-      "programmingLanguage": "Shell",
-      "description": "Dynamic Arch Linux Hyprland workstation configuration and tooling."
     }
   ],
   "knowsAbout": [
@@ -289,7 +255,7 @@ export const metadata: Metadata = {
     template: "%s | Dev Borah",
   },
   description:
-    "Official website and developer portfolio of Dev Borah (legal name Bitupan Borah, Bitz, @bitz.dev, @bitzzdev): software developer and open-source creator from Lakhimpur, Assam, India. Creator of NexUI, tiv, and oha. Specialized in C, C++, Python, JavaScript, Next.js, and Linux.",
+    "Official website and developer portfolio of Dev Borah (legal name Bitupan Borah, Bitz, @bitz.dev, @bitzzdev): software developer and open-source creator from Lakhimpur, Assam, India. Creator of devSubstrate, bitzdots, tiv, and oha. Specialized in C, C++, Python, JavaScript, Next.js, and Linux.",
   authors: [{ name: "Dev Borah", url: CANONICAL_URL }],
   creator: "Dev Borah",
   publisher: "Dev Borah",
@@ -353,7 +319,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistPixel.variable} ${satoshi.variable} ${paperMono.variable}`}>
+    <html lang="en" className={paperMono.variable}>
       <head>
         <script
           dangerouslySetInnerHTML={{

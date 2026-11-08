@@ -62,26 +62,26 @@ export default function AsciiScene({ config, label, className = "art", style }: 
       style={{
         position: "relative",
         width: "100%",
-        aspectRatio: "2 / 1",
+        height: "100%",
         overflow: "hidden",
         background: "#000000",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         ...style,
       }}
     >
-      {/* 
-        Live Canvas:
-        Only fades in after the first frame has successfully painted.
-      */}
       <canvas
         ref={canvasRef}
         className={className}
         role="img"
         aria-label={label || config.name}
         style={{
-          position: "absolute",
-          inset: 0,
           width: "100%",
           height: "100%",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          objectFit: "contain",
           display: "block",
           opacity: hasRenderedFrame ? 1 : 0,
           transition: "opacity 0.2s ease-in",

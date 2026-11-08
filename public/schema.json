@@ -118,10 +118,17 @@
       "creator": [
         {
           "@type": "SoftwareSourceCode",
-          "name": "NexUI",
-          "codeRepository": "https://github.com/bitzzdev/NexUI",
-          "programmingLanguage": "Java",
-          "description": "Customizable modern HUD and dynamic UI ecosystem for Minecraft."
+          "name": "devSubstrate",
+          "codeRepository": "https://github.com/bitzzdev/devSubstrate",
+          "programmingLanguage": "Shell",
+          "description": "A research substrate for modern engineering: AI API architectures, terminal-native agents, and OS repair notes."
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "bitzdots",
+          "codeRepository": "https://github.com/bitzzdev/bitzzdev",
+          "programmingLanguage": "Shell",
+          "description": "Lean Arch Linux Hyprland dotfiles with automatic wallust theming."
         },
         {
           "@type": "SoftwareSourceCode",

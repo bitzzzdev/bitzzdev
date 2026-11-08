@@ -27,7 +27,18 @@ export default function ThemeToggle() {
   };
 
   if (!mounted) {
-    return <span style={{ color: "var(--text-50)", fontSize: "13px" }}>Theme</span>;
+    return (
+      <span
+        style={{
+          color: "var(--text-50)",
+          fontSize: "13px",
+          whiteSpace: "nowrap",
+          display: "inline-block",
+        }}
+      >
+        Theme
+      </span>
+    );
   }
 
   return (
@@ -35,19 +46,11 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-      style={{
-        background: "transparent",
-        border: "1px solid var(--border)",
-        color: "var(--text)",
-        fontFamily: "var(--font-display)",
-        fontSize: "12px",
-        padding: "6px 12px",
-        cursor: "pointer",
-        display: "inline-flex",
-        alignItems: "center",
-      }}
+      className="nav__theme-btn"
     >
-      <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+      <span style={{ whiteSpace: "nowrap" }}>
+        {theme === "dark" ? "Light Mode" : "Dark Mode"}
+      </span>
     </button>
   );
 }

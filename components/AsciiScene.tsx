@@ -79,9 +79,9 @@ export default function AsciiScene({ config, label, className = "art", style }: 
         style={{
           width: "100%",
           height: "100%",
-          maxWidth: "100%",
-          maxHeight: "100%",
-          objectFit: "contain",
+          minWidth: "100%",
+          minHeight: "100%",
+          objectFit: "cover",
           display: "block",
           opacity: hasRenderedFrame ? 1 : 0,
           transition: "opacity 0.2s ease-in",

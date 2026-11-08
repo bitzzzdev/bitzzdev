@@ -218,7 +218,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
   position: relative;
 }
 
@@ -230,6 +230,8 @@ body {
   display: inline-flex;
   align-items: center;
   letter-spacing: -0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav__links {
@@ -238,6 +240,7 @@ body {
   gap: 28px;
   font-size: 14px;
   color: var(--text-80);
+  white-space: nowrap;
 }
 
 @media (max-width: 900px) {
@@ -249,6 +252,7 @@ body {
 .nav__links a {
   text-decoration: none;
   color: inherit;
+  white-space: nowrap;
   transition: color 0.15s, opacity 0.15s;
 }
 
@@ -259,7 +263,23 @@ body {
 .nav__actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav__theme-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav__cta {
@@ -268,6 +288,8 @@ body {
   height: 32px;
   gap: 2px;
   text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav__cta-tab {
@@ -289,6 +311,7 @@ body {
   text-decoration: none;
   white-space: nowrap;
   font-weight: 500;
+  flex-shrink: 0;
   transition: opacity 0.15s;
 }
 
@@ -320,6 +343,13 @@ body {
   border: 1px solid var(--border-faint);
   overflow: hidden;
   margin-top: 24px;
+}
+
+.hero__slider-wrap canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  transform: scale(1.02);
 }
 
 .hero__slider-wrap::after {
@@ -495,6 +525,13 @@ body {
   justify-content: center;
 }
 
+.work-card__media canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  transform: scale(1.03);
+}
+
 .work-card__body {
   padding: 24px;
   display: flex;
@@ -535,22 +572,40 @@ body {
   justify-content: center;
   align-items: center;
   padding: 32px var(--text-inset);
+  width: 100%;
 }
 
 .work-viewall-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-size: 14px;
   color: var(--text);
   padding: 12px 24px;
   border: 1px solid var(--text);
   text-decoration: none;
+  white-space: nowrap !important;
+  max-width: 100%;
+  overflow-x: auto;
   transition: background 0.15s;
+}
+
+.work-viewall-btn span {
+  white-space: nowrap !important;
+  display: inline-block;
 }
 
 .work-viewall-btn:hover {
   background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 480px) {
+  .work-viewall-btn {
+    font-size: 12px;
+    padding: 10px 14px;
+    gap: 6px;
+  }
 }
 
 /* ============================================================

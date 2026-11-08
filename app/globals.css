@@ -400,7 +400,8 @@ body {
   transform: scale(1.02);
 }
 
-.hero__slider-wrap::after {
+.hero__slider-wrap::after,
+.hero__textblock::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -411,6 +412,20 @@ body {
   background: var(--border-faint);
   pointer-events: none;
   z-index: 9;
+}
+
+/* Hairline divider at the top of sections following another bordered block
+   (mirrors ascii-magic .community::before and .faq-sec::before) */
+.am-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 1px;
+  background: var(--border-faint);
+  pointer-events: none;
+  z-index: 6;
+  left: max(var(--side-pad), calc((100vw - var(--max-w)) / 2 + var(--side-pad)));
+  right: max(var(--side-pad), calc((100vw - var(--max-w)) / 2 + var(--side-pad)));
 }
 
 .hero__textblock {

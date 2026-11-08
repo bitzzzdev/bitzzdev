@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (status === "success") {
@@ -26,7 +25,7 @@ export default function ContactForm() {
 
     const subject = encodeURIComponent(`Project Inquiry from ${name}`);
     const bodyContent = encodeURIComponent(
-      `Hi Dev,\n\n${message}\n\n---\nSender: ${name}\nEmail: ${email}`
+      `Hi Dev,\n\n${message}\n\nSender: ${name}\nEmail: ${email}`
     );
 
     const mailtoUrl = `mailto:bitzzdev@gmail.com?subject=${subject}&body=${bodyContent}`;
@@ -37,81 +36,46 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="snippet" style={{ maxWidth: "68ch" }}>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-        <div>
-          <label style={{ display: "block", color: "var(--muted)", fontSize: "0.75rem", marginBottom: "0.25rem" }}>
-            $ name
-          </label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Ada Lovelace"
-            required
-            style={{
-              width: "100%",
-              background: "transparent",
-              border: 0,
-              borderBottom: "1px dotted var(--muted)",
-              color: "var(--ink)",
-              fontFamily: "inherit",
-              padding: "0.3rem 0",
-              outline: "none",
-            }}
-          />
-        </div>
+    <form className="am-form" onSubmit={handleSubmit}>
+      <div className="am-field">
+        <label htmlFor="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          className="am-input"
+          placeholder="Ada Lovelace"
+          required
+        />
+      </div>
 
-        <div>
-          <label style={{ display: "block", color: "var(--muted)", fontSize: "0.75rem", marginBottom: "0.25rem" }}>
-            $ email
-          </label>
-          <input
-            type="email"
-            name="email"
-            placeholder="ada@domain.io"
-            required
-            style={{
-              width: "100%",
-              background: "transparent",
-              border: 0,
-              borderBottom: "1px dotted var(--muted)",
-              color: "var(--ink)",
-              fontFamily: "inherit",
-              padding: "0.3rem 0",
-              outline: "none",
-            }}
-          />
-        </div>
+      <div className="am-field">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          className="am-input"
+          placeholder="ada@domain.io"
+          required
+        />
+      </div>
 
-        <div>
-          <label style={{ display: "block", color: "var(--muted)", fontSize: "0.75rem", marginBottom: "0.25rem" }}>
-            $ message
-          </label>
-          <textarea
-            name="message"
-            rows={4}
-            placeholder="Describe your project, timeline, or inquiry..."
-            required
-            style={{
-              width: "100%",
-              background: "transparent",
-              border: "1px dotted var(--muted)",
-              color: "var(--ink)",
-              fontFamily: "inherit",
-              padding: "0.5rem",
-              outline: "none",
-              resize: "vertical",
-            }}
-          />
-        </div>
+      <div className="am-field">
+        <label htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          className="am-input"
+          rows={4}
+          placeholder="Describe your project, timeline, or engineering inquiry..."
+          required
+        />
+      </div>
 
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "0.5rem" }}>
-          <button type="submit" className="button">
-            <span>[transmit message]</span>
-          </button>
-          {status === "success" && <span style={{ color: "var(--ink)" }}>[opening email client...]</span>}
-        </div>
-      </form>
-    </div>
+      <button type="submit" className="am-submit">
+        {status === "success" ? "Dispatched" : "Transmit inquiry"}
+      </button>
+    </form>
   );
 }

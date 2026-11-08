@@ -4,6 +4,40 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+const geistPixel = localFont({
+  src: [
+    {
+      path: "../public/fonts/GeistPixel-Square.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const satoshi = localFont({
+  src: [
+    {
+      path: "../public/fonts/Satoshi-400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-500.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Satoshi-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-body",
+  display: "swap",
+});
+
 const paperMono = localFont({
   src: [
     {
@@ -107,7 +141,7 @@ const personJsonLd = {
     "@id": `${CANONICAL_URL}/#primaryimage`,
     "url": `${CANONICAL_URL}/me.png`,
     "contentUrl": `${CANONICAL_URL}/me.png`,
-    "caption": "Dev Borah (Bitupan Borah) — Software & Web Developer",
+    "caption": "Dev Borah (Bitupan Borah), Software and Web Developer",
     "width": 1215,
     "height": 1295
   },
@@ -211,7 +245,7 @@ const websiteJsonLd = {
   "@type": "WebSite",
   "@id": `${CANONICAL_URL}/#website`,
   "url": CANONICAL_URL,
-  "name": "Bitz — Dev Borah",
+  "name": "Bitz: Dev Borah",
   "alternateName": [
     "bitz.is-a.dev",
     "Dev Borah Portfolio",
@@ -228,7 +262,7 @@ const profilePageJsonLd = {
   "@type": "ProfilePage",
   "@id": `${CANONICAL_URL}/#profilepage`,
   "url": CANONICAL_URL,
-  "name": "Dev Borah (Bitupan Borah) — Software & Web Developer",
+  "name": "Dev Borah (Bitupan Borah), Software and Web Developer",
   "isPartOf": {
     "@id": `${CANONICAL_URL}/#website`
   },
@@ -251,11 +285,11 @@ const schemaGraph = {
 export const metadata: Metadata = {
   metadataBase: new URL(CANONICAL_URL),
   title: {
-    default: "Dev Borah (Bitupan Borah) — Software & Web Developer | Bitz",
+    default: "Dev Borah (Bitupan Borah), Software and Web Developer | Bitz",
     template: "%s | Dev Borah",
   },
   description:
-    "Official website and developer portfolio of Dev Borah (legal name Bitupan Borah / Bitz / @bitz.dev / @bitzzdev) — software developer and open-source creator from Lakhimpur, Assam, India. Creator of NexUI, tiv, and oha; specialized in C, C++, Python, JavaScript, Next.js, and Linux.",
+    "Official website and developer portfolio of Dev Borah (legal name Bitupan Borah, Bitz, @bitz.dev, @bitzzdev): software developer and open-source creator from Lakhimpur, Assam, India. Creator of NexUI, tiv, and oha. Specialized in C, C++, Python, JavaScript, Next.js, and Linux.",
   authors: [{ name: "Dev Borah", url: CANONICAL_URL }],
   creator: "Dev Borah",
   publisher: "Dev Borah",
@@ -266,10 +300,10 @@ export const metadata: Metadata = {
     type: "profile",
     locale: "en_US",
     url: CANONICAL_URL,
-    siteName: "Bitz — Dev Borah",
-    title: "Dev Borah (Bitupan Borah) — Software & Web Developer",
+    siteName: "Bitz: Dev Borah",
+    title: "Dev Borah (Bitupan Borah), Software and Web Developer",
     description:
-      "Official website and portfolio of Dev Borah (Bitupan Borah / @bitz.dev / @bitzzdev) — software developer and open-source creator based in Assam, India.",
+      "Official website and portfolio of Dev Borah (Bitupan Borah, @bitz.dev, @bitzzdev): software developer and open-source creator based in Assam, India.",
     firstName: "Dev",
     lastName: "Borah",
     username: "bitzzdev",
@@ -279,7 +313,7 @@ export const metadata: Metadata = {
         url: "/me.png",
         width: 1215,
         height: 1295,
-        alt: "Dev Borah (Bitupan Borah) — Software & Web Developer",
+        alt: "Dev Borah (Bitupan Borah), Software and Web Developer",
       },
     ],
   },
@@ -287,9 +321,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@bitzzdev",
     creator: "@bitzzdev",
-    title: "Dev Borah (Bitupan Borah) — Software & Web Developer",
+    title: "Dev Borah (Bitupan Borah), Software and Web Developer",
     description:
-      "Official portfolio of Dev Borah (Bitupan Borah / @bitz.dev / @bitzzdev) — software developer in Assam, India.",
+      "Official portfolio of Dev Borah (Bitupan Borah, @bitz.dev, @bitzzdev): software developer in Assam, India.",
     images: ["/me.png"],
   },
   icons: {
@@ -319,7 +353,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={paperMono.variable}>
+    <html lang="en" className={`${geistPixel.variable} ${satoshi.variable} ${paperMono.variable}`}>
       <head>
         <script
           dangerouslySetInnerHTML={{

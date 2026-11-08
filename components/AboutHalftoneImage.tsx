@@ -19,7 +19,7 @@ export default function AboutHalftoneImage() {
         */}
         <img
           src="/me.png"
-          alt="Dev Borah (Bitupan Borah) — Software & Web Developer"
+          alt="Dev Borah (Bitupan Borah), Software and Web Developer"
           width={480}
           height={480}
           fetchPriority="high"

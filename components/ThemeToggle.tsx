@@ -27,12 +27,27 @@ export default function ThemeToggle() {
   };
 
   if (!mounted) {
-    return <span className="muted">[theme]</span>;
+    return <span style={{ color: "var(--text-50)", fontSize: "13px" }}>Theme</span>;
   }
 
   return (
-    <button className="button" type="button" onClick={toggle} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}>
-      <span>[{theme === "dark" ? "light" : "dark"}]</span>
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+      style={{
+        background: "transparent",
+        border: "1px solid var(--border)",
+        color: "var(--text)",
+        fontFamily: "var(--font-display)",
+        fontSize: "12px",
+        padding: "6px 12px",
+        cursor: "pointer",
+        display: "inline-flex",
+        alignItems: "center",
+      }}
+    >
+      <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
     </button>
   );
 }

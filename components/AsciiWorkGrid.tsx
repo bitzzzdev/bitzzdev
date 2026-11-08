@@ -41,17 +41,16 @@ export default function AsciiWorkGrid({ initialRepos }: { initialRepos: GithubRe
 
   if (repos.length === 0 && error) {
     return (
-      <p className="muted" style={{ margin: "1.5rem 0" }}>
+      <p style={{ margin: "1.5rem 0", color: "var(--text-50)" }}>
         [unable to reach github api right now, please view github.com/{GITHUB_USERNAME} directly]
       </p>
     );
   }
 
   return (
-    <div className="work-wrap">
-      <div className="grid">
+    <div>
+      <div className="work-grid">
         {repos.map((repo, idx) => {
-          // Unique piece for each card without repetition
           const sceneConfig =
             idx < PROJECT_BANNER_CONFIGS.length
               ? PROJECT_BANNER_CONFIGS[idx]
@@ -63,29 +62,47 @@ export default function AsciiWorkGrid({ initialRepos }: { initialRepos: GithubRe
               href={repo.html_url}
               target="_blank"
               rel="noreferrer"
-              className="card"
+              className="work-card"
             >
-              <div className="well scene">
+              <div className="work-card__media">
                 <AsciiScene config={sceneConfig} label={sceneConfig.name} />
               </div>
-              <span className="name">{repo.name.replace(/-/g, " ")}</span>
-              <span className="note">{repo.description || repo.language || "Public repository on GitHub"}</span>
+              <div className="work-card__body">
+                <div className="work-card__title">
+                  <span>{repo.name.replace(/-/g, " ")}</span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </div>
+                <p className="work-card__desc">
+                  {repo.description || repo.language || "Public repository on GitHub"}
+                </p>
+              </div>
             </a>
           );
         })}
       </div>
 
-      {/* View All Repositories on GitHub CTA */}
-      <div className="view-all-repos-wrap">
+      <div className="work-viewall">
         <a
           href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
           target="_blank"
           rel="noreferrer"
-          className="view-all-repos-btn"
+          className="work-viewall-btn"
         >
           <span>view all repositories on github</span>
           <svg
-            className="view-all-arrow"
             width="12"
             height="12"
             viewBox="0 0 24 24"

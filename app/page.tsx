@@ -10,129 +10,129 @@ export default async function Home() {
   const repos = await getPublicRepos();
 
   return (
-    <div className="frame">
-      {/* ═══ SIDEBAR ═══ */}
-      <aside className="side">
-        <a className="brand" href="/">
-          bitz.is-a.dev/
-        </a>
-        <p className="by">
-          by{" "}
-          <a href="https://github.com/bitzzdev" target="_blank" rel="noreferrer">
-            Dev Borah
+    <>
+      {/* Structural side rails (faint vertical lines that run the full page height) */}
+      <div className="rails" aria-hidden="true" />
+
+      {/* Top status notification strip */}
+      <div className="am-strip">
+        <div className="am-strip__inner">
+          <div>
+            <span className="am-strip__tag">Status</span>
+            <span>Open for freelance contracts, fullstack web applications, and systems design</span>
+          </div>
+          <a className="am-strip__cta" href="#contact">
+            Initiate contact &rarr;
           </a>
-          {" "}
-          <span className="muted">(@bitzzdev)</span>
-        </p>
-
-        <div className="quick-links">
-          <a href="#work">[work]</a>
-          <a href="#about">[about]</a>
-          <a href="#services">[services]</a>
-          <a href="#process">[process]</a>
-          <a href="#metrics">[metrics]</a>
-          <a href="#contact">[contact]</a>
         </div>
+      </div>
 
-        <div className="asks">
-          <a href="https://github.com/bitzzdev" target="_blank" rel="noreferrer">[github]</a>
-          <a href="https://x.com/bitzzdev" target="_blank" rel="noreferrer">[x]</a>
-          <a href="https://www.linkedin.com/in/bitzzdev/" target="_blank" rel="noreferrer">[linkedin]</a>
-          <a href="https://orcid.org/0009-0004-2013-2999" target="_blank" rel="noreferrer">[orcid]</a>
-          <a href="mailto:bitzzdev@gmail.com">[email]</a>
-          <a href="https://instagram.com/bitz.dev" target="_blank" rel="noreferrer">[instagram]</a>
-        </div>
+      {/* Navigation header */}
+      <header className="nav">
+        <div className="nav__inner">
+          <a className="nav__brand" href="/" aria-label="bitz.is-a.dev, home">
+            bitz.is-a.dev
+          </a>
 
-        <nav aria-label="Index">
-          <h2>navigation</h2>
-          <ul>
-            <li><a href="#work">selected projects ({repos.length})</a></li>
-            <li><a href="#about">developer story</a></li>
-            <li><a href="#services">capabilities &amp; offerings</a></li>
-            <li><a href="#process">engineering process</a></li>
-            <li><a href="#metrics">performance benchmarks</a></li>
-            <li><a href="#testimonials">client feedback</a></li>
-            <li><a href="#contact">transmission terminal</a></li>
-          </ul>
-        </nav>
-      </aside>
+          <nav className="nav__links" aria-label="Primary">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#process">Process</a>
+            <a href="#metrics">Benchmarks</a>
+            <a href="#testimonials">Feedback</a>
+            <a href="#contact">Contact</a>
+          </nav>
 
-      {/* ═══ MAIN CONTENT ═══ */}
-      <main className="page">
-        {/* Notice bar */}
-        <div className="notice">
-          <span className="tag">status</span>
-          <span>open for freelance contracts, fullstack web applications &amp; systems design</span>
-          <a className="go" href="#contact">[initiate]</a>
-        </div>
-
-        {/* Top title & tools */}
-        <div className="top">
-          <h1>Dev Borah (Bitupan Borah) — Software &amp; Web Developer</h1>
-          <span className="tools">
-            <a href="https://github.com/bitzzdev" target="_blank" rel="noreferrer">[github]</a>
-            <a href="https://x.com/bitzzdev" target="_blank" rel="noreferrer">[x]</a>
-            <a href="https://www.linkedin.com/in/bitzzdev/" target="_blank" rel="noreferrer">[linkedin]</a>
-            <a href="https://orcid.org/0009-0004-2013-2999" target="_blank" rel="noreferrer">[orcid]</a>
+          <div className="nav__actions">
             <ThemeToggle />
-          </span>
-        </div>
-
-        {/* Big ascii hero banner */}
-        <div className="hero-link">
-          <div
-            className="well big hero-well"
-            style={{
-              "--cols": 200,
-              "--rows": 100,
-              "--cell": 1,
-            } as React.CSSProperties}
-          >
-            <CpuAsciiArt />
+            <div className="nav__cta">
+              <span className="nav__cta-tab" aria-hidden="true" />
+              <a className="nav__cta-btn" href="#contact">
+                Transmit
+              </a>
+            </div>
           </div>
         </div>
+      </header>
 
-        {/* Introduction */}
-        <p className="lede">
-          Great founders changing the world deserve a digital presence as powerful as what they&apos;re building.
-          I engineer highly-optimized, pixel-perfect freelance web solutions: speed-obsessed development designed to scale businesses,
-          connect services, and convert users. No noise, no bloat. Just exceptional code that loads in milliseconds.
-        </p>
+      <main>
+        {/* Hero section */}
+        <section className="hero" id="top">
+          <div className="hero__wrap">
+            <div className="hero__slider-frame">
+              <span className="hero__label">Selected scene / kyoto dusk</span>
+              <CpuAsciiArt />
+            </div>
 
-        {/* ═══ WORK SECTION ═══ */}
-        <section className="section" id="work">
-          <div className="section-head">
-            <h2>selected work</h2>
-            <span className="count">featured repos</span>
+            <div className="hero__textrow">
+              <div>
+                <h1 className="hero__title">
+                  Dev Borah (Bitupan Borah), Software &amp; Web Developer
+                </h1>
+                <p className="hero__subtitle">
+                  Great founders changing the world deserve a digital presence as powerful as what they&apos;re building.
+                  I engineer highly-optimized, pixel-perfect freelance web solutions: speed-obsessed development designed to scale businesses,
+                  connect services, and convert users. No noise, no bloat. Just exceptional code that loads in milliseconds.
+                </p>
+              </div>
+
+              <div className="hero__ctas">
+                <a className="hero__cta-primary" href="#contact">
+                  <span className="hero__cta-primary-label">Transmit terminal</span>
+                </a>
+                <a className="hero__cta-secondary" href="#work">
+                  Explore work
+                </a>
+              </div>
+            </div>
           </div>
-          <AsciiWorkGrid initialRepos={repos} />
         </section>
 
-        {/* ═══ ABOUT SECTION (Moved directly after projects) ═══ */}
-        <section className="section" id="about">
-          <div className="section-head">
-            <h2>about the developer</h2>
-            <span className="count">origin &amp; bio</span>
+        {/* Selected work section */}
+        <section className="am-section" id="work" aria-labelledby="work-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">Portfolio</span>
+              <h2 className="am-h2" id="work-heading">Selected projects ({repos.length})</h2>
+              <p className="am-desc">Featured open-source repositories and production web platforms.</p>
+            </div>
+            <AsciiWorkGrid initialRepos={repos} />
           </div>
-          <div className="lede">
-            <p>
-              Hey, I&apos;m Dev Borah (legally Bitupan Borah, known online as @bitz.dev and @bitzzdev). Honestly, I became a developer because I just really love computer stuff.
-              Ever since I first touched a computer, tinkering with software, understanding how systems work under the hood,
-              and building open-source projects from scratch has been what excites me every day. That&apos;s the simple truth.
-            </p>
-            <br />
-            <p>
-              I love clean code, lightning-fast interfaces, and getting rid of unnecessary bloat. Whether it&apos;s
-              crafting responsive web applications, designing developer tools, or optimizing performance so things load instantly,
-              I treat every project as something to build with genuine care, technical discipline, and craft.
-            </p>
+        </section>
 
-            {/* Side-by-Side: me.png and Quick Info Card */}
-            {/* Interactive Halftone Reveal Effect for me.png */}
-            <AboutHalftoneImage />
+        {/* About section */}
+        <section className="am-section" id="about" aria-labelledby="about-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">Identity</span>
+              <h2 className="am-h2" id="about-heading">About the developer</h2>
+              <p className="am-desc">Origin, technical philosophy, and verifiable creator dossier.</p>
+            </div>
 
-            {/* Full-width Quick Info Dossier Box with Compact Skills */}
-            <div className="dossier-box">
+            <div className="about-grid">
+              <div className="about-bio">
+                <p>
+                  Hey, I&apos;m Dev Borah (legally Bitupan Borah, known online as @bitz.dev and @bitzzdev). Honestly, I became a developer because I just really love computer stuff.
+                  Ever since I first touched a computer, tinkering with software, understanding how systems work under the hood,
+                  and building open-source projects from scratch has been what excites me every day. That&apos;s the simple truth.
+                </p>
+                <p>
+                  I love clean code, lightning-fast interfaces, and getting rid of unnecessary bloat. Whether it&apos;s
+                  crafting responsive web applications, designing developer tools, or optimizing performance so things load instantly,
+                  I treat every project as something to build with genuine care, technical discipline, and craft.
+                </p>
+                <p style={{ color: "var(--text-50)", fontSize: "14px", marginTop: "24px" }}>
+                  Based in Assam, India. Open for collaboration, open-source work, freelance contracts, and software engineering worldwide.
+                </p>
+              </div>
+
+              <div>
+                <AboutHalftoneImage />
+              </div>
+            </div>
+
+            <div className="dossier-wrap">
               <p className="dossier-lead">
                 <strong>Dev Borah</strong> (legal identity: <em>Bitupan Borah</em>) is a software developer and open-source creator from Lakhimpur, Assam, India. Dedicated to low-latency web platforms, Linux tooling, and systems programming.
               </p>
@@ -204,203 +204,210 @@ export default async function Home() {
                 </div>
               </div>
 
-              {/* Compact Himon-style Skills inside Quick Info Card */}
               <MinimalSkillsList />
             </div>
-
-            <p className="muted">
-              Based in Assam, India &mdash; open for collaboration, open-source work, freelance contracts, and software engineering worldwide.
-            </p>
           </div>
         </section>
 
-        {/* ═══ SERVICES SECTION ═══ */}
-        <section className="section" id="services">
-          <div className="section-head">
-            <h2>services &amp; capabilities</h2>
-            <span className="count">03 offerings</span>
-          </div>
-          <div className="services-flow">
-            <div className="service-row">
-              <div className="service-row-head">
-                <span className="service-row-num">01</span>
-                <span className="service-row-title">Custom Web Applications</span>
-              </div>
-              <p className="service-row-desc">
-                Robust, interactive Single Page Applications &amp; fullstack platforms tailored with modern JavaScript ecosystems.
-                Engineered for speed, durability, and fault tolerance.
-              </p>
+        {/* Services section */}
+        <section className="am-section" id="services" aria-labelledby="services-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">Capabilities</span>
+              <h2 className="am-h2" id="services-heading">Services &amp; capabilities</h2>
+              <p className="am-desc">Direct technical offerings engineered for fast turnarounds and durability.</p>
             </div>
 
-            <div className="service-row">
-              <div className="service-row-head">
-                <span className="service-row-num">02</span>
-                <span className="service-row-title">UI/UX Systems &amp; Interfaces</span>
+            <div className="am-flow">
+              <div className="am-flow-row">
+                <span className="am-flow-num">01</span>
+                <span className="am-flow-title">Custom Web Applications</span>
+                <p className="am-flow-desc">
+                  Interactive Single Page Applications &amp; fullstack platforms tailored with modern JavaScript ecosystems.
+                  Engineered for speed, durability, and fault tolerance.
+                </p>
               </div>
-              <p className="service-row-desc">
-                Responsive architectures with fluid ergonomics, cohesive color systems, and optimal conversion journeys.
-                Crafted with attention to micro-interactions and accessibility.
-              </p>
-            </div>
 
-            <div className="service-row">
-              <div className="service-row-head">
-                <span className="service-row-num">03</span>
-                <span className="service-row-title">Performance &amp; SEO Auditing</span>
+              <div className="am-flow-row">
+                <span className="am-flow-num">02</span>
+                <span className="am-flow-title">UI/UX Systems &amp; Interfaces</span>
+                <p className="am-flow-desc">
+                  Responsive architectures with fluid ergonomics, cohesive color systems, and optimal conversion journeys.
+                  Crafted with attention to micro-interactions and accessibility.
+                </p>
               </div>
-              <p className="service-row-desc">
-                Eliminating script bloat and optimizing network waterfalls. Comprehensive Core Web Vital compliance
-                to rank your services at the top of search indexes and guarantee sub-second load times.
-              </p>
+
+              <div className="am-flow-row">
+                <span className="am-flow-num">03</span>
+                <span className="am-flow-title">Performance &amp; SEO Auditing</span>
+                <p className="am-flow-desc">
+                  Eliminating script bloat and optimizing network waterfalls. Thorough Core Web Vital compliance
+                  to rank your services at the top of search indexes and guarantee sub-second load times.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ═══ PROCESS SECTION ═══ */}
-        <section className="section" id="process">
-          <div className="section-head">
-            <h2>how we build together</h2>
-            <span className="count">03 phases</span>
-          </div>
-          <div className="services-flow">
-            <div className="service-row">
-              <div className="service-row-head">
-                <span className="service-row-num">01</span>
-                <span className="service-row-title">Discovery</span>
+        {/* Process section */}
+        <section className="am-section" id="process" aria-labelledby="process-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">Methodology</span>
+              <h2 className="am-h2" id="process-heading">How we build together</h2>
+              <p className="am-desc">Three structured phases to go from blueprint to deployment.</p>
+            </div>
+
+            <div className="am-flow">
+              <div className="am-flow-row">
+                <span className="am-flow-num">01</span>
+                <span className="am-flow-title">Discovery</span>
+                <p className="am-flow-desc">
+                  We review your brand, audience, and architectural goals to understand what makes your solution unique
+                  and how to position you for lasting defensibility.
+                </p>
               </div>
-              <p className="service-row-desc">
-                We dive deep into your brand, audience, and architectural goals to understand what makes your solution unique
-                and how to position you for lasting defensibility.
-              </p>
-            </div>
 
-            <div className="service-row">
-              <div className="service-row-head">
-                <span className="service-row-num">02</span>
-                <span className="service-row-title">Strategy</span>
+              <div className="am-flow-row">
+                <span className="am-flow-num">02</span>
+                <span className="am-flow-title">Strategy</span>
+                <p className="am-flow-desc">
+                  We craft a concise technical roadmap aligning your digital interface with business targets,
+                  ensuring every engineering decision directly compounds revenue and performance.
+                </p>
               </div>
-              <p className="service-row-desc">
-                We craft a concise technical roadmap aligning your digital interface with business targets,
-                ensuring every engineering decision directly compounds revenue and performance.
-              </p>
-            </div>
 
-            <div className="service-row">
-              <div className="service-row-head">
-                <span className="service-row-num">03</span>
-                <span className="service-row-title">Execution</span>
+              <div className="am-flow-row">
+                <span className="am-flow-num">03</span>
+                <span className="am-flow-title">Execution</span>
+                <p className="am-flow-desc">
+                  We build with absolute precision, combining clean and tested code with thoughtful design
+                  to deploy experiences that impress and convert.
+                </p>
               </div>
-              <p className="service-row-desc">
-                We build with absolute precision, combining clean and tested code with thoughtful design
-                to deploy experiences that impress and convert.
-              </p>
             </div>
           </div>
         </section>
 
-        {/* ═══ METRICS TABLE SECTION ═══ */}
-        <section className="section" id="metrics">
-          <div className="section-head">
-            <h2>performance benchmarks</h2>
-            <span className="count">verified stats</span>
-          </div>
-          <div className="table-wrap">
-            <table className="data-table">
-            <thead>
-              <tr>
-                <th>metric</th>
-                <th>benchmark</th>
-                <th>engineering notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>satisfaction</td>
-                <td>100%</td>
-                <td>Dedicated high-end support and precise engineering.</td>
-              </tr>
-              <tr>
-                <td>deployments</td>
-                <td>40+</td>
-                <td>From high-performance SaaS platforms to custom commerce architectures.</td>
-              </tr>
-              <tr>
-                <td>load speed</td>
-                <td>3x boost</td>
-                <td>Lightweight build tooling, code splitting, zero excess dependency trees.</td>
-              </tr>
-              <tr>
-                <td>uptime &amp; support</td>
-                <td>24/7</td>
-                <td>Direct communication channels, rapid iteration cycles.</td>
-              </tr>
-            </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* ═══ TESTIMONIALS SECTION ═══ */}
-        <section className="section" id="testimonials">
-          <div className="section-head">
-            <h2>client feedback</h2>
-            <span className="count">verified citations</span>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <div className="quote-box">
-              <p>
-                &ldquo;Dev&apos;s work was exceptional. He rewrote our entire web interface using custom-tailored elements.
-                Our loading speeds went from 4.2 seconds to under 0.8 seconds, and organic checkouts spiked by 35% within the first month itself.&rdquo;
-              </p>
-              <div className="quote-author">— Johnathan S., SaaS Founder, Austin TX</div>
+        {/* Benchmarks section */}
+        <section className="am-section" id="metrics" aria-labelledby="metrics-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">Verification</span>
+              <h2 className="am-h2" id="metrics-heading">Performance benchmarks</h2>
+              <p className="am-desc">Empirical standards upheld across production deployments.</p>
             </div>
 
-            <div className="quote-box">
-              <p>
-                &ldquo;The attention to detail is unmatched. Every pixel is in place, and the performance is breathtaking.
-                He didn&apos;t just build a site; he built a conversion engine for our agency.&rdquo;
-              </p>
-              <div className="quote-author">— Sarah Chen, Creative Director, Tokyo</div>
-            </div>
-
-            <div className="quote-box">
-              <p>
-                &ldquo;Professional, transparent, and incredibly fast. Dev delivered a complex dashboard architecture
-                in half the estimated time without compromising a single feature.&rdquo;
-              </p>
-              <div className="quote-author">— Marcus Thorne, CTO, FinTech Global</div>
+            <div className="am-table-wrap">
+              <table className="am-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Benchmark</th>
+                    <th>Engineering Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Satisfaction</td>
+                    <td>100%</td>
+                    <td>Dedicated high-end support and precise engineering.</td>
+                  </tr>
+                  <tr>
+                    <td>Deployments</td>
+                    <td>40+</td>
+                    <td>From high-performance SaaS platforms to custom commerce architectures.</td>
+                  </tr>
+                  <tr>
+                    <td>Load Speed</td>
+                    <td>3x Boost</td>
+                    <td>Lightweight build tooling, code splitting, zero excess dependency trees.</td>
+                  </tr>
+                  <tr>
+                    <td>Uptime &amp; Support</td>
+                    <td>24/7</td>
+                    <td>Direct communication channels, rapid iteration cycles.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
 
-        {/* ═══ CONTACT SECTION ═══ */}
-        <section className="section" id="contact">
-          <div className="section-head">
-            <h2>transmission terminal</h2>
-            <span className="count">direct dispatch</span>
+        {/* Testimonials section */}
+        <section className="am-section" id="testimonials" aria-labelledby="feedback-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">Citations</span>
+              <h2 className="am-h2" id="feedback-heading">Client feedback</h2>
+              <p className="am-desc">Verified commentary from collaborators and founders.</p>
+            </div>
+
+            <div className="am-quotes-grid">
+              <div className="am-quote-card">
+                <p>
+                  &ldquo;Dev&apos;s work was exceptional. He rewrote our entire web interface using custom-tailored elements.
+                  Our loading speeds went from 4.2 seconds to under 0.8 seconds, and organic checkouts spiked by 35% within the first month itself.&rdquo;
+                </p>
+                <div className="quote-author">Johnathan S., SaaS Founder, Austin TX</div>
+              </div>
+
+              <div className="am-quote-card">
+                <p>
+                  &ldquo;The attention to detail is unmatched. Every pixel is in place, and the performance is breathtaking.
+                  He didn&apos;t just build a site; he built a conversion engine for our agency.&rdquo;
+                </p>
+                <div className="quote-author">Sarah Chen, Creative Director, Tokyo</div>
+              </div>
+
+              <div className="am-quote-card">
+                <p>
+                  &ldquo;Professional, transparent, and incredibly fast. Dev delivered a complex dashboard architecture
+                  in half the estimated time without compromising a single feature.&rdquo;
+                </p>
+                <div className="quote-author">Marcus Thorne, CTO, FinTech Global</div>
+              </div>
+            </div>
           </div>
-          <p className="muted" style={{ marginBottom: "1rem" }}>
-            Have a project in mind, an existing codebase in need of optimization, or a contract to discuss?
-            Transmit your briefing below or ping directly at <a href="mailto:bitzzdev@gmail.com">bitzzdev@gmail.com</a>.
-          </p>
-          <ContactForm />
         </section>
 
-        {/* ═══ FOOTER ═══ */}
-        <footer className="foot">
+        {/* Contact transmission terminal */}
+        <section className="am-section" id="contact" aria-labelledby="contact-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">Dispatch</span>
+              <h2 className="am-h2" id="contact-heading">Transmission terminal</h2>
+              <p className="am-desc">Direct line for contracts, audits, and engineering partnerships.</p>
+            </div>
+
+            <div className="am-contact-box">
+              <p className="am-contact-intro">
+                Have a project in mind, an existing codebase in need of optimization, or a contract to discuss?
+                Transmit your briefing below or ping directly at <a href="mailto:bitzzdev@gmail.com">bitzzdev@gmail.com</a>.
+              </p>
+              <ContactForm />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="am-footer">
+        <div className="am-footer-inner">
           <div>
             &copy; {new Date().getFullYear()} bitz.is-a.dev. Handcrafted in India. All rights reserved.
           </div>
-          <div className="foot-links">
-            <a href="https://github.com/bitzzdev" target="_blank" rel="noreferrer">[github]</a>
-            <a href="https://x.com/bitzzdev" target="_blank" rel="noreferrer">[x]</a>
-            <a href="https://www.linkedin.com/in/bitzzdev/" target="_blank" rel="noreferrer">[linkedin]</a>
-            <a href="https://orcid.org/0009-0004-2013-2999" target="_blank" rel="noreferrer">[orcid]</a>
-            <a href="mailto:bitzzdev@gmail.com">[email]</a>
-            <a href="https://instagram.com/bitz.dev" target="_blank" rel="noreferrer">[instagram]</a>
-            <a href="#work">[top]</a>
+          <div className="am-footer-links">
+            <a href="https://github.com/bitzzdev" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://x.com/bitzzdev" target="_blank" rel="noreferrer">X (Twitter)</a>
+            <a href="https://www.linkedin.com/in/bitzzdev/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://orcid.org/0009-0004-2013-2999" target="_blank" rel="noreferrer">ORCID</a>
+            <a href="mailto:bitzzdev@gmail.com">Email</a>
+            <a href="https://instagram.com/bitz.dev" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="#top">Top &uarr;</a>
           </div>
-        </footer>
-      </main>
-    </div>
+        </div>
+      </footer>
+    </>
   );
 }

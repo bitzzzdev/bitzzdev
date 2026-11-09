@@ -14,6 +14,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: "languages",
     skills: [
+      { name: "Rust", icon: "/icons/rust.svg" },
       { name: "C++", icon: "/icons/cpp.svg" },
       { name: "C", icon: "/icons/c.svg" },
       { name: "Python", icon: "/icons/python.svg" },

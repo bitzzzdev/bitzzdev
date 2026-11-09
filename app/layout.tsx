@@ -125,6 +125,20 @@ const personJsonLd = {
   "creator": [
     {
       "@type": "SoftwareSourceCode",
+      "name": "DEVos",
+      "codeRepository": "https://github.com/bitzzdev/DEVos",
+      "programmingLanguage": "Python",
+      "description": "Early native Linux project for the Realme C11 2021 (RMX3231): research, kernel/firmware analysis, boot/initramfs work, and custom Linux userspace."
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "quickShelf",
+      "codeRepository": "https://github.com/bitzzdev/quickShelf",
+      "programmingLanguage": "Rust",
+      "description": "Rust-based Wayland desktop widget and Waybar popover for pinned app shortcuts, image drop previews, and quick access to media and launcher actions."
+    },
+    {
+      "@type": "SoftwareSourceCode",
       "name": "devSubstrate",
       "codeRepository": "https://github.com/bitzzdev/devSubstrate",
       "programmingLanguage": "Shell",
@@ -132,41 +146,29 @@ const personJsonLd = {
     },
     {
       "@type": "SoftwareSourceCode",
-      "name": "bitzdots",
-      "codeRepository": "https://github.com/bitzzdev/bitzzdev",
-      "programmingLanguage": "Shell",
-      "description": "Lean Arch Linux Hyprland dotfiles with automatic wallust theming."
+      "name": "devLauncher",
+      "codeRepository": "https://github.com/bitzzdev/devLauncher",
+      "programmingLanguage": "Kotlin",
+      "description": "Minimal Launcher for Android designed to reduce screen time with keyboard-driven access."
     },
     {
       "@type": "SoftwareSourceCode",
-      "name": "tiv",
-      "codeRepository": "https://github.com/bitzzdev/tiv",
-      "programmingLanguage": "C",
-      "description": "Minimal GTK-based GUI image viewer for Linux with keyboard navigation."
+      "name": "bitzdots",
+      "codeRepository": "https://github.com/bitzzdev/bitzdots",
+      "programmingLanguage": "Shell",
+      "description": "Lean Arch Linux Hyprland dotfiles with automatic wallust theming and low-end optimization."
     },
     {
       "@type": "SoftwareSourceCode",
       "name": "oha",
       "codeRepository": "https://github.com/bitzzdev/oha",
       "programmingLanguage": "C",
-      "description": "Terminal-based fullscreen text editor written in C with syntax highlighting."
-    },
-    {
-      "@type": "SoftwareSourceCode",
-      "name": "hyprconfig",
-      "codeRepository": "https://github.com/bitzzdev/hyprconfig",
-      "programmingLanguage": "Shell",
-      "description": "Dynamic Arch Linux Hyprland workstation configuration and tooling."
-    },
-    {
-      "@type": "SoftwareSourceCode",
-      "name": "MineGPT",
-      "codeRepository": "https://github.com/bitzzdev/MineGPT",
-      "programmingLanguage": "Java",
-      "description": "In-game AI assistant for Minecraft supporting multi-provider LLMs."
+      "description": "Terminal-based fullscreen text editor written in C with syntax highlighting and file manager."
     }
   ],
   "knowsAbout": [
+    "Rust",
+    "Rust (Programming Language)",
     "TypeScript",
     "Next.js",
     "React",
@@ -255,7 +257,7 @@ export const metadata: Metadata = {
     template: "%s | Dev Borah",
   },
   description:
-    "Official website and developer portfolio of Dev Borah (legal name Bitupan Borah, Bitz, @bitz.dev, @bitzzdev): software developer and open-source creator from Lakhimpur, Assam, India. Creator of devSubstrate, bitzdots, tiv, and oha. Specialized in C, C++, Python, JavaScript, Next.js, and Linux.",
+    "Official website and developer portfolio of Dev Borah (legal name Bitupan Borah, Bitz, @bitz.dev, @bitzzdev): software developer and open-source creator from Lakhimpur, Assam, India. Creator of DEVos, quickShelf, devSubstrate, devLauncher, bitzdots, and oha. Specialized in Rust, C, C++, Python, JavaScript, Next.js, and Linux.",
   authors: [{ name: "Dev Borah", url: CANONICAL_URL }],
   creator: "Dev Borah",
   publisher: "Dev Borah",

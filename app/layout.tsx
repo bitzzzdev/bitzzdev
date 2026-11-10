@@ -46,8 +46,7 @@ const personJsonLd = {
     "Bitupan Borah",
     "Bitz",
     "bitz.dev",
-    "bitzzdev",
-    "Dev Birah"
+    "bitzzdev"
   ],
   "birthDate": "2008-08-25",
   "gender": "Male",

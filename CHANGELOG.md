@@ -19,6 +19,9 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Synchronized Schema.org creator and knowsAbout graph to reflect new projects and Rust competency.
 - Replaced em dashes and legacy punctuation in documentation with human-writing standards.
 
+### Fixed
+- Removed incorrect name alias from Schema.org metadata and repository topic tags.
+
 ## [1.0.0] - 2026-10-30
 
 ### Added

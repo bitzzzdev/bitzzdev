@@ -20,6 +20,7 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Replaced em dashes and legacy punctuation in documentation with human-writing standards.
 
 ### Fixed
+- Fixed procedural activity banner image reference and linked followers, repos, and views badges in profile README.
 - Removed incorrect name alias from Schema.org metadata and repository topic tags.
 
 ## [1.0.0] - 2026-10-30

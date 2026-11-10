@@ -2,14 +2,18 @@
 
 # Dev Borah
 
-**Software developer · Open-source creator · Assam, India**
+**Known as bitzzdev | bitz.dev | Software developer and open source creator | Assam, India**
 
-I build thoughtful software across web, systems, and developer tooling.
+I build software across web platforms, systems programming, and developer tooling.
 
 [![Website](https://img.shields.io/badge/Website-bitz.is--a.dev-161b22?style=flat-square&logo=googlechrome&logoColor=white)](https://bitz.is-a.dev)
 [![GitHub](https://img.shields.io/badge/GitHub-bitzzdev-161b22?style=flat-square&logo=github&logoColor=white)](https://github.com/bitzzdev)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-bitzzdev-161b22?style=flat-square&logo=kofi&logoColor=white)](https://ko-fi.com/bitzzdev)
+[![Reddit](https://img.shields.io/badge/Reddit-u%2Fbitzzdev-161b22?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/user/bitzzdev/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Dev%20Borah-161b22?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/bitzzdev/)
 [![X](https://img.shields.io/badge/X-@bitzzdev-161b22?style=flat-square&logo=x&logoColor=white)](https://x.com/bitzzdev)
+[![Instagram](https://img.shields.io/badge/Instagram-@bitz.dev-161b22?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/bitz.dev)
+[![YouTube](https://img.shields.io/badge/YouTube-@bitzzzdev-161b22?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/@bitzzzdev)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0004--2013--2999-161b22?style=flat-square&logo=orcid&logoColor=white)](https://orcid.org/0009-0004-2013-2999)
 
 </div>
@@ -18,9 +22,11 @@ I build thoughtful software across web, systems, and developer tooling.
 
 ## About
 
-I'm Dev (Bitupan) Borah, a developer from Lakhimpur, Assam. I build reliable, polished software, from web platforms to systems tools and client-side utilities, with an emphasis on performance and usability.
+I am Dev Borah (legal identity Bitupan Borah), an independent software developer and systems creator from Lakhimpur, Assam, India. Online I build under the monikers bitzzdev and bitz.dev.
 
-**Focus:** Full-stack development · Systems programming · Developer tooling · Performance · UI/UX
+My work centers on writing reliable, fast software: native Linux utilities, Wayland desktop components, low-latency web platforms, and graphics shaders.
+
+Primary domains: Full-stack web platforms, systems programming in Rust and C, Linux desktop ricing (Hyprland), Android utilities, and Minecraft graphics/performance mods.
 
 ## Technologies
 
@@ -40,79 +46,75 @@ I'm Dev (Bitupan) Borah, a developer from Lakhimpur, Assam. I build reliable, po
 
 </div>
 
-## Selected work
+## Open source repositories
 
-### [DEVos](https://github.com/bitzzdev/DEVos)
-Early native Linux research and userspace implementation for the Realme C11 2021 (RMX3231), covering kernel analysis, boot/initramfs workflows, and pocket-server architecture.
+### Systems and Linux tooling
 
-`Python` · `Linux` · `Kernel` · `Systems`
+- [DEVos](https://github.com/bitzzdev/DEVos): Early native Linux research and userspace implementation for the Realme C11 2021 (RMX3231), covering kernel analysis, boot/initramfs workflows, and pocket-server architecture.
+- [quickShelf](https://github.com/bitzzdev/quickShelf): Rust-based Wayland desktop widget and Waybar popover for pinned app shortcuts, image drop previews, and quick access to media controls and launcher actions.
+- [devSubstrate](https://github.com/bitzzdev/devSubstrate): A research substrate for modern software engineering: AI API architectures, terminal-native agents, and OS repair notes.
+- [cloudMux](https://github.com/bitzzdev/cloudMux): Cross-shell GitHub, Google Cloud, and Azure CLI shortcuts for Termux and desktop Linux.
+- [tools](https://github.com/bitzzdev/tools): Developer utilities, automation scripts, and productivity tools for Linux and cloud environments.
+- [oha](https://github.com/bitzzdev/oha): Terminal-based fullscreen text editor written in C with syntax highlighting and built-in file browsing.
+- [tiv](https://github.com/bitzzdev/tiv): Lightweight GTK image viewer for Linux with keyboard navigation.
 
-### [quickShelf](https://github.com/bitzzdev/quickShelf)
-Rust-based Wayland desktop widget and Waybar popover for pinned app shortcuts, image drop previews, and quick access to media controls and launcher actions.
+### Desktop customization
 
-`Rust` · `Wayland` · `Linux` · `GTK`
+- [bitzdots](https://github.com/bitzzdev/bitzdots): Lean Arch Linux Hyprland dotfiles with automatic matugen theming, low-end hardware optimization, and customized Waybar modules.
+- [hyprConfig](https://github.com/bitzzdev/hyprConfig): E-ink themed Hyprland dotfiles with Quickshell top bar and dynamic palette generation.
+- [phoneWallpapers](https://github.com/bitzzdev/phoneWallpapers): Curated collection of high-resolution 2K portrait phone wallpapers and anime mobile backgrounds.
 
-### [devSubstrate](https://github.com/bitzzdev/devSubstrate)
-A research substrate for modern software engineering: AI API architectures, terminal-native agents, and OS repair notes.
+### Mobile applications
 
-`Shell` · `AI` · `Systems` · `Tooling`
+- [devLauncher](https://github.com/bitzzdev/devLauncher): Minimal launcher for Android focused on keyboard-driven navigation, fast app launching, and reduced screen distractions.
 
-### [devLauncher](https://github.com/bitzzdev/devLauncher)
-Minimal launcher for Android focused on keyboard-driven navigation, fast app launching, and reduced screen distractions.
+### Minecraft mods and shaders
 
-`Kotlin` · `Android` · `UI/UX`
+- [Pulse](https://github.com/bitzzdev/Pulse): Adaptive Performance Manager for Minecraft that monitors rendering performance and dynamically adjusts visual quality.
+- [RealisticallyOptimized](https://github.com/bitzzdev/RealisticallyOptimized): Stylized toon-lighting Minecraft shaderpack with real-time shadows, optimized for performance.
+- [JustVanilla](https://github.com/bitzzdev/JustVanilla): Vanilla-enhancing Minecraft shaderpack with real-time shadows, optimized for all hardware.
+- [byeByeFallingLeaves](https://github.com/bitzzdev/byeByeFallingLeaves): Minecraft resource pack that removes all falling leaf and cherry blossom particles for cleaner visuals.
+- [NexUI](https://github.com/bitzzdev/NexUI): Client-side HUD interface editor and modern design studio for Minecraft.
+- [MineGPT](https://github.com/bitzzdev/MineGPT): In-game AI chat assistant for Minecraft supporting OpenAI, Anthropic, Gemini, and OpenRouter.
+- [CustomPaintings](https://github.com/bitzzdev/CustomPaintings): Minecraft Paper plugin for uploading PNGs and creating map-based paintings, including multi-map murals.
+- [stasis](https://github.com/bitzzdev/stasis): Fabric server-side Minecraft mod that reduces BlockEntity tick load with activity-aware scheduling.
+- [cartoonee](https://github.com/bitzzdev/cartoonee): Minecraft texture pack redesigning swords in a cartoon style while preserving vanilla aesthetic.
 
-### [bitzdots](https://github.com/bitzzdev/bitzdots)
-Lean Arch Linux Hyprland dotfiles with automatic wallust palette generation, low-end hardware optimization, and customized Waybar modules.
+### AI agent tooling
 
-`Shell` · `Hyprland` · `Arch Linux`
+- [skills](https://github.com/bitzzdev/skills): Production-ready agent skills, automation recipes, and developer workflows for AI coding assistants.
 
-### [oha](https://github.com/bitzzdev/oha)
-Terminal-based fullscreen text editor written in C with syntax highlighting and built-in file browsing.
+[Browse all public repositories on GitHub](https://github.com/bitzzdev?tab=repositories)
 
-`C` · `CLI` · `Linux` · `Terminal`
-
-[Browse all public repositories →](https://github.com/bitzzdev?tab=repositories)
-
-## GitHub activity
+## Activity
 
 <p align="center">
   <a href="https://github.com/PramudithaN/git-tulkun">
     <img src="https://raw.githubusercontent.com/bitzzdev/bitzzdev/output/tulkun/tulkun.gif" width="640" alt="git-tulkun swimming" />
   </a>
   <br />
-  <em>Procedural activity banner generated by <a href="https://github.com/PramudithaN/git-tulkun">git-tulkun</a></em>
+  <em>Procedural activity banner generated by git-tulkun</em>
 </p>
 
 <div align="center">
 
 <img alt="GitHub followers" src="https://img.shields.io/github/followers/bitzzdev?label=Followers&style=flat-square&logo=github&color=161b22&labelColor=161b22&logoColor=white" />
-<img alt="Public repositories" src="https://img.shields.io/badge/Public%20Repos-6%2B-161b22?style=flat-square&logo=github&logoColor=white" />
+<img alt="Public repositories" src="https://img.shields.io/badge/Public%20Repos-25-161b22?style=flat-square&logo=github&logoColor=white" />
 <img alt="Profile views" src="https://komarev.com/ghpvc/?username=bitzzdev&style=flat-square&color=161b22&label=Profile+views" />
 
 </div>
 
-## Local development
+## Connect and profiles
 
-Clone and run the web application locally:
+For contract inquiries, open-source collaboration, or consulting:
 
-```bash
-npm install
-npm run dev
-```
-
-To generate a production build:
-
-```bash
-npm run build
-```
-
-## Connect
-
-For collaboration, project inquiries, or software engineering questions, reach me through [my website](https://bitz.is-a.dev) or [LinkedIn](https://www.linkedin.com/in/bitzzdev/).
-
-<div align="center">
-
-[Website](https://bitz.is-a.dev) · [GitHub](https://github.com/bitzzdev) · [X](https://x.com/bitzzdev) · [Instagram](https://instagram.com/bitz.dev) · [LinkedIn](https://www.linkedin.com/in/bitzzdev/)
-
-</div>
+- Website: [bitz.is-a.dev](https://bitz.is-a.dev)
+- GitHub: [github.com/bitzzdev](https://github.com/bitzzdev)
+- Ko-fi: [ko-fi.com/bitzzdev](https://ko-fi.com/bitzzdev)
+- Reddit: [reddit.com/user/bitzzdev](https://www.reddit.com/user/bitzzdev/)
+- LinkedIn: [linkedin.com/in/bitzzdev](https://www.linkedin.com/in/bitzzdev/)
+- X: [x.com/bitzzdev](https://x.com/bitzzdev)
+- Instagram: [instagram.com/bitz.dev](https://instagram.com/bitz.dev)
+- YouTube: [youtube.com/@bitzzzdev](https://www.youtube.com/@bitzzzdev)
+- Email: bitzzdev@gmail.com
+- ORCID: [orcid.org/0009-0004-2013-2999](https://orcid.org/0009-0004-2013-2999)

@@ -6,12 +6,15 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 ## [Unreleased]
 
 ### Added
+- Added Ko-fi and Reddit socials to profile README, Schema.org sameAs graph, and footer navigation.
+- Added complete repository directory indexing systems tools, desktop customization, and Minecraft mods.
 - Added Rust to technical language competencies and quick info dossier.
 - Added procedural GitHub activity banner powered by git-tulkun to profile README.
 - Added tulkun GitHub Actions workflow and automated CI build verification.
 - Added MIT License, Contributing Guide, Code of Conduct, and Security Policy.
 
 ### Changed
+- Updated profile metadata, titles, and schema graphs to optimize Google search discovery for Dev Borah, bitzzdev, and bitz.dev.
 - Reordered curated project showcase to highlight DEVos, quickShelf, devSubstrate, devLauncher, bitzdots, and oha.
 - Synchronized Schema.org creator and knowsAbout graph to reflect new projects and Rust competency.
 - Replaced em dashes and legacy punctuation in documentation with human-writing standards.

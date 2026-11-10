@@ -46,7 +46,8 @@ const personJsonLd = {
     "Bitupan Borah",
     "Bitz",
     "bitz.dev",
-    "bitzzdev"
+    "bitzzdev",
+    "Dev Birah"
   ],
   "birthDate": "2008-08-25",
   "gender": "Male",
@@ -107,20 +108,23 @@ const personJsonLd = {
     "@id": `${CANONICAL_URL}/#primaryimage`,
     "url": `${CANONICAL_URL}/me.png`,
     "contentUrl": `${CANONICAL_URL}/me.png`,
-    "caption": "Dev Borah (Bitupan Borah), Software and Web Developer",
+    "caption": "Dev Borah (Bitupan Borah), Software Developer",
     "width": 1215,
     "height": 1295
   },
   "email": "bitzzdev@gmail.com",
   "jobTitle": "Software Developer & Web Developer",
-  "description": "Dev Borah (legal name Bitupan Borah, known online as Bitz, @bitz.dev, and @bitzzdev) is a software developer, web developer, and open-source creator from Lakhimpur, Assam, India.",
+  "description": "Dev Borah (legal name Bitupan Borah, online as Bitz, @bitz.dev, and @bitzzdev) is a software developer and systems creator from Lakhimpur, Assam, India.",
   "sameAs": [
     "https://github.com/bitzzdev",
+    "https://ko-fi.com/bitzzdev",
+    "https://www.reddit.com/user/bitzzdev/",
     "https://x.com/bitzzdev",
     "https://twitter.com/bitzzdev",
     "https://www.linkedin.com/in/bitzzdev/",
     "https://orcid.org/0009-0004-2013-2999",
-    "https://instagram.com/bitz.dev"
+    "https://instagram.com/bitz.dev",
+    "https://www.youtube.com/@bitzzzdev"
   ],
   "creator": [
     {
@@ -201,7 +205,7 @@ const brandJsonLd = {
   "@type": "Brand",
   "@id": `${CANONICAL_URL}/#brand`,
   "name": "Bitz",
-  "alternateName": ["bitz.dev", "bitzzdev"],
+  "alternateName": ["bitz.dev", "bitzzdev", "Dev Borah"],
   "url": CANONICAL_URL,
   "logo": `${CANONICAL_URL}/favicon.png`,
   "founder": {
@@ -216,10 +220,12 @@ const websiteJsonLd = {
   "name": "Bitz: Dev Borah",
   "alternateName": [
     "bitz.is-a.dev",
+    "bitz.dev",
     "Dev Borah Portfolio",
-    "Bitupan Borah Portfolio"
+    "Bitupan Borah Portfolio",
+    "bitzzdev"
   ],
-  "description": "Official personal website and developer portfolio of Dev Borah (Bitupan Borah), software developer & web developer.",
+  "description": "Official personal website and developer portfolio of Dev Borah (Bitupan Borah), software developer and open source creator.",
   "publisher": {
     "@id": `${CANONICAL_URL}/#person`
   },
@@ -230,7 +236,7 @@ const profilePageJsonLd = {
   "@type": "ProfilePage",
   "@id": `${CANONICAL_URL}/#profilepage`,
   "url": CANONICAL_URL,
-  "name": "Dev Borah (Bitupan Borah), Software and Web Developer",
+  "name": "Dev Borah (Bitupan Borah), Software Developer | bitz.dev",
   "isPartOf": {
     "@id": `${CANONICAL_URL}/#website`
   },
@@ -253,11 +259,11 @@ const schemaGraph = {
 export const metadata: Metadata = {
   metadataBase: new URL(CANONICAL_URL),
   title: {
-    default: "Dev Borah (Bitupan Borah), Software and Web Developer | Bitz",
+    default: "Dev Borah | bitzzdev | bitz.dev",
     template: "%s | Dev Borah",
   },
   description:
-    "Official website and developer portfolio of Dev Borah (legal name Bitupan Borah, Bitz, @bitz.dev, @bitzzdev): software developer and open-source creator from Lakhimpur, Assam, India. Creator of DEVos, quickShelf, devSubstrate, devLauncher, bitzdots, and oha. Specialized in Rust, C, C++, Python, JavaScript, Next.js, and Linux.",
+    "Official developer portfolio and open-source directory for Dev Borah (legal name Bitupan Borah, bitzzdev, bitz.dev): software developer and open-source creator from Lakhimpur, Assam, India. Creator of DEVos, quickShelf, devSubstrate, devLauncher, bitzdots, and oha.",
   authors: [{ name: "Dev Borah", url: CANONICAL_URL }],
   creator: "Dev Borah",
   publisher: "Dev Borah",
@@ -269,7 +275,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: CANONICAL_URL,
     siteName: "Bitz: Dev Borah",
-    title: "Dev Borah (Bitupan Borah), Software and Web Developer",
+    title: "Dev Borah | bitzzdev | bitz.dev",
     description:
       "Official website and portfolio of Dev Borah (Bitupan Borah, @bitz.dev, @bitzzdev): software developer and open-source creator based in Assam, India.",
     firstName: "Dev",
@@ -281,7 +287,7 @@ export const metadata: Metadata = {
         url: "/me.png",
         width: 1215,
         height: 1295,
-        alt: "Dev Borah (Bitupan Borah), Software and Web Developer",
+        alt: "Dev Borah (Bitupan Borah), Software Developer",
       },
     ],
   },
@@ -289,7 +295,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@bitzzdev",
     creator: "@bitzzdev",
-    title: "Dev Borah (Bitupan Borah), Software and Web Developer",
+    title: "Dev Borah | bitzzdev | bitz.dev",
     description:
       "Official portfolio of Dev Borah (Bitupan Borah, @bitz.dev, @bitzzdev): software developer in Assam, India.",
     images: ["/me.png"],

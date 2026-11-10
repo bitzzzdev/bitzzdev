@@ -55,7 +55,7 @@ export default async function Home() {
               <div className="hero__textrow">
                 <div>
                   <h1 className="hero__title">
-                    Dev Borah (Bitupan Borah), Software &amp; Web Developer
+                    Dev Borah (Bitupan Borah), Software Developer
                   </h1>
                   <p className="hero__subtitle">
                     Great founders changing the world deserve a digital presence as powerful as what they&apos;re building.
@@ -149,6 +149,18 @@ export default async function Home() {
                   </span>
                 </div>
                 <div className="dossier-item">
+                  <span className="dossier-label">Ko-fi</span>
+                  <span className="dossier-val">
+                    <a href="https://ko-fi.com/bitzzdev" target="_blank" rel="noreferrer">bitzzdev</a>
+                  </span>
+                </div>
+                <div className="dossier-item">
+                  <span className="dossier-label">Reddit</span>
+                  <span className="dossier-val">
+                    <a href="https://www.reddit.com/user/bitzzdev/" target="_blank" rel="noreferrer">u/bitzzdev</a>
+                  </span>
+                </div>
+                <div className="dossier-item">
                   <span className="dossier-label">X / Twitter</span>
                   <span className="dossier-val">
                     <a href="https://x.com/bitzzdev" target="_blank" rel="noreferrer">@bitzzdev</a>
@@ -184,11 +196,11 @@ export default async function Home() {
                 <span className="dossier-label">Academic Path</span>
                 <div className="edu-entry">
                   <span className="edu-badge">Completed Feb 2026</span>
-                  <span>High School &mdash; Lakhimpur, Assam, India</span>
+                  <span>High School: Lakhimpur, Assam, India</span>
                 </div>
                 <div className="edu-entry">
                   <span className="edu-badge">Current Status</span>
-                  <span>Higher Secondary with Computer Science (CS) &mdash; Lakhimpur, Assam</span>
+                  <span>Higher Secondary with Computer Science (CS): Lakhimpur, Assam</span>
                 </div>
               </div>
 
@@ -387,6 +399,8 @@ export default async function Home() {
           </div>
           <div className="am-footer-links">
             <a href="https://github.com/bitzzdev" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://ko-fi.com/bitzzdev" target="_blank" rel="noreferrer">Ko-fi</a>
+            <a href="https://www.reddit.com/user/bitzzdev/" target="_blank" rel="noreferrer">Reddit</a>
             <a href="https://x.com/bitzzdev" target="_blank" rel="noreferrer">X (Twitter)</a>
             <a href="https://www.linkedin.com/in/bitzzdev/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a href="https://orcid.org/0009-0004-2013-2999" target="_blank" rel="noreferrer">ORCID</a>

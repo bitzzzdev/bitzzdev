@@ -26,7 +26,7 @@ I am Dev Borah (legal identity Bitupan Borah), an independent software developer
 
 My work centers on writing reliable, fast software: native Linux utilities, Wayland desktop components, low-latency web platforms, and graphics shaders.
 
-Primary domains: Full-stack web platforms, systems programming in Rust and C, Linux desktop ricing (Hyprland), Android utilities, and Minecraft graphics/performance mods.
+Primary domains: Full-stack web platforms, cloud infrastructure (Azure VPS, Firebase), systems programming in Rust and C, Linux desktop ricing (Hyprland), Android utilities, and Minecraft graphics/performance mods.
 
 ## Technologies
 
@@ -39,6 +39,8 @@ Primary domains: Full-stack web platforms, systems programming in Rust and C, Li
 ![C++](https://img.shields.io/badge/C%2B%2B-161b22?style=flat-square&logo=cplusplus&logoColor=00599C)
 ![C](https://img.shields.io/badge/C-161b22?style=flat-square&logo=c&logoColor=A8B9CC)
 ![Linux](https://img.shields.io/badge/Linux-161b22?style=flat-square&logo=linux&logoColor=FCC624)
+![Microsoft Azure](https://img.shields.io/badge/Microsoft_Azure-161b22?style=flat-square&logo=microsoftazure&logoColor=0078D4)
+![Firebase](https://img.shields.io/badge/Firebase-161b22?style=flat-square&logo=firebase&logoColor=FFCA28)
 ![Next.js](https://img.shields.io/badge/Next.js-161b22?style=flat-square&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-161b22?style=flat-square&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-161b22?style=flat-square&logo=tailwindcss&logoColor=06B6D4)
@@ -103,6 +105,34 @@ Primary domains: Full-stack web platforms, systems programming in Rust and C, Li
 [![Profile views](https://komarev.com/ghpvc/?username=bitzzdev&style=flat-square&color=161b22&label=Profile+views)](https://github.com/bitzzdev)
 
 </div>
+
+## Local setup and development
+
+### Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/bitzzdev/bitzzdev.git
+cd bitzzdev
+npm install
+```
+
+### Usage and development server
+
+Start the Next.js development server:
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:3000` in your browser.
+
+To build the static and production assets:
+
+```bash
+npm run build
+```
 
 ## Connect and profiles
 

@@ -6,6 +6,10 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 ## [Unreleased]
 
 ### Added
+- Added Azure VPS and Firebase to the Technical Stack dossier and technical competencies.
+- Added Azure and Firebase SVG icons and shields badges.
+- Added third-party open-source attribution in CREDITS.md.
+- Added local setup, installation, and run instructions to README.
 - Added Ko-fi and Reddit socials to profile README, Schema.org sameAs graph, and footer navigation.
 - Added complete repository directory indexing systems tools, desktop customization, and Minecraft mods.
 - Added Rust to technical language competencies and quick info dossier.
@@ -14,8 +18,11 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Added MIT License, Contributing Guide, Code of Conduct, and Security Policy.
 
 ### Changed
+- Updated technical stack categories to include a dedicated cloud and infrastructure section.
+- Synchronized Schema.org knowsAbout graph with Azure VPS, Microsoft Azure, and Firebase.
+- Refined portfolio bio, service descriptions, and performance benchmarks to reflect cloud infrastructure workflows.
 - Updated profile metadata, titles, and schema graphs to optimize Google search discovery for Dev Borah, bitzzdev, and bitz.dev.
-- Reordered curated project showcase to highlight DEVos, quickShelf, devSubstrate, devLauncher, bitzdots, and oha.
+- Reordered featured projects to highlight DEVos, quickShelf, devSubstrate, devLauncher, bitzdots, and oha.
 - Synchronized Schema.org creator and knowsAbout graph to reflect new projects and Rust competency.
 - Replaced em dashes and legacy punctuation in documentation with human-writing standards.
 

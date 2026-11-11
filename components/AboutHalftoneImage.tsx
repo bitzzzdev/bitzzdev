@@ -17,6 +17,7 @@ export default function AboutHalftoneImage() {
           Primary server-rendered image element visible to search engine bots (Googlebot, Bingbot),
           AI search indexers, and browsers. It ensures `me.png` is prominently indexed with high relevance.
         */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/me.png"
           alt="Dev Borah (Bitupan Borah), Software and Web Developer"

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 interface SkillItem {
   name: string;
   icon: string;
@@ -27,6 +29,13 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "Arch Linux", icon: "/icons/arch-linux.svg" },
       { name: "Linux", icon: "/icons/linux.svg" },
       { name: "Hyprland", icon: "/icons/hyprland.svg" },
+    ],
+  },
+  {
+    title: "cloud & infra",
+    skills: [
+      { name: "Azure VPS", icon: "/icons/azure.svg" },
+      { name: "Firebase", icon: "/icons/firebase.svg" },
     ],
   },
   {
@@ -61,14 +70,13 @@ export default function MinimalSkillsList() {
             <div className="mini-skills-items">
               {cat.skills.map((skill) => (
                 <span key={skill.name} className="mini-skill-pill">
-                  <img
+                  <Image
                     src={skill.icon}
                     alt=""
                     width={14}
                     height={14}
                     className="mini-skill-icon"
-                    loading="lazy"
-                    decoding="async"
+                    unoptimized
                   />
                   <span className="mini-skill-name">{skill.name}</span>
                 </span>

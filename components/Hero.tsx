@@ -20,8 +20,10 @@ export default function Hero() {
           setDisplayText(currentTarget.substring(0, displayText.length - 1));
         }, 50);
       } else {
-        setIsDeleting(false);
-        setTitleIndex((prev) => (prev + 1) % TITLES.length);
+        timeout = setTimeout(() => {
+          setIsDeleting(false);
+          setTitleIndex((prev) => (prev + 1) % TITLES.length);
+        }, 50);
       }
     } else {
       if (displayText.length < currentTarget.length) {

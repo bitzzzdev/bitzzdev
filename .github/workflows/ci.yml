@@ -6,11 +6,13 @@ on:
       - main
       - ascii
       - preview
+      - dev
   pull_request:
     branches:
       - main
       - ascii
       - preview
+      - dev
 
 jobs:
   build:

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getPublicRepos } from "@/lib/github";
 import AsciiWorkGrid from "@/components/AsciiWorkGrid";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -17,9 +18,9 @@ export default async function Home() {
       {/* Navigation header */}
       <header className="nav">
         <div className="nav__inner">
-          <a className="nav__brand" href="/" aria-label="bitz.is-a.dev, home">
+          <Link className="nav__brand" href="/" aria-label="bitz.is-a.dev, home">
             bitz.is-a.dev
-          </a>
+          </Link>
 
           <nav className="nav__links" aria-label="Primary">
             <a href="#work">Work</a>
@@ -107,7 +108,8 @@ export default async function Home() {
                 </p>
                 <p>
                   I love clean code, lightning-fast interfaces, and getting rid of unnecessary bloat. Whether it&apos;s
-                  crafting responsive web applications, designing developer tools, or optimizing performance so things load instantly,
+                  crafting responsive web applications, configuring cloud infrastructure with Azure VPS and Firebase,
+                  designing developer tools, or optimizing performance so things load instantly,
                   I treat every project as something to build with genuine care, technical discipline, and craft.
                 </p>
                 <p style={{ color: "var(--text-50)", fontSize: "14px", marginTop: "24px" }}>
@@ -223,8 +225,8 @@ export default async function Home() {
                 <span className="am-flow-num">01</span>
                 <span className="am-flow-title">Custom Web Applications</span>
                 <p className="am-flow-desc">
-                  Interactive Single Page Applications &amp; fullstack platforms tailored with modern JavaScript ecosystems.
-                  Engineered for speed, durability, and fault tolerance.
+                  Interactive Single Page Applications &amp; fullstack platforms tailored with modern JavaScript ecosystems,
+                  Firebase backends, and cloud infrastructure. Engineered for speed, durability, and fault tolerance.
                 </p>
               </div>
 
@@ -316,7 +318,7 @@ export default async function Home() {
                   <tr>
                     <td>Deployments</td>
                     <td>40+</td>
-                    <td>From high-performance SaaS platforms to custom commerce architectures.</td>
+                    <td>From high-performance SaaS platforms to custom commerce architectures and Azure VPS environments.</td>
                   </tr>
                   <tr>
                     <td>Load Speed</td>

@@ -45,6 +45,7 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - The portrait image (`me.png`, 1.8 MB) is now served from the free Vercel Blob CDN instead of the git repository, shrinking clone size and bandwidth on every build.
 
 ### Fixed
+- Fixed the repository tab bar (Overview, Files, Commits, Branches & Tags) showing a vertical scrollbar; `overflow-y` is now pinned to `hidden` because `overflow-x: auto` silently promotes the vertical axis to `auto`.
 - Fixed procedural activity banner image reference and linked followers, repos, and views badges in profile README.
 - Removed incorrect name alias from Schema.org metadata and repository topic tags.
 

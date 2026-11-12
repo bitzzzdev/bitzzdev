@@ -1557,7 +1557,12 @@ body {
   padding: 0 var(--text-inset);
   border-bottom: 1px solid var(--border-faint);
   margin-top: 8px;
+  /* overflow-x: auto silently promotes overflow-y to auto (CSS Overflow
+     spec), which produced a vertical scrollbar on the tab bar. Pin the
+     vertical axis to hidden so the bar only ever scrolls horizontally. */
   overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
 }
 
 .repo-tab {

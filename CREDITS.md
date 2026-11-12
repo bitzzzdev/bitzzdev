@@ -34,6 +34,18 @@ This project is built using open-source software and creative assets. Sincere th
   - License: MIT License
   - Copyright: Dev Borah
 
+- **react-markdown**
+  - Project: https://github.com/remarkjs/react-markdown
+  - License: MIT License
+  - Copyright: Titus Wormer
+  - Used to render repository READMEs in the `/repos` explorer. Raw HTML in READMEs is never executed.
+
+- **remark-gfm**
+  - Project: https://github.com/remarkjs/remark-gfm
+  - License: MIT License
+  - Copyright: Titus Wormer
+  - GitHub Flavored Markdown support for the README renderer.
+
 - **Vercel Analytics and Speed Insights**
   - Project: https://vercel.com
   - License: Apache License 2.0

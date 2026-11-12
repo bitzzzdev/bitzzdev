@@ -6,7 +6,13 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 ## [Unreleased]
 
 ### Added
-- Added `dual-git-sync` personal skill under `skills/dual-git-sync/` codifying automated dual remote pushes, dual CI/CD pipeline parity across GitHub and GitLab, and comprehensive source references.
+- Added `/repos`: a live index of every public repository served from GitHub with automatic fallback to GitLab when the GitHub account is unavailable, with search, tag filters, and per-card name, description, and tags.
+- Added a full in-browser git environment at `/repos/[repo]`: rendered README (GFM), browsable file tree, text file viewer with line numbers, commit history with pagination, and a branches and tags view, all in the portfolio's Paper Mono aesthetic.
+- Added a cached snapshot of the public GitLab namespace (captured 2026-11-12) used only when both hosts are unreachable or rate limited, so the repository index never renders empty.
+- Added `/api/repos/curated` route feeding the homepage work grid from the same unified data layer.
+- Added per-repo metadata (title, description, canonical URL, Open Graph) and sitemap entries for `/repos` and every public repository.
+- Added `Repos` links to the header navigation, footer, and the homepage selected work section.
+- Added `dual-git-sync` personal skill under `skills/dual-git-sync/` codifying automated dual remote pushes, dual CI/CD pipeline parity across GitHub and GitLab, and full source references.
 - Added explicit GitLab repository reference links alongside GitHub links across all indexed repositories in README.
 - Added GitLab profile links to the README header, repository browse links, connect section, site dossier, footer, and Schema.org sameAs graph.
 - Added GitLab clone instructions to the local setup section.
@@ -23,6 +29,8 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Added MIT License, Contributing Guide, Code of Conduct, and Security Policy.
 
 ### Changed
+- Homepage work grid cards now open the in-site repository explorer instead of external GitHub URLs, keeping the flagged GitHub account from breaking project links.
+- Homepage and `/repos` now share one data layer (`lib/repos.ts`) that prefers GitHub and falls back to GitLab for repository metadata, README, tree, file, commit, branch, and tag data.
 - Updated technical stack categories to include a dedicated cloud and infrastructure section.
 - Synchronized Schema.org knowsAbout graph with Azure VPS, Microsoft Azure, and Firebase.
 - Refined portfolio bio, service descriptions, and performance benchmarks to reflect cloud infrastructure workflows.

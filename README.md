@@ -87,7 +87,9 @@ Primary domains: Full-stack web platforms, cloud infrastructure (Azure VPS, Fire
 
 - **skills** ([GitHub](https://github.com/bitzzdev/skills) | [GitLab](https://gitlab.com/bitzzdev/skills)): Production-ready agent skills, automation recipes, and developer workflows for AI coding assistants.
 
-[Browse all public repositories on GitHub](https://github.com/bitzzdev?tab=repositories) | [Browse all public repositories on GitLab](https://gitlab.com/bitzzdev)
+[Browse all public repositories on GitHub](https://github.com/bitzzdev?tab=repositories) | [Browse all public repositories on GitLab](https://gitlab.com/bitzzdev) | [Browse in the portfolio explorer](https://bitz.is-a.dev/repos)
+
+The portfolio ships an in-site repository browser at [bitz.is-a.dev/repos](https://bitz.is-a.dev/repos). It lists every public repository with name, description, and tags, and clicking any repository opens its README, file tree, file contents, commit history, branches, and tags without leaving the site. Data is served live from GitHub with an automatic fallback to the GitLab mirror.
 
 ## Activity
 

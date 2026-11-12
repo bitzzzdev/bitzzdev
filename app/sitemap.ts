@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 1.0,
       images: [
-        "https://bitz.is-a.dev/me.png",
+        "https://ipfhkjeedqyo2rxr.public.blob.vercel-storage.com/me.png",
         "https://bitz.is-a.dev/favicon.png",
       ],
     },

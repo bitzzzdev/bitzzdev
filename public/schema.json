@@ -35,8 +35,8 @@
       "image": {
         "@type": "ImageObject",
         "@id": "https://bitz.is-a.dev/#primaryimage",
-        "url": "https://bitz.is-a.dev/me.png",
-        "contentUrl": "https://bitz.is-a.dev/me.png",
+        "url": "https://ipfhkjeedqyo2rxr.public.blob.vercel-storage.com/me.png",
+        "contentUrl": "https://ipfhkjeedqyo2rxr.public.blob.vercel-storage.com/me.png",
         "caption": "Dev Borah (Bitupan Borah) — Software & Web Developer",
         "width": 1215,
         "height": 1295

@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "Googlebot-Image",
-        allow: ["/me.png", "/favicon.png"],
+        allow: ["/favicon.png"],
         disallow: ["/ascii/", "/ascii-posters/"],
       },
     ],

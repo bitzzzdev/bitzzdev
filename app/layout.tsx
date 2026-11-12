@@ -34,6 +34,10 @@ const paperMono = localFont({
 // Canonical site domain
 const CANONICAL_URL = "https://bitz.is-a.dev";
 
+// Portrait is hosted on the free Vercel Blob CDN instead of the git repo
+// (https://vercel.com/docs/vercel-blob). Keep in sync with AboutHalftoneImage.
+const PORTRAIT_URL = "https://ipfhkjeedqyo2rxr.public.blob.vercel-storage.com/me.png";
+
 // Structured Data (JSON-LD) graph conforming to Schema.org standards
 const personJsonLd = {
   "@type": "Person",
@@ -105,8 +109,8 @@ const personJsonLd = {
   "image": {
     "@type": "ImageObject",
     "@id": `${CANONICAL_URL}/#primaryimage`,
-    "url": `${CANONICAL_URL}/me.png`,
-    "contentUrl": `${CANONICAL_URL}/me.png`,
+    "url": PORTRAIT_URL,
+    "contentUrl": PORTRAIT_URL,
     "caption": "Dev Borah (Bitupan Borah), Software Developer",
     "width": 1215,
     "height": 1295
@@ -288,7 +292,7 @@ export const metadata: Metadata = {
     gender: "male",
     images: [
       {
-        url: "/me.png",
+        url: PORTRAIT_URL,
         width: 1215,
         height: 1295,
         alt: "Dev Borah (Bitupan Borah), Software Developer",
@@ -302,7 +306,7 @@ export const metadata: Metadata = {
     title: "Dev Borah | bitzzdev | bitz.dev",
     description:
       "Official portfolio of Dev Borah (Bitupan Borah, @bitz.dev, @bitzzdev): software developer in Assam, India.",
-    images: ["/me.png"],
+    images: [PORTRAIT_URL],
   },
   icons: {
     icon: "/favicon.png",

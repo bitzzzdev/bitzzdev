@@ -15,11 +15,11 @@ export default function AboutHalftoneImage() {
       <div className="about-image-card">
         {/*
           Primary server-rendered image element visible to search engine bots (Googlebot, Bingbot),
-          AI search indexers, and browsers. It ensures `me.png` is prominently indexed with high relevance.
+          AI search indexers, and browsers. The portrait is served from the free Vercel Blob CDN.
         */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/me.png"
+          src="https://ipfhkjeedqyo2rxr.public.blob.vercel-storage.com/me.png"
           alt="Dev Borah (Bitupan Borah), Software and Web Developer"
           width={480}
           height={480}
@@ -37,7 +37,7 @@ export default function AboutHalftoneImage() {
         />
         <div style={{ position: "relative", zIndex: 1, width: "100%", height: "100%" }}>
           <HalftoneReveal
-            src="/me.png"
+            src="https://ipfhkjeedqyo2rxr.public.blob.vercel-storage.com/me.png"
             mode="mono"
             shape="dot"
             cellSize={6}

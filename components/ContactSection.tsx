@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Reveal from "@/components/Reveal";
+import ThemedSelect from "@/components/ThemedSelect";
 
 export default function ContactSection() {
   const [success, setSuccess] = useState(false);
+  const [project, setProject] = useState("custom-app");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ export default function ContactSection() {
     const body = encodeURIComponent(`Name: ${name}\n\nEmail: ${email}\n\nProject Type: ${project}\n\nMessage:\n${message}`);
     window.open(`mailto:bitzzdev@gmail.com?subject=${subject}&body=${body}`, "_blank");
     form.reset();
+    setProject("custom-app");
     setSuccess(true);
     setTimeout(() => setSuccess(false), 5000);
   };
@@ -36,8 +39,8 @@ export default function ContactSection() {
           </div>
           <h2 className="section-title reveal">Let&apos;s build something great together</h2>
           <p className="contact-text reveal">
-            Ready to elevate your digital presence? Let&apos;s talk about how we can build clean
-            systems, speed up your codebase, and deliver absolute utility to your users.
+            Ready to build something real? Let&apos;s talk about clean systems, a faster
+            codebase, and software your users actually get value from.
           </p>
           <div className="contact-details reveal">
             <div className="contact-item">
@@ -68,7 +71,7 @@ export default function ContactSection() {
           </div>
         </div>
         <div className="contact-form reveal">
-          {success && <div className="form-success visible">Thank you! Your message was sent successfully.</div>}
+          {success && <div className="form-success visible">Message sent. I will get back to you soon.</div>}
           <form id="contact-form" onSubmit={onSubmit}>
             <div className="form-group">
               <label className="form-label" htmlFor="form-name">Full Name</label>
@@ -79,13 +82,21 @@ export default function ContactSection() {
               <input type="email" id="form-email" name="email" className="form-input" placeholder="alex@company.com" required />
             </div>
             <div className="form-group">
-              <label className="form-label" htmlFor="form-project">Project Type</label>
-              <select id="form-project" name="project" className="form-select form-input">
-                <option value="custom-app">Custom Web Application</option>
-                <option value="uiux-design">UI/UX Interface Design</option>
-                <option value="performance-audit">Speed &amp; Performance Tuning</option>
-                <option value="frontend-dev">Frontend Development</option>
-              </select>
+              <label className="form-label" id="form-project-label" htmlFor="form-project">Project Type</label>
+              <ThemedSelect
+                id="form-project"
+                name="project"
+                value={project}
+                onChange={setProject}
+                ariaLabelledBy="form-project-label"
+                className="tselect--block"
+                options={[
+                  { value: "custom-app", label: "Custom Web Application" },
+                  { value: "uiux-design", label: "UI/UX Interface Design" },
+                  { value: "performance-audit", label: "Speed & Performance Tuning" },
+                  { value: "frontend-dev", label: "Frontend Development" },
+                ]}
+              />
             </div>
             <div className="form-group">
               <label className="form-label" htmlFor="form-message">Project Brief</label>

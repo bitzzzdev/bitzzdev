@@ -28,6 +28,7 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Added tulkun GitHub Actions workflow and automated CI build verification.
 - Added MIT License, Contributing Guide, Code of Conduct, and Security Policy.
 - Added a custom themed dropdown component (`components/ThemedSelect.tsx`) used for the branch picker on repository pages and the project type field, replacing every native browser select with a keyboard-navigable Paper Mono listbox.
+- Added a Vercel preview deployment requirement to the dual-git-sync skill: every push that updates `dev` or `preview` also gets a preview deployment of the exact pushed commit, with the URL reported and the production branch untouched unless the user explicitly authorizes a release.
 
 ### Removed
 - Removed the unreferenced duplicate `public/tulkun.gif` (the README profile keeps `assets/tulkun.gif`).

@@ -42,7 +42,13 @@ All repositories in the bitzzdev ecosystem exist on both platforms. Agents must 
      - GitLab URL: `https://gitlab.com/bitzzdev/<repo>`
    - Provide dual clone instructions and dual raw download URLs (e.g. `raw.githubusercontent.com` and `gitlab.com/.../-/raw`) where applicable.
 
-4. **Integration with Installed Skills**:
+4. **Vercel Preview Deployments**:
+   - Every push that updates `dev` (and fast-forwards `preview`) is also deployed to Vercel as a preview deployment (`vercel deploy`), never with `--prod` unless the user explicitly authorizes a production release.
+   - The preview deployment is created for the exact commit being reported, checked until it reaches `READY`, and the resulting preview URL is reported to the user.
+   - Preview deployments are behind Vercel Deployment Protection (SSO); state that when reporting the URL.
+   - Production (`bitz.is-a.dev`, branch `ascii`, or `vercel deploy --prod`) is never promoted without a green CI run on the exact commit, or explicit user authorization.
+
+5. **Integration with Installed Skills**:
    - **production-ready**: Maintain dev/main branch flow, verify CI/CD before production deployment, audit credentials, and adhere to clean documentation standards.
    - **context-rich-commits**: Structure commit messages with context, decisions, and verification steps; push to both remotes.
    - **credential-safety**: Never commit API keys or private tokens to either remote.

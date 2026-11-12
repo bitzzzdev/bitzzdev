@@ -29,6 +29,10 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Added MIT License, Contributing Guide, Code of Conduct, and Security Policy.
 - Added a custom themed dropdown component (`components/ThemedSelect.tsx`) used for the branch picker on repository pages and the project type field, replacing every native browser select with a keyboard-navigable Paper Mono listbox.
 - Added a Vercel preview deployment requirement to the dual-git-sync skill: every push that updates `dev` or `preview` also gets a preview deployment of the exact pushed commit, with the stable dev alias `bitzzzdev.vercel.app` repointed to it, and the production branch untouched unless the user explicitly authorizes a release.
+- Added dynamic per-page Open Graph images (1200x630) for `/repos` and every `/repos/<repo>` page, generated at build/request time from the repository name and site brand text; query parameters never reach the image.
+- Added page-specific structured data on `/repos` (CollectionPage, ItemList of all repositories, BreadcrumbList) and on each `/repos/<repo>` page (SoftwareSourceCode with both GitHub and GitLab repository URLs, BreadcrumbList), on top of the global Person/Brand/WebSite/ProfilePage graph.
+- Added Twitter card metadata (`summary_large_image`) to repository detail pages; X/Twitter falls back to the new Open Graph images.
+- Added image entries for `/repos` and every public repository to the sitemap, pointing at each page's Open Graph image.
 
 ### Removed
 - Removed the unreferenced duplicate `public/tulkun.gif` (the README profile keeps `assets/tulkun.gif`).
@@ -44,6 +48,7 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Synchronized Schema.org creator and knowsAbout graph to reflect new projects and Rust competency.
 - Replaced em dashes and legacy punctuation in documentation with human-writing standards.
 - The portrait image (`me.png`, 1.8 MB) is now served from the free Vercel Blob CDN instead of the git repository, shrinking clone size and bandwidth on every build.
+- Every query-parameter variant of a repository page (`?tab=`, `?path=`, `?ref=`, `?page=`) declares the same `rel=canonical` to its base URL, so search engines consolidate ranking signals on the canonical page instead of indexing duplicates; parameters also never reach the Open Graph image.
 
 ### Fixed
 - Fixed the repository tab bar (Overview, Files, Commits, Branches & Tags) showing a vertical scrollbar; `overflow-y` is now pinned to `hidden` because `overflow-x: auto` silently promotes the vertical axis to `auto`.

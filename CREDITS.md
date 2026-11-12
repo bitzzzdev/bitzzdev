@@ -46,10 +46,11 @@ This project is built using open-source software and creative assets. Sincere th
   - Copyright: Titus Wormer
   - GitHub Flavored Markdown support for the README renderer.
 
-- **Vercel Analytics and Speed Insights**
+- **Vercel Analytics, Speed Insights, and Blob**
   - Project: https://vercel.com
   - License: Apache License 2.0
   - Copyright: Vercel, Inc.
+  - Vercel Blob hosts the portrait image (`me.png`) on the free CDN so the git repository stays small.
 
 ## Typography
 

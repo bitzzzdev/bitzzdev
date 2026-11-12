@@ -27,6 +27,10 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Added procedural GitHub activity banner powered by git-tulkun to profile README.
 - Added tulkun GitHub Actions workflow and automated CI build verification.
 - Added MIT License, Contributing Guide, Code of Conduct, and Security Policy.
+- Added a custom themed dropdown component (`components/ThemedSelect.tsx`) used for the branch picker on repository pages and the project type field, replacing every native browser select with a keyboard-navigable Paper Mono listbox.
+
+### Removed
+- Removed the unreferenced duplicate `public/tulkun.gif` (the README profile keeps `assets/tulkun.gif`).
 
 ### Changed
 - Homepage work grid cards now open the in-site repository explorer instead of external GitHub URLs, keeping the flagged GitHub account from breaking project links.
@@ -38,6 +42,7 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Reordered featured projects to highlight DEVos, quickShelf, devSubstrate, devLauncher, bitzdots, and oha.
 - Synchronized Schema.org creator and knowsAbout graph to reflect new projects and Rust competency.
 - Replaced em dashes and legacy punctuation in documentation with human-writing standards.
+- The portrait image (`me.png`, 1.8 MB) is now served from the free Vercel Blob CDN instead of the git repository, shrinking clone size and bandwidth on every build.
 
 ### Fixed
 - Fixed procedural activity banner image reference and linked followers, repos, and views badges in profile README.

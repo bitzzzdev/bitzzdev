@@ -6,6 +6,9 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 ## [Unreleased]
 
 ### Added
+- Added GitLab profile links to the README header, repository browse links, connect section, site dossier, footer, and Schema.org sameAs graph.
+- Added GitLab clone instructions to the local setup section.
+- Added a GitLab CI pipeline mirroring the GitHub build verification.
 - Added Azure VPS and Firebase to the Technical Stack dossier and technical competencies.
 - Added Azure and Firebase SVG icons and shields badges.
 - Added third-party open-source attribution in CREDITS.md.

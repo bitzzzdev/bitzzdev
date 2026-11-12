@@ -151,6 +151,12 @@ export default async function Home() {
                   </span>
                 </div>
                 <div className="dossier-item">
+                  <span className="dossier-label">GitLab</span>
+                  <span className="dossier-val">
+                    <a href="https://gitlab.com/bitzzdev" target="_blank" rel="noreferrer">@bitzzdev</a>
+                  </span>
+                </div>
+                <div className="dossier-item">
                   <span className="dossier-label">Ko-fi</span>
                   <span className="dossier-val">
                     <a href="https://ko-fi.com/bitzzdev" target="_blank" rel="noreferrer">bitzzdev</a>
@@ -401,6 +407,7 @@ export default async function Home() {
           </div>
           <div className="am-footer-links">
             <a href="https://github.com/bitzzdev" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://gitlab.com/bitzzdev" target="_blank" rel="noreferrer">GitLab</a>
             <a href="https://ko-fi.com/bitzzdev" target="_blank" rel="noreferrer">Ko-fi</a>
             <a href="https://www.reddit.com/user/bitzzdev/" target="_blank" rel="noreferrer">Reddit</a>
             <a href="https://x.com/bitzzdev" target="_blank" rel="noreferrer">X (Twitter)</a>

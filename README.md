@@ -8,6 +8,7 @@ I build software across web platforms, systems programming, and developer toolin
 
 [![Website](https://img.shields.io/badge/Website-bitz.is--a.dev-161b22?style=flat-square&logo=googlechrome&logoColor=white)](https://bitz.is-a.dev)
 [![GitHub](https://img.shields.io/badge/GitHub-bitzzdev-161b22?style=flat-square&logo=github&logoColor=white)](https://github.com/bitzzdev)
+[![GitLab](https://img.shields.io/badge/GitLab-bitzzdev-161b22?style=flat-square&logo=gitlab&logoColor=white)](https://gitlab.com/bitzzdev)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-bitzzdev-161b22?style=flat-square&logo=kofi&logoColor=white)](https://ko-fi.com/bitzzdev)
 [![Reddit](https://img.shields.io/badge/Reddit-u%2Fbitzzdev-161b22?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/user/bitzzdev/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Dev%20Borah-161b22?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/bitzzdev/)
@@ -86,7 +87,7 @@ Primary domains: Full-stack web platforms, cloud infrastructure (Azure VPS, Fire
 
 - [skills](https://github.com/bitzzdev/skills): Production-ready agent skills, automation recipes, and developer workflows for AI coding assistants.
 
-[Browse all public repositories on GitHub](https://github.com/bitzzdev?tab=repositories)
+[Browse all public repositories on GitHub](https://github.com/bitzzdev?tab=repositories) | [Browse all public repositories on GitLab](https://gitlab.com/bitzzdev)
 
 ## Activity
 
@@ -112,8 +113,18 @@ Primary domains: Full-stack web platforms, cloud infrastructure (Azure VPS, Fire
 
 Clone the repository and install dependencies:
 
+GitHub:
+
 ```bash
 git clone https://github.com/bitzzdev/bitzzdev.git
+cd bitzzdev
+npm install
+```
+
+GitLab:
+
+```bash
+git clone https://gitlab.com/bitzzdev/bitzzdev.git
 cd bitzzdev
 npm install
 ```
@@ -140,6 +151,7 @@ For contract inquiries, open-source collaboration, or consulting:
 
 - Website: [bitz.is-a.dev](https://bitz.is-a.dev)
 - GitHub: [github.com/bitzzdev](https://github.com/bitzzdev)
+- GitLab: [gitlab.com/bitzzdev](https://gitlab.com/bitzzdev)
 - Ko-fi: [ko-fi.com/bitzzdev](https://ko-fi.com/bitzzdev)
 - Reddit: [reddit.com/user/bitzzdev](https://www.reddit.com/user/bitzzdev/)
 - LinkedIn: [linkedin.com/in/bitzzdev](https://www.linkedin.com/in/bitzzdev/)

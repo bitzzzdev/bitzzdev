@@ -130,42 +130,42 @@ const personJsonLd = {
     {
       "@type": "SoftwareSourceCode",
       "name": "DEVos",
-      "codeRepository": "https://github.com/bitzzdev/DEVos",
+      "codeRepository": "https://gitlab.com/bitzzdev/devOs",
       "programmingLanguage": "Python",
       "description": "Early native Linux project for the Realme C11 2021 (RMX3231): research, kernel/firmware analysis, boot/initramfs work, and custom Linux userspace."
     },
     {
       "@type": "SoftwareSourceCode",
       "name": "quickShelf",
-      "codeRepository": "https://github.com/bitzzdev/quickShelf",
+      "codeRepository": "https://gitlab.com/bitzzdev/quickShelf",
       "programmingLanguage": "Rust",
       "description": "Rust-based Wayland desktop widget and Waybar popover for pinned app shortcuts, image drop previews, and quick access to media and launcher actions."
     },
     {
       "@type": "SoftwareSourceCode",
       "name": "devSubstrate",
-      "codeRepository": "https://github.com/bitzzdev/devSubstrate",
+      "codeRepository": "https://gitlab.com/bitzzdev/devSubstrate",
       "programmingLanguage": "Shell",
       "description": "A research substrate for modern engineering: AI API architectures, terminal-native agents, and OS repair notes."
     },
     {
       "@type": "SoftwareSourceCode",
       "name": "devLauncher",
-      "codeRepository": "https://github.com/bitzzdev/devLauncher",
+      "codeRepository": "https://gitlab.com/bitzzdev/devLauncher",
       "programmingLanguage": "Kotlin",
       "description": "Minimal Launcher for Android designed to reduce screen time with keyboard-driven access."
     },
     {
       "@type": "SoftwareSourceCode",
       "name": "bitzdots",
-      "codeRepository": "https://github.com/bitzzdev/bitzdots",
+      "codeRepository": "https://gitlab.com/bitzzdev/bitzdots",
       "programmingLanguage": "Shell",
       "description": "Lean Arch Linux Hyprland dotfiles with automatic wallust theming and low-end optimization."
     },
     {
       "@type": "SoftwareSourceCode",
       "name": "oha",
-      "codeRepository": "https://github.com/bitzzdev/oha",
+      "codeRepository": "https://gitlab.com/bitzzdev/oha",
       "programmingLanguage": "C",
       "description": "Terminal-based fullscreen text editor written in C with syntax highlighting and file manager."
     }

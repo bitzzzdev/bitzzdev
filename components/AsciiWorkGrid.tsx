@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import AsciiScene from "@/components/AsciiScene";
 import { PROJECT_BANNER_CONFIGS } from "@/lib/ascii-pieces";
-import { GITHUB_USERNAME, filterRepos, type GithubRepo } from "@/lib/github";
+import type { GithubRepo } from "@/lib/github";
 
 export default function AsciiWorkGrid({ initialRepos }: { initialRepos: GithubRepo[] }) {
   const [repos, setRepos] = useState<GithubRepo[]>(initialRepos);
@@ -13,17 +14,14 @@ export default function AsciiWorkGrid({ initialRepos }: { initialRepos: GithubRe
     let active = true;
     const fetchRepos = async () => {
       try {
-        const res = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
-          { headers: { Accept: "application/vnd.github+json" } }
-        );
+        const res = await fetch("/api/repos/curated");
         if (!res.ok) {
           setError(true);
           return;
         }
-        const data: GithubRepo[] = await res.json();
+        const data: { repos: GithubRepo[] } = await res.json();
         if (active) {
-          setRepos(filterRepos(data));
+          setRepos(data.repos);
           setError(false);
         }
       } catch {
@@ -42,7 +40,7 @@ export default function AsciiWorkGrid({ initialRepos }: { initialRepos: GithubRe
   if (repos.length === 0 && error) {
     return (
       <p style={{ margin: "1.5rem 0", color: "var(--text-50)" }}>
-        [unable to reach github api right now, please view github.com/{GITHUB_USERNAME} directly]
+        [unable to reach the repository sources right now, please browse the mirrors directly]
       </p>
     );
   }
@@ -57,11 +55,9 @@ export default function AsciiWorkGrid({ initialRepos }: { initialRepos: GithubRe
               : PROJECT_BANNER_CONFIGS[idx % PROJECT_BANNER_CONFIGS.length];
 
           return (
-            <a
+            <Link
               key={repo.id}
-              href={repo.html_url}
-              target="_blank"
-              rel="noreferrer"
+              href={`/repos/${encodeURIComponent(repo.name)}`}
               className="work-card"
             >
               <div className="work-card__media">
@@ -86,22 +82,17 @@ export default function AsciiWorkGrid({ initialRepos }: { initialRepos: GithubRe
                   </svg>
                 </div>
                 <p className="work-card__desc">
-                  {repo.description || repo.language || "Public repository on GitHub"}
+                  {repo.description || repo.language || "Public repository"}
                 </p>
               </div>
-            </a>
+            </Link>
           );
         })}
       </div>
 
       <div className="work-viewall">
-        <a
-          href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
-          target="_blank"
-          rel="noreferrer"
-          className="work-viewall-btn"
-        >
-          <span>view all repositories on github</span>
+        <Link href="/repos" className="work-viewall-btn">
+          <span>browse all repositories</span>
           <svg
             width="12"
             height="12"
@@ -115,7 +106,7 @@ export default function AsciiWorkGrid({ initialRepos }: { initialRepos: GithubRe
           >
             <path d="M7 17L17 7M7 7h10v10" />
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
+import { getAllRepos, type RepoSummary } from "./repos";
+
 export const GITHUB_USERNAME = "bitzzdev";
 
 export interface GithubRepo {
-  id: number;
+  id: string;
   name: string;
   full_name: string;
   description: string | null;
@@ -25,7 +27,7 @@ export const CURATED_REPO_NAMES = [
 ];
 
 const FALLBACK_DEVOS: GithubRepo = {
-  id: 1448880001,
+  id: "fallback:devos",
   name: "DEVos",
   full_name: "bitzzdev/DEVos",
   description: "Early native Linux project for the Realme C11 2021 (RMX3231): research, kernel/firmware analysis, boot/initramfs work, and a custom Linux userspace for a pocket-server-style device port.",
@@ -40,7 +42,7 @@ const FALLBACK_DEVOS: GithubRepo = {
 };
 
 const FALLBACK_QUICKSHELF: GithubRepo = {
-  id: 1448880002,
+  id: "fallback:quickshelf",
   name: "quickShelf",
   full_name: "bitzzdev/quickShelf",
   description: "Rust-based Wayland desktop widget and Waybar popover for pinned app shortcuts, image drop previews, and quick access to media and launcher actions.",
@@ -55,7 +57,7 @@ const FALLBACK_QUICKSHELF: GithubRepo = {
 };
 
 const FALLBACK_DEVSUBSTRATE: GithubRepo = {
-  id: 1449997967,
+  id: "fallback:devsubstrate",
   name: "devSubstrate",
   full_name: "bitzzdev/devSubstrate",
   description: "A research substrate for modern engineering: AI API architectures, terminal-native agents, and OS repair notes.",
@@ -70,7 +72,7 @@ const FALLBACK_DEVSUBSTRATE: GithubRepo = {
 };
 
 const FALLBACK_DEVLAUNCHER: GithubRepo = {
-  id: 1448880004,
+  id: "fallback:devlauncher",
   name: "devLauncher",
   full_name: "bitzzdev/devLauncher",
   description: "Minimal Launcher for Android. Reduce your screen time.",
@@ -85,7 +87,7 @@ const FALLBACK_DEVLAUNCHER: GithubRepo = {
 };
 
 const FALLBACK_BITZDOTS: GithubRepo = {
-  id: 1448880005,
+  id: "fallback:bitzdots",
   name: "bitzdots",
   full_name: "bitzzdev/bitzdots",
   description: "Lean Hyprland dotfiles with automatic wallust theming. Low-end optimized, full-stack auto-coloring, 26 Jinja2 templates.",
@@ -100,7 +102,7 @@ const FALLBACK_BITZDOTS: GithubRepo = {
 };
 
 const FALLBACK_OHA: GithubRepo = {
-  id: 1448880006,
+  id: "fallback:oha",
   name: "oha",
   full_name: "bitzzdev/oha",
   description: "Terminal-based fullscreen text editor written in C with file manager and syntax highlighting.",
@@ -123,18 +125,44 @@ export const DEFAULT_FALLBACK_REPOS: GithubRepo[] = [
   FALLBACK_OHA,
 ];
 
+function toGithubRepo(r: RepoSummary): GithubRepo {
+  return {
+    id: r.id,
+    name: r.name,
+    full_name: `bitzzdev/${r.name}`,
+    description: r.description || null,
+    html_url: r.webUrl,
+    language: r.language,
+    stargazers_count: r.stars,
+    forks_count: r.forks,
+    fork: r.fork,
+    archived: r.archived,
+    pushed_at: r.lastActivity,
+    topics: r.topics,
+  };
+}
+
+function selectCurated(repos: RepoSummary[]): GithubRepo[] {
+  const byName = new Map(repos.map((r) => [r.name.toLowerCase(), r]));
+  const picked: RepoSummary[] = [];
+  for (const wanted of CURATED_REPO_NAMES) {
+    const hit = byName.get(wanted);
+    if (hit) picked.push(hit);
+  }
+  const chosen =
+    picked.length > 0
+      ? picked
+      : [...repos]
+          .sort((a, b) => Date.parse(b.lastActivity) - Date.parse(a.lastActivity))
+          .slice(0, 6);
+  return chosen.map(toGithubRepo);
+}
+
 export async function getPublicRepos(): Promise<GithubRepo[]> {
   try {
-    const res = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
-      {
-        headers: { Accept: "application/vnd.github+json" },
-        next: { revalidate: 60 },
-      } as any
-    );
-    if (!res.ok) return DEFAULT_FALLBACK_REPOS;
-    const data: GithubRepo[] = await res.json();
-    return filterRepos(data);
+    const { repos } = await getAllRepos();
+    if (repos.length === 0) return DEFAULT_FALLBACK_REPOS;
+    return selectCurated(repos);
   } catch {
     return DEFAULT_FALLBACK_REPOS;
   }
@@ -145,7 +173,6 @@ export function filterRepos(data: GithubRepo[]): GithubRepo[] {
     CURATED_REPO_NAMES.includes(repo.name.toLowerCase())
   );
 
-  // If any curated repo is missing from the API response, inject fallback
   for (const fallback of DEFAULT_FALLBACK_REPOS) {
     const exists = curated.some(
       (repo) => repo.name.toLowerCase() === fallback.name.toLowerCase()
@@ -155,7 +182,6 @@ export function filterRepos(data: GithubRepo[]): GithubRepo[] {
     }
   }
 
-  // Ensure strict ordering according to CURATED_REPO_NAMES
   return curated.sort((a, b) => {
     const idxA = CURATED_REPO_NAMES.indexOf(a.name.toLowerCase());
     const idxB = CURATED_REPO_NAMES.indexOf(b.name.toLowerCase());

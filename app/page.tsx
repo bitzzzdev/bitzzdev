@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { getPublicRepos } from "@/lib/github";
 import AsciiWorkGrid from "@/components/AsciiWorkGrid";
-import ThemeToggle from "@/components/ThemeToggle";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import ContactForm from "@/components/ContactForm";
 import CpuAsciiArt from "@/components/CpuAsciiArt";
 import AboutHalftoneImage from "@/components/AboutHalftoneImage";
@@ -15,34 +15,7 @@ export default async function Home() {
       {/* Structural side rails (faint vertical lines that run the full page height) */}
       <div className="rails" aria-hidden="true" />
 
-      {/* Navigation header */}
-      <header className="nav">
-        <div className="nav__inner">
-          <Link className="nav__brand" href="/" aria-label="bitz.is-a.dev, home">
-            bitz.is-a.dev
-          </Link>
-
-          <nav className="nav__links" aria-label="Primary">
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-            <a href="#metrics">Benchmarks</a>
-            <a href="#testimonials">Feedback</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <div className="nav__actions">
-            <ThemeToggle />
-            <div className="nav__cta">
-              <span className="nav__cta-tab" aria-hidden="true" />
-              <a className="nav__cta-btn" href="#contact">
-                Transmit
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
+      <SiteHeader base="" />
 
       <main>
         {/* Hero section */}
@@ -399,26 +372,7 @@ export default async function Home() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="am-footer">
-        <div className="am-footer-inner">
-          <div>
-            &copy; {new Date().getFullYear()} bitz.is-a.dev. Handcrafted in India. All rights reserved.
-          </div>
-          <div className="am-footer-links">
-            <a href="https://github.com/bitzzdev" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://gitlab.com/bitzzdev" target="_blank" rel="noreferrer">GitLab</a>
-            <a href="https://ko-fi.com/bitzzdev" target="_blank" rel="noreferrer">Ko-fi</a>
-            <a href="https://www.reddit.com/user/bitzzdev/" target="_blank" rel="noreferrer">Reddit</a>
-            <a href="https://x.com/bitzzdev" target="_blank" rel="noreferrer">X (Twitter)</a>
-            <a href="https://www.linkedin.com/in/bitzzdev/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="https://orcid.org/0009-0004-2013-2999" target="_blank" rel="noreferrer">ORCID</a>
-            <a href="mailto:bitzzdev@gmail.com">Email</a>
-            <a href="https://instagram.com/bitz.dev" target="_blank" rel="noreferrer">Instagram</a>
-            <a href="#top">Top &uarr;</a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

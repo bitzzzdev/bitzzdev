@@ -44,8 +44,9 @@ All repositories in the bitzzdev ecosystem exist on both platforms. Agents must 
 
 4. **Vercel Preview Deployments**:
    - Every push that updates `dev` (and fast-forwards `preview`) is also deployed to Vercel as a preview deployment (`vercel deploy`), never with `--prod` unless the user explicitly authorizes a production release.
-   - The preview deployment is created for the exact commit being reported, checked until it reaches `READY`, and the resulting preview URL is reported to the user.
-   - Preview deployments are behind Vercel Deployment Protection (SSO); state that when reporting the URL.
+   - The preview deployment is created for the exact commit being reported, checked until it reaches `READY`.
+   - After each preview for `dev` reaches `READY`, repoint the stable dev alias `bitzzzdev.vercel.app` to that deployment with `vercel alias set <deployment-url> bitzzzdev.vercel.app`, so `https://bitzzzdev.vercel.app` always reflects the latest `dev` build. Verify with `vercel inspect bitzzzdev.vercel.app`.
+   - Preview deployments (and the `bitzzzdev.vercel.app` alias) are behind Vercel Deployment Protection (SSO); state that when reporting the URL.
    - Production (`bitz.is-a.dev`, branch `ascii`, or `vercel deploy --prod`) is never promoted without a green CI run on the exact commit, or explicit user authorization.
 
 5. **Integration with Installed Skills**:

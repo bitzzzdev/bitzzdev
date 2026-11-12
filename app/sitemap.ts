@@ -20,6 +20,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified,
       changeFrequency: "daily",
       priority: 0.8,
+      images: [
+        "https://bitz.is-a.dev/repos/opengraph-image",
+      ],
     },
   ];
 
@@ -30,6 +33,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(repo.lastActivity),
       changeFrequency: "weekly" as const,
       priority: 0.6,
+      images: [
+        `https://bitz.is-a.dev/repos/${encodeURIComponent(repo.name)}/opengraph-image`,
+      ],
     }));
     return [...staticEntries, ...repoEntries];
   } catch {

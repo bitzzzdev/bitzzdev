@@ -3,6 +3,7 @@ import { getAllRepos, allTopics, nowMs } from "@/lib/repos";
 import ReposExplorer from "@/components/ReposExplorer";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import JsonLd from "@/components/JsonLd";
 
 export const revalidate = 120;
 
@@ -32,12 +33,49 @@ export default async function ReposPage() {
   const topics = allTopics(repos);
   const now = nowMs();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://bitz.is-a.dev/repos#page",
+        url: "https://bitz.is-a.dev/repos",
+        name: "Public repositories | Dev Borah",
+        description:
+          "Every public open-source repository by Dev Borah (bitzzdev), mirrored on GitHub and GitLab.",
+        isPartOf: { "@id": "https://bitz.is-a.dev/#website" },
+        about: { "@id": "https://bitz.is-a.dev/#person" },
+        mainEntity: { "@id": "https://bitz.is-a.dev/repos#list" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://bitz.is-a.dev" },
+          { "@type": "ListItem", position: 2, name: "Repositories", item: "https://bitz.is-a.dev/repos" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://bitz.is-a.dev/repos#list",
+        itemListOrder: "https://schema.org/ItemListOrderAscending",
+        numberOfItems: repos.length,
+        itemListElement: repos.map((repo, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: `https://bitz.is-a.dev/repos/${encodeURIComponent(repo.name)}`,
+          name: repo.name
+        }))
+      }
+    ]
+  };
+
   return (
     <>
       <div className="rails" aria-hidden="true" />
       <SiteHeader base="/" />
 
       <main>
+        <JsonLd data={jsonLd} />
         <section className="am-section repos-page" aria-labelledby="repos-heading">
           <div className="am-inner">
             <div className="am-section-head">

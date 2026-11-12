@@ -22,6 +22,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import CopyButton from "@/components/CopyButton";
 import BranchPicker from "@/components/BranchPicker";
+import JsonLd from "@/components/JsonLd";
 import {
   OverviewTab,
   FilesTab,
@@ -51,7 +52,7 @@ async function resolveRepo(rawName: string) {
 export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
   const { repo } = await params;
   const found = await resolveRepo(repo);
-  const name = found?.name ?? repo;
+  const name = found?.name ?? (VALID_NAME.test(repo) ? repo : "repository");
   const description =
     found?.description ||
     `Browse the ${name} repository by Dev Borah (bitzzdev): README, source tree, commits, branches, and tags.`;
@@ -63,6 +64,11 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
       type: "website",
       url: `https://bitz.is-a.dev/repos/${name}`,
       siteName: "Bitz: Dev Borah",
+      title: `${name} | Dev Borah`,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
       title: `${name} | Dev Borah`,
       description,
     },
@@ -93,6 +99,37 @@ export default async function RepoDetailPage({ params, searchParams }: PageParam
   const branches = await getBranches(source, repo.name);
   const tags = tab === "branches" ? await getTags(source, repo.name) : [];
   const branchNames = branches.map((b) => b.name);
+  const languages = await getLanguages(source, repo.name);
+
+  const canonical = `https://bitz.is-a.dev/repos/${repo.name}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": `${canonical}#code`,
+        name: repo.name,
+        description: repo.description || undefined,
+        url: canonical,
+        codeRepository: [
+          `https://github.com/bitzzdev/${repo.name}`,
+          `https://gitlab.com/bitzzdev/${repo.name}`,
+        ],
+        programmingLanguage: languages[0]?.name,
+        keywords: repo.topics.length > 0 ? repo.topics.join(", ") : undefined,
+        author: { "@id": "https://bitz.is-a.dev/#person" },
+        isPartOf: { "@id": "https://bitz.is-a.dev/#website" },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://bitz.is-a.dev" },
+          { "@type": "ListItem", position: 2, name: "Repositories", item: "https://bitz.is-a.dev/repos" },
+          { "@type": "ListItem", position: 3, name: repo.name, item: canonical },
+        ],
+      },
+    ],
+  };
 
   const absHref = (t: string, p = path, r = ref, pg?: number) =>
     `/repos/${encodeURIComponent(repo.name)}?tab=${t}${p ? `&path=${encodeURIComponent(p)}` : ""}${r ? `&ref=${encodeURIComponent(r)}` : ""}${pg ? `&page=${pg}` : ""}`;
@@ -114,6 +151,7 @@ export default async function RepoDetailPage({ params, searchParams }: PageParam
       <SiteHeader base="/" />
 
       <main>
+        <JsonLd data={jsonLd} />
         <section className="am-section repo-detail" aria-labelledby="repo-title">
           <div className="am-inner">
             {/* Breadcrumb */}

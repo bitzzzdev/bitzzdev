@@ -6,6 +6,8 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 ## [Unreleased]
 
 ### Added
+- Added `dual-git-sync` personal skill under `skills/dual-git-sync/` codifying automated dual remote pushes, dual CI/CD pipeline parity across GitHub and GitLab, and comprehensive source references.
+- Added explicit GitLab repository reference links alongside GitHub links across all indexed repositories in README.
 - Added GitLab profile links to the README header, repository browse links, connect section, site dossier, footer, and Schema.org sameAs graph.
 - Added GitLab clone instructions to the local setup section.
 - Added a GitLab CI pipeline mirroring the GitHub build verification.

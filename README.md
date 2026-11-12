@@ -53,39 +53,39 @@ Primary domains: Full-stack web platforms, cloud infrastructure (Azure VPS, Fire
 
 ### Systems and Linux tooling
 
-- [DEVos](https://github.com/bitzzdev/DEVos): Early native Linux research and userspace implementation for the Realme C11 2021 (RMX3231), covering kernel analysis, boot/initramfs workflows, and pocket-server architecture.
-- [quickShelf](https://github.com/bitzzdev/quickShelf): Rust-based Wayland desktop widget and Waybar popover for pinned app shortcuts, image drop previews, and quick access to media controls and launcher actions.
-- [devSubstrate](https://github.com/bitzzdev/devSubstrate): A research substrate for modern software engineering: AI API architectures, terminal-native agents, and OS repair notes.
-- [cloudMux](https://github.com/bitzzdev/cloudMux): Cross-shell GitHub, Google Cloud, and Azure CLI shortcuts for Termux and desktop Linux.
-- [tools](https://github.com/bitzzdev/tools): Developer utilities, automation scripts, and productivity tools for Linux and cloud environments.
-- [oha](https://github.com/bitzzdev/oha): Terminal-based fullscreen text editor written in C with syntax highlighting and built-in file browsing.
-- [tiv](https://github.com/bitzzdev/tiv): Lightweight GTK image viewer for Linux with keyboard navigation.
+- **DEVos** ([GitHub](https://github.com/bitzzdev/DEVos) | [GitLab](https://gitlab.com/bitzzdev/DEVos)): Early native Linux research and userspace implementation for the Realme C11 2021 (RMX3231), covering kernel analysis, boot/initramfs workflows, and pocket-server architecture.
+- **quickShelf** ([GitHub](https://github.com/bitzzdev/quickShelf) | [GitLab](https://gitlab.com/bitzzdev/quickShelf)): Rust-based Wayland desktop widget and Waybar popover for pinned app shortcuts, image drop previews, and quick access to media controls and launcher actions.
+- **devSubstrate** ([GitHub](https://github.com/bitzzdev/devSubstrate) | [GitLab](https://gitlab.com/bitzzdev/devSubstrate)): A research substrate for modern software engineering: AI API architectures, terminal-native agents, and OS repair notes.
+- **cloudMux** ([GitHub](https://github.com/bitzzdev/cloudMux) | [GitLab](https://gitlab.com/bitzzdev/cloudMux)): Cross-shell GitHub, Google Cloud, and Azure CLI shortcuts for Termux and desktop Linux.
+- **tools** ([GitHub](https://github.com/bitzzdev/tools) | [GitLab](https://gitlab.com/bitzzdev/tools)): Developer utilities, automation scripts, and productivity tools for Linux and cloud environments.
+- **oha** ([GitHub](https://github.com/bitzzdev/oha) | [GitLab](https://gitlab.com/bitzzdev/oha)): Terminal-based fullscreen text editor written in C with syntax highlighting and built-in file browsing.
+- **tiv** ([GitHub](https://github.com/bitzzdev/tiv) | [GitLab](https://gitlab.com/bitzzdev/tiv)): Lightweight GTK image viewer for Linux with keyboard navigation.
 
 ### Desktop customization
 
-- [bitzdots](https://github.com/bitzzdev/bitzdots): Lean Arch Linux Hyprland dotfiles with automatic matugen theming, low-end hardware optimization, and customized Waybar modules.
-- [hyprConfig](https://github.com/bitzzdev/hyprConfig): E-ink themed Hyprland dotfiles with Quickshell top bar and dynamic palette generation.
-- [phoneWallpapers](https://github.com/bitzzdev/phoneWallpapers): Curated collection of high-resolution 2K portrait phone wallpapers and anime mobile backgrounds.
+- **bitzdots** ([GitHub](https://github.com/bitzzdev/bitzdots) | [GitLab](https://gitlab.com/bitzzdev/bitzdots)): Lean Arch Linux Hyprland dotfiles with automatic matugen theming, low-end hardware optimization, and customized Waybar modules.
+- **hyprConfig** ([GitHub](https://github.com/bitzzdev/hyprConfig) | [GitLab](https://gitlab.com/bitzzdev/hyprConfig)): E-ink themed Hyprland dotfiles with Quickshell top bar and dynamic palette generation.
+- **phoneWallpapers** ([GitHub](https://github.com/bitzzdev/phoneWallpapers) | [GitLab](https://gitlab.com/bitzzdev/phoneWallpapers)): Curated collection of high-resolution 2K portrait phone wallpapers and anime mobile backgrounds.
 
 ### Mobile applications
 
-- [devLauncher](https://github.com/bitzzdev/devLauncher): Minimal launcher for Android focused on keyboard-driven navigation, fast app launching, and reduced screen distractions.
+- **devLauncher** ([GitHub](https://github.com/bitzzdev/devLauncher) | [GitLab](https://gitlab.com/bitzzdev/devLauncher)): Minimal launcher for Android focused on keyboard-driven navigation, fast app launching, and reduced screen distractions.
 
 ### Minecraft mods and shaders
 
-- [Pulse](https://github.com/bitzzdev/Pulse): Adaptive Performance Manager for Minecraft that monitors rendering performance and dynamically adjusts visual quality.
-- [RealisticallyOptimized](https://github.com/bitzzdev/RealisticallyOptimized): Stylized toon-lighting Minecraft shaderpack with real-time shadows, optimized for performance.
-- [JustVanilla](https://github.com/bitzzdev/JustVanilla): Vanilla-enhancing Minecraft shaderpack with real-time shadows, optimized for all hardware.
-- [byeByeFallingLeaves](https://github.com/bitzzdev/byeByeFallingLeaves): Minecraft resource pack that removes all falling leaf and cherry blossom particles for cleaner visuals.
-- [NexUI](https://github.com/bitzzdev/NexUI): Client-side HUD interface editor and modern design studio for Minecraft.
-- [MineGPT](https://github.com/bitzzdev/MineGPT): In-game AI chat assistant for Minecraft supporting OpenAI, Anthropic, Gemini, and OpenRouter.
-- [CustomPaintings](https://github.com/bitzzdev/CustomPaintings): Minecraft Paper plugin for uploading PNGs and creating map-based paintings, including multi-map murals.
-- [stasis](https://github.com/bitzzdev/stasis): Fabric server-side Minecraft mod that reduces BlockEntity tick load with activity-aware scheduling.
-- [cartoonee](https://github.com/bitzzdev/cartoonee): Minecraft texture pack redesigning swords in a cartoon style while preserving vanilla aesthetic.
+- **Pulse** ([GitHub](https://github.com/bitzzdev/Pulse) | [GitLab](https://gitlab.com/bitzzdev/Pulse)): Adaptive Performance Manager for Minecraft that monitors rendering performance and dynamically adjusts visual quality.
+- **RealisticallyOptimized** ([GitHub](https://github.com/bitzzdev/RealisticallyOptimized) | [GitLab](https://gitlab.com/bitzzdev/RealisticallyOptimized)): Stylized toon-lighting Minecraft shaderpack with real-time shadows, optimized for performance.
+- **JustVanilla** ([GitHub](https://github.com/bitzzdev/JustVanilla) | [GitLab](https://gitlab.com/bitzzdev/JustVanilla)): Vanilla-enhancing Minecraft shaderpack with real-time shadows, optimized for all hardware.
+- **byeByeFallingLeaves** ([GitHub](https://github.com/bitzzdev/byeByeFallingLeaves) | [GitLab](https://gitlab.com/bitzzdev/byeByeFallingLeaves)): Minecraft resource pack that removes all falling leaf and cherry blossom particles for cleaner visuals.
+- **NexUI** ([GitHub](https://github.com/bitzzdev/NexUI) | [GitLab](https://gitlab.com/bitzzdev/NexUI)): Client-side HUD interface editor and modern design studio for Minecraft.
+- **MineGPT** ([GitHub](https://github.com/bitzzdev/MineGPT) | [GitLab](https://gitlab.com/bitzzdev/MineGPT)): In-game AI chat assistant for Minecraft supporting OpenAI, Anthropic, Gemini, and OpenRouter.
+- **CustomPaintings** ([GitHub](https://github.com/bitzzdev/CustomPaintings) | [GitLab](https://gitlab.com/bitzzdev/CustomPaintings)): Minecraft Paper plugin for uploading PNGs and creating map-based paintings, including multi-map murals.
+- **stasis** ([GitHub](https://github.com/bitzzdev/stasis) | [GitLab](https://gitlab.com/bitzzdev/stasis)): Fabric server-side Minecraft mod that reduces BlockEntity tick load with activity-aware scheduling.
+- **cartoonee** ([GitHub](https://github.com/bitzzdev/cartoonee) | [GitLab](https://gitlab.com/bitzzdev/cartoonee)): Minecraft texture pack redesigning swords in a cartoon style while preserving vanilla aesthetic.
 
 ### AI agent tooling
 
-- [skills](https://github.com/bitzzdev/skills): Production-ready agent skills, automation recipes, and developer workflows for AI coding assistants.
+- **skills** ([GitHub](https://github.com/bitzzdev/skills) | [GitLab](https://gitlab.com/bitzzdev/skills)): Production-ready agent skills, automation recipes, and developer workflows for AI coding assistants.
 
 [Browse all public repositories on GitHub](https://github.com/bitzzdev?tab=repositories) | [Browse all public repositories on GitLab](https://gitlab.com/bitzzdev)
 

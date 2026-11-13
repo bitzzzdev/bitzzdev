@@ -29,7 +29,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     title: "systems & os",
     skills: [
       { name: "Arch Linux", icon: "/icons/arch-linux.svg" },
-      { name: "Linux", icon: "/icons/linux.svg" },
+      { name: "Linux", icon: "/icons/linux.svg", iconDark: "/icons/linux-dark.svg" },
       { name: "Hyprland", icon: "/icons/hyprland.svg" },
     ],
   },
@@ -81,7 +81,7 @@ export default function MinimalSkillsList() {
                       alt={skill.alt || `${skill.name} icon`}
                       width={14}
                       height={14}
-                      className="mini-skill-icon mini-skill-icon-light"
+                      className={skill.iconDark ? "mini-skill-icon mini-skill-icon-light" : "mini-skill-icon"}
                       unoptimized
                     />
                     {skill.iconDark ? (

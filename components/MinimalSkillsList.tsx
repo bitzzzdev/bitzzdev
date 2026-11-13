@@ -5,6 +5,8 @@ import Image from "next/image";
 interface SkillItem {
   name: string;
   icon: string;
+  iconDark?: string;
+  alt?: string;
 }
 
 interface SkillCategory {
@@ -20,7 +22,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "C++", icon: "/icons/cpp.svg" },
       { name: "C", icon: "/icons/c.svg" },
       { name: "Python", icon: "/icons/python.svg" },
-      { name: "JavaScript", icon: "/icons/javascript.svg" },
+      { name: "JavaScript", icon: "/icons/javascript.svg", iconDark: "/icons/javascript-dark.svg" },
     ],
   },
   {
@@ -42,7 +44,8 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     title: "cli & shells",
     skills: [
       { name: "Fish", icon: "/icons/fish.svg" },
-      { name: "Bash", icon: "/icons/bash.svg" },
+      { name: "Bash", icon: "/icons/bash.svg", iconDark: "/icons/bash-dark.svg" },
+      { name: "CircleCI", icon: "/icons/circleci.svg" },
       { name: "Google Cloud Shell", icon: "/icons/google-cloud-shell.svg" },
     ],
   },
@@ -70,14 +73,28 @@ export default function MinimalSkillsList() {
             <div className="mini-skills-items">
               {cat.skills.map((skill) => (
                 <span key={skill.name} className="mini-skill-pill">
-                  <Image
-                    src={skill.icon}
-                    alt=""
-                    width={14}
-                    height={14}
-                    className="mini-skill-icon"
-                    unoptimized
-                  />
+                  <span
+                    className={`mini-skill-icon-wrap${skill.iconDark ? " has-dark" : ""}`}
+                  >
+                    <Image
+                      src={skill.icon}
+                      alt={skill.alt || `${skill.name} icon`}
+                      width={14}
+                      height={14}
+                      className="mini-skill-icon mini-skill-icon-light"
+                      unoptimized
+                    />
+                    {skill.iconDark ? (
+                      <Image
+                        src={skill.iconDark}
+                        alt=""
+                        width={14}
+                        height={14}
+                        className="mini-skill-icon mini-skill-icon-dark"
+                        unoptimized
+                      />
+                    ) : null}
+                  </span>
                   <span className="mini-skill-name">{skill.name}</span>
                 </span>
               ))}

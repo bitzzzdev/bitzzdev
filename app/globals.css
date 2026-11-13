@@ -852,6 +852,28 @@ body {
   object-fit: contain;
 }
 
+/* Some brand icons ship a dark-mode variant because their near-black
+   fills vanish against the dark theme. Show the variant only when the
+   theme is dark; in light mode the light variant is visible. */
+.mini-skill-icon-wrap {
+  position: relative;
+  width: 14px;
+  height: 14px;
+}
+.mini-skill-icon-wrap .mini-skill-icon {
+  position: absolute;
+  inset: 0;
+}
+.mini-skill-icon-wrap .mini-skill-icon-dark {
+  display: none;
+}
+:root[data-theme="dark"] .mini-skill-icon-wrap .mini-skill-icon-light {
+  display: none;
+}
+:root[data-theme="dark"] .mini-skill-icon-wrap .mini-skill-icon-dark {
+  display: block;
+}
+
 /* ============================================================
    SERVICES & PROCESS SECTION (Stacked rows with clean divider lines)
    ============================================================ */

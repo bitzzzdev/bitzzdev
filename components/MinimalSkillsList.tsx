@@ -43,19 +43,19 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: "cli & shells",
     skills: [
-      { name: "Fish", icon: "/icons/fish.svg" },
+      { name: "Fish", icon: "/icons/fish.svg", iconDark: "/icons/fish-dark.svg" },
       { name: "Bash", icon: "/icons/bash.svg", iconDark: "/icons/bash-dark.svg" },
-      { name: "CircleCI", icon: "/icons/circleci.svg" },
+      { name: "CircleCI", icon: "/icons/circleci.svg", iconDark: "/icons/circleci-dark.svg" },
       { name: "Google Cloud Shell", icon: "/icons/google-cloud-shell.svg" },
     ],
   },
   {
     title: "dev & tools",
     skills: [
-      { name: "Zed", icon: "/icons/zed.svg" },
+      { name: "Zed", icon: "/icons/zed.svg", iconDark: "/icons/zed-dark.svg" },
       { name: "Neovim", icon: "/icons/neovim.svg" },
       { name: "Git", icon: "/icons/git.svg" },
-      { name: "GitHub", icon: "/icons/github.svg" },
+      { name: "GitHub", icon: "/icons/github.svg", iconDark: "/icons/github-dark.svg" },
     ],
   },
 ];

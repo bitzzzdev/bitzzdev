@@ -1,0 +1,15 @@
+.lightOnly {
+  display: none;
+}
+
+.darkOnly {
+  display: block;
+}
+
+:global(:root[data-theme="light"]) .lightOnly {
+  display: block;
+}
+
+:global(:root[data-theme="light"]) .darkOnly {
+  display: none;
+}

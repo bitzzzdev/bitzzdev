@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import styles from "./MinimalSkillsList.module.css";
 
 interface SkillItem {
   name: string;
   icon: string;
+  iconLight?: string;
   themeAware?: boolean;
 }
 
@@ -54,7 +56,11 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "Neovim", icon: "/icons/neovim.svg" },
       { name: "Git", icon: "/icons/git.svg" },
       { name: "GitHub", icon: "/icons/github.svg", themeAware: true },
-      { name: "CircleCI", icon: "/icons/circleci.svg" },
+      {
+        name: "CircleCI",
+        icon: "/icons/circleci.svg",
+        iconLight: "/icons/circleci-light.svg",
+      },
     ],
   },
 ];
@@ -72,14 +78,35 @@ export default function MinimalSkillsList() {
             <div className="mini-skills-items">
               {cat.skills.map((skill) => (
                 <span key={skill.name} className="mini-skill-pill">
-                  <Image
-                    src={skill.icon}
-                    alt=""
-                    width={16}
-                    height={16}
-                    className={skill.themeAware ? "mini-skill-icon mini-skill-icon--theme-aware" : "mini-skill-icon"}
-                    unoptimized
-                  />
+                  {skill.iconLight ? (
+                    <>
+                      <Image
+                        src={skill.iconLight}
+                        alt=""
+                        width={16}
+                        height={16}
+                        className={`mini-skill-icon ${styles.lightOnly}`}
+                        unoptimized
+                      />
+                      <Image
+                        src={skill.icon}
+                        alt=""
+                        width={16}
+                        height={16}
+                        className={`mini-skill-icon ${styles.darkOnly}`}
+                        unoptimized
+                      />
+                    </>
+                  ) : (
+                    <Image
+                      src={skill.icon}
+                      alt=""
+                      width={16}
+                      height={16}
+                      className={skill.themeAware ? "mini-skill-icon mini-skill-icon--theme-aware" : "mini-skill-icon"}
+                      unoptimized
+                    />
+                  )}
                   <span className="mini-skill-name">{skill.name}</span>
                 </span>
               ))}

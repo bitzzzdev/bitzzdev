@@ -5,6 +5,7 @@ import Image from "next/image";
 interface SkillItem {
   name: string;
   icon: string;
+  themeAware?: boolean;
 }
 
 interface SkillCategory {
@@ -49,10 +50,11 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: "dev & tools",
     skills: [
-      { name: "Zed", icon: "/icons/zed.svg" },
+      { name: "Zed", icon: "/icons/zed.svg", themeAware: true },
       { name: "Neovim", icon: "/icons/neovim.svg" },
       { name: "Git", icon: "/icons/git.svg" },
-      { name: "GitHub", icon: "/icons/github.svg" },
+      { name: "GitHub", icon: "/icons/github.svg", themeAware: true },
+      { name: "CircleCI", icon: "/icons/circleci.svg" },
     ],
   },
 ];
@@ -73,9 +75,9 @@ export default function MinimalSkillsList() {
                   <Image
                     src={skill.icon}
                     alt=""
-                    width={14}
-                    height={14}
-                    className="mini-skill-icon"
+                    width={16}
+                    height={16}
+                    className={skill.themeAware ? "mini-skill-icon mini-skill-icon--theme-aware" : "mini-skill-icon"}
                     unoptimized
                   />
                   <span className="mini-skill-name">{skill.name}</span>

@@ -46,6 +46,7 @@ Primary domains: Full-stack web platforms, cloud infrastructure (Azure VPS, Fire
 ![React](https://img.shields.io/badge/React-161b22?style=flat-square&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-161b22?style=flat-square&logo=tailwindcss&logoColor=06B6D4)
 ![Git](https://img.shields.io/badge/Git-161b22?style=flat-square&logo=git&logoColor=F05032)
+![CircleCI](https://img.shields.io/badge/CircleCI-161b22?style=flat-square&logo=circleci&logoColor=white)
 
 </div>
 

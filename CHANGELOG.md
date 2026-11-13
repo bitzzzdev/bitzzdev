@@ -24,6 +24,7 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Added Ko-fi and Reddit socials to profile README, Schema.org sameAs graph, and footer navigation.
 - Added complete repository directory indexing systems tools, desktop customization, and Minecraft mods.
 - Added Rust to technical language competencies and quick info dossier.
+- Added CircleCI icon to technical stack and dark-mode icon variants for javascript, linux, and bash in the skills list.
 - Added procedural GitHub activity banner powered by git-tulkun to profile README.
 - Added tulkun GitHub Actions workflow and automated CI build verification.
 - Added MIT License, Contributing Guide, Code of Conduct, and Security Policy.

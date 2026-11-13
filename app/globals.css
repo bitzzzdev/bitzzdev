@@ -1292,6 +1292,7 @@ body {
   gap: 0;
   border-top: 1px solid var(--border-faint);
   border-bottom: 1px solid var(--border-faint);
+  border-left: 1px solid var(--border-faint);
   margin: 0 var(--text-inset) 48px;
 }
 

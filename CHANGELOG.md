@@ -52,6 +52,7 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Every query-parameter variant of a repository page (`?tab=`, `?path=`, `?ref=`, `?page=`) declares the same `rel=canonical` to its base URL, so search engines consolidate ranking signals on the canonical page instead of indexing duplicates; parameters also never reach the Open Graph image.
 
 ### Fixed
+- Fixed the left edge of the repository index grid rendering without a border while the top, bottom and right edges are lined; `.repos-grid` now carries the same 1px left rule as the rest of the frame.
 - Fixed skill icons disappearing on the dark theme: the SVG icons for Fish, CircleCI, Zed and GitHub fill with `currentColor`, which `<img>` cannot resolve, so they rendered black on dark backgrounds. All four now ship dark variants shown only under `[data-theme='dark']`, joined by working Linux, JavaScript and Bash variants. CircleCI keeps its brand orange artwork, re-shaded per theme for contrast.
 - Fixed the repository tab bar (Overview, Files, Commits, Branches & Tags) showing a vertical scrollbar; `overflow-y` is now pinned to `hidden` because `overflow-x: auto` silently promotes the vertical axis to `auto`.
 - Fixed procedural activity banner image reference and linked followers, repos, and views badges in profile README.

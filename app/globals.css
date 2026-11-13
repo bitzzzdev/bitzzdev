@@ -2014,3 +2014,13 @@ body {
   .tselect__label { max-width: 46vw; }
   .tselect--block .tselect__label { max-width: none; }
 }
+
+
+/* Theme-aware monochrome tool marks */
+.mini-skill-icon--theme-aware {
+  filter: none;
+}
+
+:root:not([data-theme="light"]) .mini-skill-icon--theme-aware {
+  filter: invert(1);
+}

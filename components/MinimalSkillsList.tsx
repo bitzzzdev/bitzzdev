@@ -45,7 +45,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     skills: [
       { name: "Fish", icon: "/icons/fish.svg", iconDark: "/icons/fish-dark.svg" },
       { name: "Bash", icon: "/icons/bash.svg", iconDark: "/icons/bash-dark.svg" },
-      { name: "CircleCI", icon: "/icons/circleci.svg", iconDark: "/icons/circleci-dark.svg" },
+      { name: "CircleCI", icon: "/icons/circleci-light.svg", iconDark: "/icons/circleci.svg", alt: "CircleCI icon" },
       { name: "Google Cloud Shell", icon: "/icons/google-cloud-shell.svg" },
     ],
   },

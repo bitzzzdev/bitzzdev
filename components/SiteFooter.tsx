@@ -9,6 +9,7 @@ export default function SiteFooter() {
         </div>
         <div className="am-footer-links">
           <Link href="/repos">Repos</Link>
+          <Link href="/xeh">XEH</Link>
           <a href="https://github.com/bitzzdev" target="_blank" rel="noreferrer">GitHub</a>
           <a href="https://gitlab.com/bitzzdev" target="_blank" rel="noreferrer">GitLab</a>
           <a href="https://ko-fi.com/bitzzdev" target="_blank" rel="noreferrer">Ko-fi</a>

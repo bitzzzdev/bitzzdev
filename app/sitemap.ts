@@ -24,6 +24,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         "https://bitz.is-a.dev/repos/opengraph-image",
       ],
     },
+    {
+      url: "https://bitz.is-a.dev/xeh",
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
   ];
 
   try {

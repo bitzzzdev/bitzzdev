@@ -6,6 +6,8 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 ## [Unreleased]
 
 ### Added
+- Added an XEH (XEHhq) section to the homepage and a dedicated indexable page at `/xeh` covering the organization, the team (Dev Borah, founder and lead developer; Biswajit Tanti, product lead and developer; Abhilasha Ray, marketing head), the products DEVdots and XEHkit, focus areas, engineering philosophy, technology, and links, with Organization and Person structured data, a canonical URL, and a sitemap entry so search engines can index it.
+- Added an XEH link to the header and footer navigation and a "Now" section to the profile README.
 - Added `/repos`: a live index of every public repository served from GitHub with automatic fallback to GitLab when the GitHub account is unavailable, with search, tag filters, and per-card name, description, and tags.
 - Added a full in-browser git environment at `/repos/[repo]`: rendered README (GFM), browsable file tree, text file viewer with line numbers, commit history with pagination, and a branches and tags view, all in the portfolio's Paper Mono aesthetic.
 - Added a cached snapshot of the public GitLab namespace (captured 2026-11-12) used only when both hosts are unreachable or rate limited, so the repository index never renders empty.
@@ -52,6 +54,8 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - Every query-parameter variant of a repository page (`?tab=`, `?path=`, `?ref=`, `?page=`) declares the same `rel=canonical` to its base URL, so search engines consolidate ranking signals on the canonical page instead of indexing duplicates; parameters also never reach the Open Graph image.
 
 ### Fixed
+- Fixed the profile README header rendering as one run-together line: the heading, subline, and intro now sit outside the centered HTML block, so they render as separate blocks, and only the badge row stays centered.
+- Fixed the left edge of the repository index grid rendering without a border while the top, bottom and right edges are lined; `.repos-grid` now carries the same 1px left rule as the rest of the frame.
 - Fixed skill icons disappearing on the dark theme: the SVG icons for Fish, CircleCI, Zed and GitHub fill with `currentColor`, which `<img>` cannot resolve, so they rendered black on dark backgrounds. All four now ship dark variants shown only under `[data-theme='dark']`, joined by working Linux, JavaScript and Bash variants. CircleCI keeps its brand orange artwork, re-shaded per theme for contrast.
 - Fixed the repository tab bar (Overview, Files, Commits, Branches & Tags) showing a vertical scrollbar; `overflow-y` is now pinned to `hidden` because `overflow-x: auto` silently promotes the vertical axis to `auto`.
 - Fixed procedural activity banner image reference and linked followers, repos, and views badges in profile README.

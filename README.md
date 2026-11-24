@@ -1,10 +1,10 @@
-<div align="center">
-
 # Dev Borah
 
 **Known as bitzzdev | bitz.dev | Software developer and open source creator | Assam, India**
 
 I build software across web platforms, systems programming, and developer tooling.
+
+<div align="center">
 
 [![Website](https://img.shields.io/badge/Website-bitz.is--a.dev-161b22?style=flat-square&logo=googlechrome&logoColor=white)](https://bitz.is-a.dev)
 [![GitHub](https://img.shields.io/badge/GitHub-bitzzdev-161b22?style=flat-square&logo=github&logoColor=white)](https://github.com/bitzzdev)
@@ -18,6 +18,12 @@ I build software across web platforms, systems programming, and developer toolin
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0004--2013--2999-161b22?style=flat-square&logo=orcid&logoColor=white)](https://orcid.org/0009-0004-2013-2999)
 
 </div>
+
+## Now
+
+I am working with [XEH (XEHhq)](https://xeh.devs.surf) as founder and lead developer. XEH is an independent open-source engineering organization building Linux tools, developer utilities, frontend systems, and practical software, kept open so people can read it, fork it, and improve it.
+
+Team: Abhilasha Ray (marketing head), Biswajit Tanti (product lead and developer), and Dev Borah (founder and lead developer). Products: [DEVdots](https://gitlab.com/xehhq/DEVdots), a riced Arch Linux and Hyprland desktop UI in early development, and [XEHkit](https://gitlab.com/xehhq/XEHkit), a Next.js component library. Full dossier: [bitz.is-a.dev/xeh](https://bitz.is-a.dev/xeh).
 
 ---
 

@@ -1,4 +1,5 @@
 import { getPublicRepos } from "@/lib/github";
+import Link from "next/link";
 import AsciiWorkGrid from "@/components/AsciiWorkGrid";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
@@ -6,6 +7,7 @@ import ContactForm from "@/components/ContactForm";
 import CpuAsciiArt from "@/components/CpuAsciiArt";
 import AboutHalftoneImage from "@/components/AboutHalftoneImage";
 import MinimalSkillsList from "@/components/MinimalSkillsList";
+import { xeh, xehTeam, xehProducts } from "@/lib/xeh";
 
 export default async function Home() {
   const repos = await getPublicRepos();
@@ -48,6 +50,64 @@ export default async function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* XEH section */}
+        <section className="am-section" id="xeh" aria-labelledby="xeh-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">/NOW BUILDING</span>
+              <h2 className="am-h2" id="xeh-heading">Working with XEH (XEHhq)</h2>
+              <p className="am-desc">
+                {xeh.description} I am the founder and lead developer there.
+              </p>
+            </div>
+
+            <div className="xeh-banner" role="status">
+              <span className="xeh-banner__dot" aria-hidden="true" />
+              <p>
+                <strong>Now working with XEH.</strong> {xeh.tagline} Linux tools, developer
+                utilities, frontend systems, and practical software, built in the open.
+              </p>
+              <Link href="/xeh" className="xeh-banner__link">
+                Full dossier
+              </Link>
+            </div>
+
+            <div className="xeh-team-grid">
+              {xehTeam.map((member) => (
+                <div className="xeh-card" key={member.name}>
+                  <span className="xeh-card__label">{member.label}</span>
+                  <span className="xeh-card__name">{member.name}</span>
+                  <span className="xeh-card__role">{member.role}</span>
+                  <a
+                    className="xeh-card__link"
+                    href={member.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {member.hrefLabel}
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            <div className="xeh-product-grid">
+              {xehProducts.map((product) => (
+                <div className="xeh-product" key={product.name}>
+                  <div className="xeh-product__top">
+                    <span className="xeh-product__name">{product.name}</span>
+                    <span className="xeh-product__status">{product.status}</span>
+                  </div>
+                  <p className="xeh-product__desc">{product.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <Link href="/xeh" className="xeh-more">
+              Read the full XEH page: team, products, focus areas, and engineering philosophy
+            </Link>
           </div>
         </section>
 

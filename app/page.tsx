@@ -1,4 +1,5 @@
 import { getPublicRepos } from "@/lib/github";
+import { getGalleryImages, getWritingPosts } from "@/lib/content";
 import Link from "next/link";
 import AsciiWorkGrid from "@/components/AsciiWorkGrid";
 import SiteHeader from "@/components/SiteHeader";
@@ -11,6 +12,8 @@ import { xeh, xehTeam, xehProducts } from "@/lib/xeh";
 
 export default async function Home() {
   const repos = await getPublicRepos();
+  const galleryImages = getGalleryImages();
+  const writingPosts = getWritingPosts(true);
 
   return (
     <>
@@ -120,6 +123,79 @@ export default async function Home() {
               <p className="am-desc">Featured open-source repositories and production web platforms.</p>
             </div>
             <AsciiWorkGrid initialRepos={repos} />
+          </div>
+        </section>
+
+        {/* Gallery section */}
+        <section className="am-section" id="gallery" aria-labelledby="gallery-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">/VISUAL ARCHIVE</span>
+              <h2 className="am-h2" id="gallery-heading">Gallery ({galleryImages.length})</h2>
+              <p className="am-desc">Curated screenshots, diagrams, and visual work from projects and experiments.</p>
+            </div>
+            {galleryImages.length > 0 ? (
+              <div className="am-gallery-preview">
+                {galleryImages.slice(0, 6).map((image) => (
+                  <Link key={image.filename} href={`/gallery/${image.filename}`} className="am-gallery-item">
+                    <img 
+                      src={`/gallery/${image.filename}`} 
+                      alt={image.title} 
+                      loading="lazy"
+                    />
+                    <div className="am-gallery-overlay">
+                      <span className="am-gallery-title">{image.title}</span>
+                      {image.category && <span className="am-gallery-category">{image.category}</span>}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="am-empty-state">No gallery images yet. Visit the dashboard to upload.</p>
+            )}
+            <Link href="/gallery" className="am-section-link">
+              View all gallery images &rarr;
+            </Link>
+          </div>
+        </section>
+
+        {/* Writings section */}
+        <section className="am-section" id="writings" aria-labelledby="writings-heading">
+          <div className="am-inner">
+            <div className="am-section-head">
+              <span className="am-eyebrow">/WRITINGS</span>
+              <h2 className="am-h2" id="writings-heading">Writings ({writingPosts.length})</h2>
+              <p className="am-desc">Technical articles, project retrospectives, and engineering notes.</p>
+            </div>
+            {writingPosts.length > 0 ? (
+              <div className="am-writings-preview">
+                {writingPosts.slice(0, 3).map((post) => (
+                  <Link key={post.slug} href={`/writings/${post.slug}`} className="am-writing-card">
+                    <div className="am-writing-card-header">
+                      <span className="am-writing-category">{post.category}</span>
+                      <time className="am-writing-date" dateTime={post.date}>
+                        {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </time>
+                    </div>
+                    <h3 className="am-writing-title">{post.title}</h3>
+                    {post.description && <p className="am-writing-desc">{post.description}</p>}
+                    <div className="am-writing-meta">
+                      {post.readingTime && <span className="am-writing-read-time">{post.readingTime}</span>}
+                      {post.tags.length > 0 && (
+                        <span className="am-writing-tags">
+                          {post.tags.slice(0, 3).map(tag => <span key={tag} className="am-tag">{tag}</span>)}
+                        </span>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="am-empty-state">No writings yet. Visit the dashboard to publish.</p>
+            )}
+            <Link href="/writings" className="am-section-link">
+              View all writings &rarr;
+            </Link>
           </div>
         </section>
 

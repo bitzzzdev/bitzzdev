@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const MAINTENANCE_MODE = process.env.MAINTENANCE_MODE === 'true';
-const MAINTENANCE_BYPASS_TOKEN = process.env.MAINTENANCE_BYPASS_TOKEN || '';
-const MAINTENANCE_ALLOWED_IPS = (process.env.MAINTENANCE_ALLOWED_IPS || '').split(',').filter(Boolean);
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'dev@bitz.is-a.dev';
+
+// Paths that are always accessible during maintenance (admin needs to access dashboard)
 const MAINTENANCE_ALLOWED_PATHS = ['/dashboard', '/dashboard/login', '/api/auth', '/api/git-push'];
 
 export function isMaintenanceMode(): boolean {
@@ -10,25 +11,13 @@ export function isMaintenanceMode(): boolean {
 }
 
 export function checkMaintenanceBypass(request: NextRequest): boolean {
-  // Check bypass token in header
-  if (MAINTENANCE_BYPASS_TOKEN) {
-    const token = request.headers.get('x-maintenance-bypass') || request.nextUrl.searchParams.get('maintenance_bypass');
-    if (token === MAINTENANCE_BYPASS_TOKEN) {
-      return true;
-    }
+  // Check email bypass
+  const email = request.nextUrl.searchParams.get('maintenance_email');
+  if (email && email === ADMIN_EMAIL) {
+    return true;
   }
 
-  // Check allowed IPs
-  if (MAINTENANCE_ALLOWED_IPS.length > 0) {
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-               request.headers.get('x-real-ip') ||
-               'unknown';
-    if (MAINTENANCE_ALLOWED_IPS.includes(ip)) {
-      return true;
-    }
-  }
-
-  // Check allowed paths
+  // Check allowed paths (always accessible during maintenance)
   const pathname = request.nextUrl.pathname;
   if (MAINTENANCE_ALLOWED_PATHS.some(path => pathname.startsWith(path))) {
     return true;
@@ -38,9 +27,7 @@ export function checkMaintenanceBypass(request: NextRequest): boolean {
 }
 
 export function createMaintenanceResponse(request: NextRequest): NextResponse {
-  const bypassUrl = MAINTENANCE_BYPASS_TOKEN 
-    ? `${request.nextUrl.origin}${request.nextUrl.pathname}?maintenance_bypass=${MAINTENANCE_BYPASS_TOKEN}`
-    : null;
+  const bypassUrl = `${request.nextUrl.origin}${request.nextUrl.pathname}?maintenance_email=${encodeURIComponent(ADMIN_EMAIL)}`;
 
   const html = `
 <!DOCTYPE html>
@@ -127,7 +114,7 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
       <strong>Time:</strong> ${new Date().toISOString()}<br>
       <strong>Path:</strong> ${request.nextUrl.pathname}
     </div>
-    ${bypassUrl ? `<a href="${bypassUrl}" class="bypass-link">Bypass Maintenance (Authorized)</a>` : ''}
+    <a href="${bypassUrl}" class="bypass-link">Bypass (Admin Only)</a>
   </div>
 </body>
 </html>

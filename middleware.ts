@@ -6,7 +6,7 @@ import { getSession } from '@/lib/auth';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// Paths that require authentication
+// Paths that require authentication (exact match or prefix, but not auth paths)
 const PROTECTED_PATHS = ['/dashboard'];
 // Paths that should redirect to dashboard if already authenticated
 const AUTH_PATHS = ['/dashboard/login'];
@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Check authentication for protected paths
-  const isProtectedPath = PROTECTED_PATHS.some(path => pathname.startsWith(path));
+  const isProtectedPath = PROTECTED_PATHS.some(path => pathname.startsWith(path)) && !AUTH_PATHS.some(authPath => pathname.startsWith(authPath));
   const isAuthPath = AUTH_PATHS.some(path => pathname.startsWith(path));
 
   const session = await getSession(request);

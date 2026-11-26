@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'dev@bitz.is-a.dev';
-const ADMIN_PASSWORD_HASH = (process.env.ADMIN_PASSWORD_HASH || '').trim();
+const ADMIN_PASSWORD_HASH = (process.env.ADMIN_PASSWORD_HASH || '').match(/([a-f0-9]{64})/i)?.[1] || (process.env.ADMIN_PASSWORD_HASH || '').trim();
 
 function hashPassword(password: string): string {
   return crypto.createHash('sha256').update(password).digest('hex');

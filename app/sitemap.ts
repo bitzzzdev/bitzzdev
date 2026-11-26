@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllRepos } from "@/lib/repos";
+import { getGalleryImages, getWritingPosts } from "@/lib/content";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
@@ -30,6 +31,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    {
+      url: "https://bitz.is-a.dev/gallery",
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: "https://bitz.is-a.dev/writings",
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
   ];
 
   try {
@@ -43,7 +56,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         `https://bitz.is-a.dev/repos/${encodeURIComponent(repo.name)}/opengraph-image`,
       ],
     }));
-    return [...staticEntries, ...repoEntries];
+
+    // Gallery images
+    const galleryImages = getGalleryImages();
+    const galleryEntries: MetadataRoute.Sitemap = galleryImages.map((img) => ({
+      url: `https://bitz.is-a.dev/gallery/${img.filename}`,
+      lastModified: new Date(img.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    }));
+
+    // Writing posts (published only)
+    const writingPosts = getWritingPosts(true);
+    const writingEntries: MetadataRoute.Sitemap = writingPosts.map((post) => ({
+      url: `https://bitz.is-a.dev/writings/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
+
+    return [...staticEntries, ...repoEntries, ...galleryEntries, ...writingEntries];
   } catch {
     return staticEntries;
   }

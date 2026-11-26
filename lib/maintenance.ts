@@ -1,20 +1,46 @@
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
 
 const MAINTENANCE_MODE = process.env.MAINTENANCE_MODE === 'true';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'dev@bitz.is-a.dev';
+const JWT_SECRET = process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET || 'your-secret-key-change-in-production';
 
 // Only login and auth endpoints are accessible during maintenance without bypass
-// Dashboard requires the email bypass to be entered first
-const MAINTENANCE_ALLOWED_PATHS = ['/dashboard/login', '/api/auth', '/api/git-push'];
+// Dashboard requires the email+password bypass to be entered first
+const MAINTENANCE_ALLOWED_PATHS = ['/dashboard/login', '/api/auth', '/api/git-push', '/api/maintenance/bypass'];
 
 export function isMaintenanceMode(): boolean {
   return MAINTENANCE_MODE;
 }
 
+function verifyMaintenanceBypassToken(token: string): boolean {
+  try {
+    const [payloadB64, signature] = token.split('.');
+    if (!payloadB64 || !signature) return false;
+
+    // Verify signature
+    const expectedSignature = crypto
+      .createHmac('sha256', JWT_SECRET)
+      .update(payloadB64)
+      .digest('hex');
+    
+    if (signature !== expectedSignature) return false;
+
+    // Decode and check expiry
+    const payload = JSON.parse(Buffer.from(payloadB64, 'base64').toString('utf-8'));
+    if (!payload.email || payload.email !== ADMIN_EMAIL) return false;
+    if (!payload.exp || Date.now() > payload.exp) return false;
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function checkMaintenanceBypass(request: NextRequest): boolean {
-  // Check email bypass
-  const email = request.nextUrl.searchParams.get('maintenance_email');
-  if (email && email === ADMIN_EMAIL) {
+  // Check maintenance bypass cookie
+  const bypassCookie = request.cookies.get('maintenance-bypass');
+  if (bypassCookie?.value && verifyMaintenanceBypassToken(bypassCookie.value)) {
     return true;
   }
 
@@ -96,7 +122,7 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
       color: #ccc;
       margin-bottom: 0.5rem;
     }
-    input[type="email"] {
+    input[type="email"], input[type="password"] {
       width: 100%;
       padding: 0.875rem 1rem;
       background: rgba(255,255,255,0.05);
@@ -107,12 +133,12 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
       font-family: inherit;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-    input[type="email"]:focus {
+    input[type="email"]:focus, input[type="password"]:focus {
       outline: none;
       border-color: #fff;
       box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
     }
-    input[type="email"]::placeholder { color: #666; }
+    input[type="email"]::placeholder, input[type="password"]::placeholder { color: #666; }
     .btn {
       width: 100%;
       padding: 0.875rem 1.5rem;
@@ -147,8 +173,8 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
       p { color: #555; }
       .details { background: #f0f0f0; border-color: #ddd; color: #555; }
       .details strong { color: #333; }
-      input[type="email"] { background: #fff; border-color: #ddd; color: #1a1a1a; }
-      input[type="email"]:focus { border-color: #1a1a1a; box-shadow: 0 0 0 3px rgba(26,26,26,0.15); }
+      input[type="email"], input[type="password"] { background: #fff; border-color: #ddd; color: #1a1a1a; }
+      input[type="email"]:focus, input[type="password"]:focus { border-color: #1a1a1a; box-shadow: 0 0 0 3px rgba(26,26,26,0.15); }
       .btn { background: #1a1a1a; color: #fff; }
     }
   </style>
@@ -168,6 +194,10 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
         <label for="email">Admin Email</label>
         <input type="email" id="email" name="email" placeholder="Enter admin email" required autocomplete="email">
       </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required autocomplete="current-password">
+      </div>
       <button type="submit" class="btn" id="submitBtn">Access Site</button>
       <div id="message" class="error" aria-live="polite"></div>
     </form>
@@ -176,6 +206,7 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
     (function() {
       const form = document.getElementById('bypassForm');
       const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
       const submitBtn = document.getElementById('submitBtn');
       const message = document.getElementById('message');
       const targetPath = ${JSON.stringify(currentPath)};
@@ -187,30 +218,35 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
         message.className = 'error';
 
         const email = emailInput.value.trim().toLowerCase();
-        if (!email) {
-          message.textContent = 'Please enter your email';
+        const password = passwordInput.value;
+        if (!email || !password) {
+          message.textContent = 'Please enter both email and password';
           return;
         }
 
         submitBtn.disabled = true;
         submitBtn.textContent = 'Verifying...';
 
-        // Verify email by making a request with the email param
-        fetch(origin + targetPath + (targetPath.includes('?') ? '&' : '?') + 'maintenance_email=' + encodeURIComponent(email), {
-          method: 'GET',
-          credentials: 'same-origin'
+        // Verify credentials by calling the bypass API
+        fetch(origin + '/api/maintenance/bypass', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ email, password, targetPath })
         })
         .then(function(response) {
-          if (response.ok || response.status === 307) {
-            message.className = 'success';
-            message.textContent = 'Access granted. Redirecting...';
-            window.location.href = origin + targetPath + (targetPath.includes('?') ? '&' : '?') + 'maintenance_email=' + encodeURIComponent(email);
-          } else {
-            throw new Error('Invalid email');
-          }
+          return response.json().then(function(data) {
+            if (response.ok) {
+              message.className = 'success';
+              message.textContent = 'Access granted. Redirecting...';
+              window.location.href = origin + data.targetPath;
+            } else {
+              throw new Error(data.error || 'Invalid credentials');
+            }
+          });
         })
-        .catch(function() {
-          message.textContent = 'Invalid email. Access denied.';
+        .catch(function(err) {
+          message.textContent = err.message || 'Invalid email or password. Access denied.';
           submitBtn.disabled = false;
           submitBtn.textContent = 'Access Site';
         });

@@ -3129,5 +3129,230 @@ body {
 }
 
 /* ============================================================
+   GALLERY PREVIEW (Home page)
+   ============================================================ */
+.am-gallery-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 0 var(--text-inset);
+}
+
+.am-gallery-item {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-faint);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.am-gallery-item:hover {
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+}
+
+.am-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.am-gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.am-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(4, 4, 6, 0.9));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.am-gallery-item:hover .am-gallery-overlay {
+  opacity: 1;
+}
+
+.am-gallery-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.am-gallery-category {
+  font-size: 11px;
+  color: var(--text-60);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   WRITINGS PREVIEW (Home page)
+   ============================================================ */
+.am-writings-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+  padding: 0 var(--text-inset);
+}
+
+.am-writing-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-faint);
+  border-radius: 8px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.am-writing-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.am-writing-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.am-writing-category {
+  font-size: 11px;
+  color: var(--text-60);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-faint);
+}
+
+.am-writing-date {
+  font-size: 12px;
+  color: var(--text-50);
+}
+
+.am-writing-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0 0 8px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.am-writing-desc {
+  font-size: 13.5px;
+  color: var(--text-70);
+  line-height: 1.6;
+  margin: 0 0 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.am-writing-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-faint);
+}
+
+.am-writing-read-time {
+  font-size: 11.5px;
+  color: var(--text-50);
+}
+
+.am-writing-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.am-tag {
+  font-size: 10.5px;
+  color: var(--text-60);
+  background: var(--bg);
+  border: 1px solid var(--border-faint);
+  padding: 1px 8px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.am-empty-state {
+  color: var(--text-50);
+  font-size: 14px;
+  padding: 40px var(--text-inset);
+  text-align: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-faint);
+  border-radius: 8px;
+  margin: 0 var(--text-inset) 24px;
+}
+
+/* ============================================================
+   SECTION LINK
+   ============================================================ */
+.am-section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+  margin: 0 var(--text-inset);
+}
+
+.am-section-link:hover {
+  border-bottom-color: var(--text);
+  color: var(--text);
+}
+
+/* ============================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================ */
+@media (max-width: 768px) {
+  .am-gallery-preview {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  
+  .am-writings-preview {
+    grid-template-columns: 1fr;
+  }
+  
+  .am-writing-card {
+    padding: 16px;
+  }
+}
+
+/* ============================================================
    DASHBOARD (noindex via robots.txt)
    ============================================================ */

@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { getDriveClient } from '@/lib/gdrive/client';
 
 export const dynamic = 'force-dynamic';
 
@@ -490,19 +489,18 @@ export default function DashboardPage() {
 // Google Drive Panel Component
 function GoogleDrivePanel() {
   const [driveConnected, setDriveConnected] = useState(false);
-  const [connecting, setConnecting] = useState(false);
-  const [authUrl, setAuthUrl] = useState('');
-
-  const { getDriveToken, clearDriveToken } = getDriveClient();
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    try {
-      const token = getDriveToken();
-      setDriveConnected(!!token && !!token.access_token);
-    } catch {
-      setDriveConnected(false);
-    }
+    (async () => {
+      try {
+        const res = await fetch('/api/gdrive/status');
+        const data = await res.json();
+        setDriveConnected(!!data?.connected);
+      } catch {
+        setDriveConnected(false);
+      }
+    })();
   }, []);
 
   const startAuth = async () => {
@@ -510,7 +508,7 @@ function GoogleDrivePanel() {
       const response = await fetch('/api/gdrive/authorize', { method: 'POST' });
       const data = await response.json();
       if (data.authUrl) {
-        setAuthUrl(data.authUrl);
+        window.location.href = data.authUrl;
       }
     } catch {
       // auth error handled by caller
@@ -521,10 +519,12 @@ function GoogleDrivePanel() {
     startAuth();
   };
 
-  const handleDisconnect = () => {
+  const handleDisconnect = async () => {
     try {
-      clearDriveToken();
-      setDriveConnected(false);
+      const response = await fetch('/api/gdrive/revoke', { method: 'POST' });
+      if (response.ok) {
+        setDriveConnected(false);
+      }
     } catch {
       // ignore
     }

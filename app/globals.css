@@ -2228,3 +2228,420 @@ body {
   }
   .xeh-banner__link { margin-left: 22px; }
 }
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gallery-page { padding-bottom: 88px; }
+
+.gallery-categories,
+.writings-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 var(--text-inset) 24px;
+  padding: 0 var(--text-inset);
+}
+
+.gallery-category,
+.writings-category {
+  padding: 6px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-faint);
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: var(--text-70);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.gallery-category:hover,
+.writings-category:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.gallery-category.active,
+.writings-category.active {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--accent-text);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--border-faint);
+  border: 1px solid var(--border-faint);
+  margin: 0 var(--text-inset);
+}
+
+.gallery-item {
+  background: var(--bg);
+  position: relative;
+}
+
+.gallery-link {
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.gallery-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--bg-elevated);
+}
+
+.gallery-caption {
+  padding: 14px;
+}
+
+.gallery-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.gallery-desc {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-60);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.gallery-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 11.5px;
+  color: var(--text-50);
+}
+
+.gallery-category-tag {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-faint);
+  padding: 1px 8px;
+  text-transform: capitalize;
+}
+
+.gallery-empty,
+.writings-empty {
+  padding: 60px var(--text-inset);
+  text-align: center;
+  color: var(--text-60);
+}
+
+.gallery-image-page { padding-bottom: 88px; }
+
+.gallery-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 var(--text-inset) 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.gallery-back,
+.writing-back {
+  font-size: 13.5px;
+  color: var(--text-70);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.gallery-back:hover,
+.writing-back:hover {
+  color: var(--text);
+}
+
+.gallery-pager,
+.writing-pager {
+  display: flex;
+  gap: 12px;
+}
+
+.gallery-prev,
+.gallery-next,
+.writing-prev,
+.writing-next {
+  padding: 6px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-faint);
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: var(--text-70);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.gallery-prev:hover,
+.gallery-next:hover,
+.writing-prev:hover,
+.writing-next:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.gallery-image-article { max-width: 900px; margin: 0 auto; }
+
+.gallery-image-header {
+  margin-bottom: 24px;
+}
+
+.gallery-image-category {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-50);
+  margin-bottom: 8px;
+}
+
+.gallery-image-title {
+  font-size: clamp(24px, 3vw + 12px, 40px);
+  font-weight: 600;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+.gallery-image-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-70);
+  margin: 0 0 16px;
+  max-width: 700px;
+}
+
+.gallery-image-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-60);
+}
+
+.gallery-image-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.gallery-image-figure {
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+
+.gallery-image-main {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   WRITINGS
+   ============================================================ */
+.writings-page { padding-bottom: 88px; }
+
+.writings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1px;
+  background: var(--border-faint);
+  border: 1px solid var(--border-faint);
+  margin: 0 var(--text-inset);
+}
+
+.writing-card {
+  background: var(--bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.writing-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 11.5px;
+  color: var(--text-50);
+}
+
+.writing-card__category {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-faint);
+  padding: 1px 8px;
+  text-transform: capitalize;
+}
+
+.writing-card__read-time {
+  color: var(--text-50);
+}
+
+.writing-card__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.writing-card__title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.writing-card__title a:hover {
+  text-decoration: underline;
+}
+
+.writing-card__desc {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-60);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.writing-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.writing-post-page { padding-bottom: 88px; }
+
+.writing-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 var(--text-inset) 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.writing-pager {
+  display: flex;
+  gap: 12px;
+}
+
+.writing-article { max-width: 800px; margin: 0 auto; }
+
+.writing-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.writing-category {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-50);
+  margin-bottom: 8px;
+}
+
+.writing-title {
+  font-size: clamp(24px, 3vw + 12px, 40px);
+  font-weight: 600;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+.writing-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-70);
+  margin: 0 0 16px;
+  max-width: 700px;
+}
+
+.writing-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-60);
+}
+
+.writing-read-time {
+  color: var(--text-50);
+}
+
+.writing-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.writing-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.writing-content h1,
+.writing-content h2,
+.writing-content h3,
+.writing-content h4 {
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.writing-content h1 { font-size: 2rem; }
+.writing-content h2 { font-size: 1.5rem; }
+.writing-content h3 { font-size: 1.25rem; }
+
+.writing-content p { margin: 1rem 0; }
+.writing-content a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.writing-content a:hover { opacity: 0.8; }
+.writing-content code {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.9em;
+  background: var(--bg-elevated);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+}
+.writing-content pre {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-faint);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.writing-content pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.writing-content blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text-70);
+  font-style: italic;
+}
+.writing-content ul, .writing-content ol { margin: 1rem 0; padding-left: 1.5rem; }
+.writing-content li { margin: 0.5rem 0; }
+.writing-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.5rem 0; }
+
+/* ============================================================
+   DASHBOARD (noindex via robots.txt)
+   ============================================================ */

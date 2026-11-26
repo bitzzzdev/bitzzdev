@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { GalleryImage, WritingPost, CONTENT_DIRS, GalleryCategory, WritingCategory, TagConfig, ALLOWED_IMAGE_EXTS, MAX_FILE_SIZE } from './content-types';
+import { fetchGalleryImages } from './gdrive/content';
 
 // Re-export constants for API routes
 export { ALLOWED_IMAGE_EXTS, MAX_FILE_SIZE, CONTENT_DIRS } from './content-types';
@@ -110,6 +111,12 @@ export function reorderTags(tagNames: string[]): void {
  * Read all gallery images with metadata
  */
 export function getGalleryImages(): GalleryImage[] {
+  // Use Google Drive if configured and enabled
+  if (process.env.USE_GOOGLE_DRIVE === 'true' && process.env.GOOGLE_DRIVE_GALLERY_FOLDER_ID) {
+    return fetchGalleryImages();
+  }
+
+  // Otherwise load from local files
   const galleryDir = CONTENT_DIRS.gallery;
   if (!fs.existsSync(galleryDir)) return [];
 

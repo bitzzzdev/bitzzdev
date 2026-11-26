@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { getDriveClient } from '@/lib/gdrive/client';
 
 export const dynamic = 'force-dynamic';
 
@@ -40,7 +41,7 @@ interface TagConfig {
 export default function DashboardPage() {
   const router = useRouter();
 
-  const [activeTab, setActiveTab] = useState<'gallery' | 'writings' | 'tags'>('gallery');
+  const [activeTab, setActiveTab] = useState<'gallery' | 'writings' | 'tags' | 'google-drive'>('gallery');
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
   const [writings, setWritings] = useState<WritingPost[]>([]);
   const [tags, setTags] = useState<TagConfig[]>([]);
@@ -410,6 +411,14 @@ export default function DashboardPage() {
             >
               Tags ({tags.length})
             </button>
+            <button
+              role="tab"
+              aria-selected={activeTab === 'google-drive'}
+              className={activeTab === 'google-drive' ? 'active' : ''}
+              onClick={() => setActiveTab('google-drive')}
+            >
+              Google Drive
+            </button>
           </div>
         </div>
 
@@ -469,8 +478,96 @@ export default function DashboardPage() {
             saving={saving}
           />
         )}
+
+        {activeTab === 'google-drive' && (
+          <GoogleDrivePanel />
+        )}
       </div>
     </section>
+  );
+}
+
+// Google Drive Panel Component
+function GoogleDrivePanel() {
+  const [driveConnected, setDriveConnected] = useState(false);
+  const [connecting, setConnecting] = useState(false);
+  const [authUrl, setAuthUrl] = useState('');
+
+  const { getDriveToken, clearDriveToken } = getDriveClient();
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    try {
+      const token = getDriveToken();
+      setDriveConnected(!!token && !!token.access_token);
+    } catch {
+      setDriveConnected(false);
+    }
+  }, []);
+
+  const startAuth = async () => {
+    try {
+      const response = await fetch('/api/gdrive/authorize', { method: 'POST' });
+      const data = await response.json();
+      if (data.authUrl) {
+        setAuthUrl(data.authUrl);
+      }
+    } catch {
+      // auth error handled by caller
+    }
+  };
+
+  const handleConnect = () => {
+    startAuth();
+  };
+
+  const handleDisconnect = () => {
+    try {
+      clearDriveToken();
+      setDriveConnected(false);
+    } catch {
+      // ignore
+    }
+  };
+
+  if (!driveConnected) {
+    return (
+      <div className="am-section">
+        <div className="am-inner">
+          <div className="am-section-head">
+            <span className="am-eyebrow">/GOOGLE DRIVE</span>
+            <h2 className="am-h2">Google Drive</h2>
+            <p className="am-desc">Connect your Google Drive to sync gallery images and writings.</p>
+          </div>
+          <div className="gallery-empty">
+            <p>Google Drive not connected.</p>
+            <button onClick={handleConnect} className="gallery-category active">
+              Connect Google Drive
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="am-section">
+      <div className="am-inner">
+        <div className="am-section-head">
+          <span className="am-eyebrow">/GOOGLE DRIVE</span>
+          <h2 className="am-h2">Google Drive</h2>
+          <p className="am-desc">Google Drive connected. Fetch images and writings from Drive folders.</p>
+        </div>
+        <div className="dashboard-actions">
+          <button onClick={handleConnect} className="gallery-category active">
+            Refresh from Google Drive
+          </button>
+          <button onClick={handleDisconnect} className="gallery-category">
+            Disconnect Google Drive
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

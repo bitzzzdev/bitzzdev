@@ -2447,6 +2447,7 @@ body {
   border-radius: 8px;
   overflow: hidden;
   background: var(--bg-elevated);
+  border: 1px solid var(--border-faint);
 }
 
 .gallery-image-main {

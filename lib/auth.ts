@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
+export { getDriveToken, saveDriveToken, hasValidDriveToken, clearDriveToken } from './gdrive/token';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET || 'your-secret-key-change-in-production');
 

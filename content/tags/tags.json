@@ -1,0 +1,42 @@
+[
+  {
+    "name": "college",
+    "displayName": "College",
+    "description": "College life and memories",
+    "order": 0,
+    "color": "#3b82f6",
+    "icon": "🎓"
+  },
+  {
+    "name": "personal",
+    "displayName": "Personal",
+    "description": "Personal moments and memories",
+    "order": 1,
+    "color": "#ec4899",
+    "icon": "📸"
+  },
+  {
+    "name": "nature",
+    "displayName": "Nature",
+    "description": "Nature and landscape photography",
+    "order": 2,
+    "color": "#22c55e",
+    "icon": "🌲"
+  },
+  {
+    "name": "landscape",
+    "displayName": "Landscape",
+    "description": "Landscape photography",
+    "order": 3,
+    "color": "#14b8a6",
+    "icon": "🏞️"
+  },
+  {
+    "name": "photography",
+    "displayName": "Photography",
+    "description": "General photography",
+    "order": 4,
+    "color": "#8b5cf6",
+    "icon": "📷"
+  }
+]

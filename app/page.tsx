@@ -127,16 +127,16 @@ export default async function Home() {
         </section>
 
         {/* Gallery section */}
-        <section className="am-section" id="gallery" aria-labelledby="gallery-heading">
-          <div className="am-inner">
-            <div className="am-section-head">
-              <span className="am-eyebrow">/VISUAL ARCHIVE</span>
-              <h2 className="am-h2" id="gallery-heading">Gallery ({galleryImages.length})</h2>
-              <p className="am-desc">Curated screenshots, diagrams, and visual work from projects and experiments.</p>
-            </div>
-            {galleryImages.length > 0 ? (
+        {galleryImages.length > 0 && (
+          <section className="am-section" id="gallery" aria-labelledby="gallery-heading">
+            <div className="am-inner">
+              <div className="am-section-head">
+                <span className="am-eyebrow">/VISUAL ARCHIVE</span>
+                <h2 className="am-h2" id="gallery-heading">Gallery ({galleryImages.length})</h2>
+                <p className="am-desc">Curated screenshots, diagrams, and visual work from projects and experiments.</p>
+              </div>
               <div className="am-gallery-preview">
-                {galleryImages.slice(0, 6).map((image) => (
+                {galleryImages.slice(0, 3).map((image) => (
                   <Link key={image.filename} href={`/gallery/${image.filename}`} className="am-gallery-item">
                     <img 
                       src={`/gallery/${image.filename}`} 
@@ -150,24 +150,22 @@ export default async function Home() {
                   </Link>
                 ))}
               </div>
-            ) : (
-              <p className="am-empty-state">No gallery images yet. Visit the dashboard to upload.</p>
-            )}
-            <Link href="/gallery" className="am-section-link">
-              View all gallery images &rarr;
-            </Link>
-          </div>
-        </section>
+              <Link href="/gallery" className="am-section-link">
+                View all gallery images &rarr;
+              </Link>
+            </div>
+          </section>
+        )}
 
         {/* Writings section */}
-        <section className="am-section" id="writings" aria-labelledby="writings-heading">
-          <div className="am-inner">
-            <div className="am-section-head">
-              <span className="am-eyebrow">/WRITINGS</span>
-              <h2 className="am-h2" id="writings-heading">Writings ({writingPosts.length})</h2>
-              <p className="am-desc">Technical articles, project retrospectives, and engineering notes.</p>
-            </div>
-            {writingPosts.length > 0 ? (
+        {writingPosts.length > 0 && (
+          <section className="am-section" id="writings" aria-labelledby="writings-heading">
+            <div className="am-inner">
+              <div className="am-section-head">
+                <span className="am-eyebrow">/WRITINGS</span>
+                <h2 className="am-h2" id="writings-heading">Writings ({writingPosts.length})</h2>
+                <p className="am-desc">Technical articles, project retrospectives, and engineering notes.</p>
+              </div>
               <div className="am-writings-preview">
                 {writingPosts.slice(0, 3).map((post) => (
                   <Link key={post.slug} href={`/writings/${post.slug}`} className="am-writing-card">
@@ -190,14 +188,12 @@ export default async function Home() {
                   </Link>
                 ))}
               </div>
-            ) : (
-              <p className="am-empty-state">No writings yet. Visit the dashboard to publish.</p>
-            )}
-            <Link href="/writings" className="am-section-link">
-              View all writings &rarr;
-            </Link>
-          </div>
-        </section>
+              <Link href="/writings" className="am-section-link">
+                View all writings &rarr;
+              </Link>
+            </div>
+          </section>
+        )}
 
         {/* About section */}
         <section className="am-section" id="about" aria-labelledby="about-heading">

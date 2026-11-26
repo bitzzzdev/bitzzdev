@@ -1,0 +1,10 @@
+{
+  "filename": "nature2.jpg",
+  "title": "Nature Scene 2",
+  "description": "Another beautiful natural landscape with vibrant colors.",
+  "category": "nature",
+  "tags": ["nature", "landscape", "photography"],
+  "date": "2026-11-26",
+  "featured": false,
+  "order": 2
+}

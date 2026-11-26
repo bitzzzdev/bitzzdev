@@ -7,7 +7,7 @@ const JWT_SECRET = process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET || 'yo
 
 // Only login and auth endpoints are accessible during maintenance without bypass
 // Dashboard requires the email+password bypass to be entered first
-const MAINTENANCE_ALLOWED_PATHS = ['/dashboard/login', '/api/auth', '/api/git-push', '/api/maintenance/bypass'];
+const MAINTENANCE_ALLOWED_PATHS = ['/dashboard/login', '/api/auth', '/api/git-push', '/api/maintenance/bypass', '/api/upload'];
 
 export function isMaintenanceMode(): boolean {
   return MAINTENANCE_MODE;

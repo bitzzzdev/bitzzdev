@@ -70,7 +70,6 @@ export default function GalleryPage() {
                 <button
                   className="gallery-category active"
                   data-category="all"
-                  onClick={(e) => filterCategory(e, 'all')}
                 >
                   All ({images.length})
                 </button>
@@ -79,7 +78,6 @@ export default function GalleryPage() {
                     key={cat.name}
                     className="gallery-category"
                     data-category={cat.name}
-                    onClick={(e) => filterCategory(e, cat.name)}
                   >
                     {cat.name} ({cat.count})
                   </button>
@@ -152,8 +150,4 @@ export default function GalleryPage() {
       />
     </>
   );
-}
-
-function filterCategory(e: React.MouseEvent<HTMLButtonElement>, category: string) {
-  // Handled by inline script for client-side filtering without hydration issues
 }

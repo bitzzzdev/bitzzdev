@@ -5,7 +5,7 @@ import speakeasy from 'speakeasy';
 import crypto from 'crypto';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'dev@bitz.is-a.dev';
-const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || '';
+const ADMIN_PASSWORD_HASH = (process.env.ADMIN_PASSWORD_HASH || '').trim();
 const ADMIN_TOTP_SECRET = process.env.ADMIN_TOTP_SECRET || '';
 const JWT_SECRET = new TextEncoder().encode(process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET || 'your-secret-key-change-in-production');
 

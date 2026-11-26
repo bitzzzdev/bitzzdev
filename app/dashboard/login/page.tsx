@@ -3,20 +3,25 @@
 import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+type AuthMode = 'password' | 'otp';
+
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams?.get('callbackUrl') || '/dashboard';
   const error = searchParams?.get('error');
 
+  const [mode, setMode] = useState<AuthMode>('password');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [totp, setTotp] = useState('');
+  const [otpCode, setOtpCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [showTotp, setShowTotp] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handlePasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage('');
@@ -48,6 +53,74 @@ function LoginForm() {
     }
   };
 
+  const handleOtpRequest = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/auth/otp/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, callbackUrl }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMessage(data.error || 'Failed to send code');
+      } else {
+        setOtpSent(true);
+        setErrorMessage('');
+        // In development, show the code
+        if (data.devCode) {
+          setOtpCode(data.devCode);
+        }
+      }
+    } catch {
+      setErrorMessage('An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOtpVerify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!otpCode.trim()) return;
+    
+    setLoading(true);
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/auth/otp/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code: otpCode, callbackUrl }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMessage(data.error || 'Invalid code');
+      } else {
+        router.push(callbackUrl);
+        router.refresh();
+      }
+    } catch {
+      setErrorMessage('An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const switchMode = (newMode: AuthMode) => {
+    setMode(newMode);
+    setErrorMessage('');
+    setShowTotp(false);
+    setOtpSent(false);
+    setOtpCode('');
+  };
+
   return (
     <div className="dashboard-login">
       <div className="login-card">
@@ -56,57 +129,136 @@ function LoginForm() {
           <p>Sign in to manage gallery and writings</p>
         </div>
 
+        <div className="auth-tabs" role="tablist">
+          <button
+            role="tab"
+            aria-selected={mode === 'password'}
+            className={mode === 'password' ? 'active' : ''}
+            onClick={() => switchMode('password')}
+          >
+            Password
+          </button>
+          <button
+            role="tab"
+            aria-selected={mode === 'otp'}
+            className={mode === 'otp' ? 'active' : ''}
+            onClick={() => switchMode('otp')}
+          >
+            Email Code
+          </button>
+        </div>
+
         {errorMessage && <div className="login-error">{errorMessage}</div>}
         {error && <div className="login-error">Authentication failed. Please try again.</div>}
 
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              autoComplete="email"
-              disabled={loading}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="current-password"
-              disabled={loading}
-            />
-          </div>
-
-          {showTotp && (
+        {mode === 'password' && (
+          <form onSubmit={handlePasswordSubmit} className="login-form">
             <div className="form-group">
-              <label htmlFor="totp">2FA Code</label>
+              <label htmlFor="email">Email</label>
               <input
-                id="totp"
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="email"
+                disabled={loading}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                autoComplete="current-password"
+                disabled={loading}
+              />
+            </div>
+
+            {showTotp && (
+              <div className="form-group">
+                <label htmlFor="totp">2FA Code</label>
+                <input
+                  id="totp"
+                  type="text"
+                  value={totp}
+                  onChange={(e) => setTotp(e.target.value)}
+                  required
+                  autoComplete="one-time-code"
+                  maxLength={6}
+                  placeholder="123456"
+                  disabled={loading}
+                />
+              </div>
+            )}
+
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? 'Signing in...' : 'Sign In'}
+            </button>
+          </form>
+        )}
+
+        {mode === 'otp' && !otpSent && (
+          <form onSubmit={handleOtpRequest} className="login-form">
+            <div className="form-group">
+              <label htmlFor="otp-email">Email</label>
+              <input
+                id="otp-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="email"
+                disabled={loading}
+              />
+            </div>
+
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? 'Sending...' : 'Send Code'}
+            </button>
+          </form>
+        )}
+
+        {mode === 'otp' && otpSent && (
+          <form onSubmit={handleOtpVerify} className="login-form">
+            <div className="form-group">
+              <label htmlFor="otp-code">Code</label>
+              <input
+                id="otp-code"
                 type="text"
-                value={totp}
-                onChange={(e) => setTotp(e.target.value)}
+                value={otpCode}
+                onChange={(e) => setOtpCode(e.target.value)}
                 required
                 autoComplete="one-time-code"
                 maxLength={6}
                 placeholder="123456"
                 disabled={loading}
+                autoFocus
               />
             </div>
-          )}
 
-          <button type="submit" className="login-btn" disabled={loading}>
-            {loading ? 'Signing in...' : 'Sign In'}
-          </button>
-        </form>
+            <p className="otp-note">
+              Enter the 6-digit code sent to <strong>{email}</strong>
+            </p>
+
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? 'Verifying...' : 'Verify & Sign In'}
+            </button>
+
+            <button
+              type="button"
+              className="resend-btn"
+              onClick={() => setOtpSent(false)}
+              disabled={loading}
+            >
+              Resend code
+            </button>
+          </form>
+        )}
 
         <p className="login-note">
           Only accessible to the site owner. 2FA required if configured.
@@ -143,6 +295,31 @@ function LoginForm() {
           margin: 0;
           color: var(--text-70);
           font-size: 0.95rem;
+        }
+        .auth-tabs {
+          display: flex;
+          gap: 0.5rem;
+          margin-bottom: 1.5rem;
+          border-bottom: 1px solid var(--border-faint);
+        }
+        .auth-tabs button {
+          flex: 1;
+          padding: 0.75rem 1rem;
+          background: transparent;
+          border: none;
+          border-bottom: 2px solid transparent;
+          color: var(--text-70);
+          font-size: 0.95rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .auth-tabs button:hover {
+          color: var(--text);
+        }
+        .auth-tabs button.active {
+          color: var(--text);
+          border-bottom-color: var(--text);
         }
         .login-error {
           padding: 0.75rem 1rem;
@@ -200,6 +377,32 @@ function LoginForm() {
           opacity: 0.9;
         }
         .login-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+        .otp-note {
+          margin: 0.5rem 0 1rem;
+          text-align: center;
+          font-size: 0.85rem;
+          color: var(--text-70);
+        }
+        .resend-btn {
+          width: 100%;
+          padding: 0.625rem 1rem;
+          margin-top: 0.75rem;
+          background: transparent;
+          border: 1px solid var(--border-faint);
+          border-radius: 6px;
+          color: var(--text-70);
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .resend-btn:hover:not(:disabled) {
+          border-color: var(--text);
+          color: var(--text);
+        }
+        .resend-btn:disabled {
           opacity: 0.6;
           cursor: not-allowed;
         }

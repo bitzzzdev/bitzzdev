@@ -3,8 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 const MAINTENANCE_MODE = process.env.MAINTENANCE_MODE === 'true';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'dev@bitz.is-a.dev';
 
-// Paths that are always accessible during maintenance (admin needs to access dashboard)
-const MAINTENANCE_ALLOWED_PATHS = ['/dashboard', '/dashboard/login', '/api/auth', '/api/git-push'];
+// Only login and auth endpoints are accessible during maintenance without bypass
+// Dashboard requires the email bypass to be entered first
+const MAINTENANCE_ALLOWED_PATHS = ['/dashboard/login', '/api/auth', '/api/git-push'];
 
 export function isMaintenanceMode(): boolean {
   return MAINTENANCE_MODE;
@@ -27,7 +28,8 @@ export function checkMaintenanceBypass(request: NextRequest): boolean {
 }
 
 export function createMaintenanceResponse(request: NextRequest): NextResponse {
-  const bypassUrl = `${request.nextUrl.origin}${request.nextUrl.pathname}?maintenance_email=${encodeURIComponent(ADMIN_EMAIL)}`;
+  const currentPath = request.nextUrl.pathname + request.nextUrl.search;
+  const origin = request.nextUrl.origin;
 
   const html = `
 <!DOCTYPE html>
@@ -50,7 +52,8 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
       padding: 2rem;
     }
     .container {
-      max-width: 500px;
+      max-width: 420px;
+      width: 100%;
       text-align: center;
       padding: 3rem 2rem;
     }
@@ -76,31 +79,77 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 8px;
       padding: 1.5rem;
-      margin-top: 2rem;
+      margin: 2rem 0;
       text-align: left;
       font-size: 0.85rem;
       color: #888;
     }
     .details strong { color: #ccc; }
-    .bypass-link {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 1.5rem;
+    .form-group {
+      text-align: left;
+      margin-bottom: 1.25rem;
+    }
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #ccc;
+      margin-bottom: 0.5rem;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input[type="email"]:focus {
+      outline: none;
+      border-color: #fff;
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
+    }
+    input[type="email"]::placeholder { color: #666; }
+    .btn {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
       background: #fff;
       color: #0d0d0d;
-      text-decoration: none;
+      border: none;
       border-radius: 6px;
-      font-weight: 500;
-      transition: opacity 0.2s;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
     }
-    .bypass-link:hover { opacity: 0.9; }
+    .btn:hover { opacity: 0.9; }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .error {
+      color: #ff6b6b;
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+      min-height: 1.25rem;
+    }
+    .success {
+      color: #6bff9e;
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+      min-height: 1.25rem;
+    }
     @media (prefers-color-scheme: light) {
       body { background: #f8f8fa; color: #1a1a1a; }
       h1 { color: #1a1a1a; }
       p { color: #555; }
       .details { background: #f0f0f0; border-color: #ddd; color: #555; }
       .details strong { color: #333; }
-      .bypass-link { background: #1a1a1a; color: #fff; }
+      input[type="email"] { background: #fff; border-color: #ddd; color: #1a1a1a; }
+      input[type="email"]:focus { border-color: #1a1a1a; box-shadow: 0 0 0 3px rgba(26,26,26,0.15); }
+      .btn { background: #1a1a1a; color: #fff; }
     }
   </style>
 </head>
@@ -112,10 +161,62 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
     <div class="details">
       <strong>Mode:</strong> Maintenance<br>
       <strong>Time:</strong> ${new Date().toISOString()}<br>
-      <strong>Path:</strong> ${request.nextUrl.pathname}
+      <strong>Path:</strong> ${currentPath}
     </div>
-    <a href="${bypassUrl}" class="bypass-link">Bypass (Admin Only)</a>
+    <form id="bypassForm" autocomplete="off">
+      <div class="form-group">
+        <label for="email">Admin Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter admin email" required autocomplete="email">
+      </div>
+      <button type="submit" class="btn" id="submitBtn">Access Site</button>
+      <div id="message" class="error" aria-live="polite"></div>
+    </form>
   </div>
+  <script>
+    (function() {
+      const form = document.getElementById('bypassForm');
+      const emailInput = document.getElementById('email');
+      const submitBtn = document.getElementById('submitBtn');
+      const message = document.getElementById('message');
+      const targetPath = ${JSON.stringify(currentPath)};
+      const origin = ${JSON.stringify(origin)};
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        message.textContent = '';
+        message.className = 'error';
+
+        const email = emailInput.value.trim().toLowerCase();
+        if (!email) {
+          message.textContent = 'Please enter your email';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Verifying...';
+
+        // Verify email by making a request with the email param
+        fetch(origin + targetPath + (targetPath.includes('?') ? '&' : '?') + 'maintenance_email=' + encodeURIComponent(email), {
+          method: 'GET',
+          credentials: 'same-origin'
+        })
+        .then(function(response) {
+          if (response.ok || response.status === 307) {
+            message.className = 'success';
+            message.textContent = 'Access granted. Redirecting...';
+            window.location.href = origin + targetPath + (targetPath.includes('?') ? '&' : '?') + 'maintenance_email=' + encodeURIComponent(email);
+          } else {
+            throw new Error('Invalid email');
+          }
+        })
+        .catch(function() {
+          message.textContent = 'Invalid email. Access denied.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Access Site';
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
   `;

@@ -23,10 +23,6 @@ export default function SiteHeader({ base = "/" }: { base?: string }) {
           <Link href="/xeh">XEH</Link>
           <Link href="/gallery">Gallery</Link>
           <Link href="/writings">Writings</Link>
-          <a href={anchor("services")}>Services</a>
-          <a href={anchor("process")}>Process</a>
-          <a href={anchor("metrics")}>Benchmarks</a>
-          <a href={anchor("testimonials")}>Feedback</a>
           <a href={anchor("contact")}>Contact</a>
         </nav>
 

@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { maintenanceMiddleware } from '@/lib/maintenance';
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 export function middleware(request: NextRequest) {
   const maintenanceResponse = maintenanceMiddleware(request);
   if (maintenanceResponse) {

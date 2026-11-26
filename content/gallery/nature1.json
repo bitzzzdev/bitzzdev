@@ -1,0 +1,10 @@
+{
+  "filename": "nature1.jpg",
+  "title": "Nature Scene 1",
+  "description": "Peaceful natural landscape captured during a morning walk.",
+  "category": "nature",
+  "tags": ["nature", "landscape", "photography"],
+  "date": "2026-11-26",
+  "featured": false,
+  "order": 1
+}

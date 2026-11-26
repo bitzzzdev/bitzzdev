@@ -1,16 +1,54 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSession, requireAuth } from '@/lib/auth';
+import { getSession } from '@/lib/auth';
 import { saveGalleryImage, saveWritingPost, getTagConfig, upsertTagConfig, ALLOWED_IMAGE_EXTS, MAX_FILE_SIZE } from '@/lib/content';
 import { calculateReadingTime } from '@/lib/content';
 import path from 'path';
 import fs from 'fs';
 import { CONTENT_DIRS } from '@/lib/content-types';
 
+// Use Vercel Blob in production, local filesystem in development
+const IS_PRODUCTION = process.env.NODE_ENV === 'production' && process.env.VERCEL;
+
+async function saveFileToStorage(filename: string, buffer: Buffer): Promise<string> {
+  if (IS_PRODUCTION) {
+    const { put } = await import('@vercel/blob');
+    const blob = await put(filename, buffer, {
+      access: 'public',
+      addRandomSuffix: false,
+    });
+    return blob.url;
+  } else {
+    const filepath = path.join(CONTENT_DIRS.publicGallery, filename);
+    fs.writeFileSync(filepath, buffer);
+    return `/gallery/${filename}`;
+  }
+}
+
+async function deleteFileFromStorage(filename: string): Promise<void> {
+  if (IS_PRODUCTION) {
+    const { del } = await import('@vercel/blob');
+    // For Vercel Blob, we'd need the full URL or blob path
+    // This is a simplified version - in practice you'd store the blob URL in metadata
+    console.log('Would delete from Vercel Blob:', filename);
+  } else {
+    const filepath = path.join(CONTENT_DIRS.publicGallery, filename);
+    if (fs.existsSync(filepath)) fs.unlinkSync(filepath);
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const session = await getSession(request);
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // On Vercel production, filesystem is read-only
+    // Uploads should be done locally, then pushed via git
+    if (IS_PRODUCTION) {
+      return NextResponse.json({ 
+        error: 'Upload not available on production. Use local development server for uploads, then push via Dashboard > Git Push.' 
+      }, { status: 503 });
     }
 
     const formData = await request.formData();
@@ -60,11 +98,10 @@ async function handleGalleryUpload(formData: FormData) {
   const timestamp = Date.now();
   const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
   const filename = `${timestamp}_${safeName}`;
-  const filepath = path.join(CONTENT_DIRS.publicGallery, filename);
 
-  // Save file
+  // Save file to storage (Vercel Blob in production, local in dev)
   const buffer = Buffer.from(await file.arrayBuffer());
-  fs.writeFileSync(filepath, buffer);
+  const fileUrl = await saveFileToStorage(filename, buffer);
 
   // Save metadata
   const metadata = {
@@ -92,7 +129,7 @@ async function handleGalleryUpload(formData: FormData) {
     }
   }
 
-  return NextResponse.json({ success: true, filename });
+  return NextResponse.json({ success: true, filename, url: fileUrl });
 }
 
 async function handleWritingUpload(formData: FormData) {
@@ -169,8 +206,6 @@ async function handleTagUpload(formData: FormData) {
 
   if (action === 'reorder') {
     const items = JSON.parse(formData.get('items') as string || '[]');
-    // items is an array of tag names in order
-    // We need to update the order in the config
     const tagConfigs = getTagConfig();
     const tagMap = new Map(tagConfigs.map(t => [t.name, t]));
     const reordered = items.map((tagName: string, index: number) => {
@@ -181,7 +216,6 @@ async function handleTagUpload(formData: FormData) {
       return null;
     }).filter(Boolean) as typeof tagConfigs;
     
-    // Add any tags not in the reorder list (at the end)
     const existingNames = new Set(items);
     for (const tag of tagConfigs) {
       if (!existingNames.has(tag.name)) {

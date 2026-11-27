@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: GalleryImagePageProps): Promise<Metadata> {
   const { filename } = await params;
-  const image = getGalleryImage(filename);
+  const image = (await getGalleryImages()).find(img => img.filename === filename) ?? getGalleryImage(filename);
 
   if (!image) {
     return { title: 'Not Found' };
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: GalleryImagePageProps): Promi
 
 export default async function GalleryImagePage({ params }: GalleryImagePageProps) {
   const { filename } = await params;
-  const image = getGalleryImage(filename);
+  const image = (await getGalleryImages()).find(img => img.filename === filename) ?? getGalleryImage(filename);
 
   if (!image) {
     notFound();
@@ -127,7 +127,7 @@ export default async function GalleryImagePage({ params }: GalleryImagePageProps
 
               <figure className="gallery-image-figure">
                 <img
-                  src={`/gallery/${filename}`}
+                  src={image.url || `/gallery/${filename}`}
                   alt={image.title}
                   className="gallery-image-main"
                 />

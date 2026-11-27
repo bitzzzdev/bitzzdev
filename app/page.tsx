@@ -137,9 +137,9 @@ export default async function Home() {
               </div>
               <div className="am-gallery-preview">
                 {galleryImages.slice(0, 3).map((image) => (
-                  <Link key={image.filename} href={`/gallery/${image.filename}`} className="am-gallery-item">
+                  <Link key={image.filename} href={image.url || `/gallery/${image.filename}`} className="am-gallery-item">
                     <img 
-                      src={`/gallery/${image.filename}`} 
+                      src={image.url || `/gallery/${image.filename}`} 
                       alt={image.title} 
                       loading="lazy"
                     />

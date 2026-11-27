@@ -722,7 +722,7 @@ function GalleryPanel({
               role="listitem"
             >
               <div className="dashboard-item-image">
-                <img src={`/gallery/${image.filename}`} alt={image.title} loading="lazy" />
+                <img src={image.url || `/gallery/${image.filename}`} alt={image.title} loading="lazy" />
               </div>
               <div className="dashboard-item-content">
                 <h3 className="dashboard-item-title">{image.title}</h3>

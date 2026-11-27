@@ -39,6 +39,7 @@ export async function fetchGalleryImages() {
             WebContentLink: file.webContentLink || '',
             webViewLink: file.webViewLink || '',
             mimeType: file.mimeType || 'image/jpeg',
+            url: file.webContentLink || file.webViewLink || '',
           };
         } catch (error) {
           console.error(`Error fetching image ${file.name}:`, error);

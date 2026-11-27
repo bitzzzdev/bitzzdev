@@ -14,6 +14,7 @@ export interface GalleryImage {
   width?: number;
   height?: number;
   order?: number; // for manual ordering within tag/category
+  url?: string; // public URL for externally hosted images (for example Google Drive)
 }
 
 export interface WritingPost {

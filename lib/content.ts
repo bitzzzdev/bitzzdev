@@ -113,7 +113,7 @@ export function reorderTags(tagNames: string[]): void {
 export async function getGalleryImages(): Promise<GalleryImage[]> {
   // Use Google Drive if configured and enabled
   if (process.env.USE_GOOGLE_DRIVE === 'true' && process.env.GOOGLE_DRIVE_GALLERY_FOLDER_ID) {
-    return fetchGalleryImages();
+    return (await fetchGalleryImages()) as GalleryImage[];
   }
 
   // Otherwise load from local files
@@ -144,7 +144,7 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
  */
 export async function getGalleryImagesByTag(tag: string): Promise<GalleryImage[]> {
   if (tag === 'all') return getGalleryImages();
-  return getGalleryImages().filter(img => img.tags.map(t => t.toLowerCase()).includes(tag.toLowerCase()));
+  return (await getGalleryImages()).filter(img => img.tags.map(t => t.toLowerCase()).includes(tag.toLowerCase()));
 }
 
 /**
@@ -152,7 +152,7 @@ export async function getGalleryImagesByTag(tag: string): Promise<GalleryImage[]
  */
 export async function getGalleryImagesByCategory(category: string): Promise<GalleryImage[]> {
   if (category === 'all') return getGalleryImages();
-  return getGalleryImages().filter(img => img.category.toLowerCase() === category.toLowerCase());
+  return (await getGalleryImages()).filter(img => img.category.toLowerCase() === category.toLowerCase());
 }
 
 /**

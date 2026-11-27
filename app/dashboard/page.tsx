@@ -14,6 +14,7 @@ interface GalleryImage {
   tags: string[];
   date: string;
   order: number;
+  url?: string;
 }
 
 interface WritingPost {

@@ -78,7 +78,6 @@ export default function WritingsPage() {
                 <button
                   className="writings-category active"
                   data-category="all"
-                  onClick={(e) => filterCategory(e, 'all')}
                 >
                   All ({posts.length})
                 </button>
@@ -87,7 +86,6 @@ export default function WritingsPage() {
                     key={cat.name}
                     className="writings-category"
                     data-category={cat.name}
-                    onClick={(e) => filterCategory(e, cat.name)}
                   >
                     {cat.name} ({cat.count})
                   </button>
@@ -156,8 +154,4 @@ export default function WritingsPage() {
       />
     </>
   );
-}
-
-function filterCategory(e: React.MouseEvent<HTMLButtonElement>, category: string) {
-  // Handled by inline script
 }

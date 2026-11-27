@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const images = getGalleryImages();
+    const images = await getGalleryImages();
     return NextResponse.json({ images });
   } catch (error) {
     console.error('Gallery GET error:', error);

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { OAuth2Client } from 'google-auth-library';
 import { getDriveClient } from '@/lib/gdrive/client';
-import { getSession, signOut } from '@/lib/auth';
+import { getSession } from '@/lib/auth';
 
 /**
  * Authorize Google Drive access via dashboard

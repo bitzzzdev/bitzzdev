@@ -58,7 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Gallery images
-    const galleryImages = getGalleryImages();
+    const galleryImages = await getGalleryImages();
     const galleryEntries: MetadataRoute.Sitemap = galleryImages.map((img) => ({
       url: `https://bitz.is-a.dev/gallery/${img.filename}`,
       lastModified: new Date(img.date),

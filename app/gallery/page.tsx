@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GalleryPage() {
-  const images = getGalleryImages();
-  const categories = getGalleryCategories();
+export default async function GalleryPage() {
+  const images = await getGalleryImages();
+  const categories = await getGalleryCategories();
 
   const jsonLd = {
     '@context': 'https://schema.org',

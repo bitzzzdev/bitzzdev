@@ -1,5 +1,5 @@
 import { google, drive_v3 } from 'googleapis';
-import { getDriveToken, saveDriveToken, driveTokenExpiry } from '@/lib/gdrive/token';
+import { getDriveToken, saveDriveToken } from '@/lib/gdrive/token';
 
 const FOLDER_ID_MAP: Record<string, string> = {
   gallery: process.env.GOOGLE_DRIVE_GALLERY_FOLDER_ID || '',
@@ -93,10 +93,9 @@ export async function downloadFile(fileId: string) {
     const response = await drive.files.get({
       fileId,
       alt: 'media',
-      responseType: 'arraybuffer',
-    }, { responseType: 'arraybuffer' });
+    });
 
-    return response.data;
+    return response.data as unknown as Buffer;
   } catch (error) {
     console.error(`Error downloading file ${fileId}:`, error);
     throw error;

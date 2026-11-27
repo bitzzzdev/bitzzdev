@@ -49,7 +49,7 @@ export async function fetchGalleryImages() {
 
     // Filter nulls and sort by date
     return images.filter(Boolean).sort((a, b) =>
-      new Date(b.date).getTime() - new Date(a.date).getTime()
+      new Date(b?.date ?? 0).getTime() - new Date(a?.date ?? 0).getTime()
     );
   } catch (error) {
     console.error('Error fetching gallery images:', error);
@@ -80,10 +80,9 @@ export async function downloadImage(fileId: string): Promise<Buffer> {
     const response = await drive.files.get({
       fileId,
       alt: 'media',
-      responseType: 'arraybuffer',
-    }, { responseType: 'arraybuffer' });
+    });
 
-    return response.data as Buffer;
+    return response.data as unknown as Buffer;
   } catch (error) {
     console.error('Error downloading image:', error);
     throw error;

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { OAuth2Client } from 'google-auth-library';
-import { getDriveClient, saveDriveToken } from '@/lib/gdrive/client';
+import { saveDriveToken } from '@/lib/gdrive/token';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -32,7 +32,8 @@ export async function GET(request: NextRequest) {
   const state = Math.random().toString(36).substring(7);
   const url = new URL(authUrl);
   url.searchParams.set('state', state);
-  request.cookies.set('drive_auth_state', state, { httpOnly: true, maxAge: 3600 });
+  const response = NextResponse.redirect(url.toString());
+  response.cookies.set('drive_auth_state', state, { httpOnly: true, maxAge: 3600, path: '/' });
 
-  return NextResponse.redirect(url.toString());
+  return response;
 }

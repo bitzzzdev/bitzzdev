@@ -110,7 +110,7 @@ export function reorderTags(tagNames: string[]): void {
 /**
  * Read all gallery images with metadata
  */
-export function getGalleryImages(): GalleryImage[] {
+export async function getGalleryImages(): Promise<GalleryImage[]> {
   // Use Google Drive if configured and enabled
   if (process.env.USE_GOOGLE_DRIVE === 'true' && process.env.GOOGLE_DRIVE_GALLERY_FOLDER_ID) {
     return fetchGalleryImages();
@@ -142,7 +142,7 @@ export function getGalleryImages(): GalleryImage[] {
 /**
  * Get gallery images by tag
  */
-export function getGalleryImagesByTag(tag: string): GalleryImage[] {
+export async function getGalleryImagesByTag(tag: string): Promise<GalleryImage[]> {
   if (tag === 'all') return getGalleryImages();
   return getGalleryImages().filter(img => img.tags.map(t => t.toLowerCase()).includes(tag.toLowerCase()));
 }
@@ -150,7 +150,7 @@ export function getGalleryImagesByTag(tag: string): GalleryImage[] {
 /**
  * Get gallery images by category
  */
-export function getGalleryImagesByCategory(category: string): GalleryImage[] {
+export async function getGalleryImagesByCategory(category: string): Promise<GalleryImage[]> {
   if (category === 'all') return getGalleryImages();
   return getGalleryImages().filter(img => img.category.toLowerCase() === category.toLowerCase());
 }
@@ -158,8 +158,8 @@ export function getGalleryImagesByCategory(category: string): GalleryImage[] {
 /**
  * Get all gallery categories with counts
  */
-export function getGalleryCategories(): GalleryCategory[] {
-  const images = getGalleryImages();
+export async function getGalleryCategories(): Promise<GalleryCategory[]> {
+  const images = await getGalleryImages();
   const categoryMap = new Map<string, { count: number; order: number }>();
 
   for (const img of images) {

@@ -11,7 +11,7 @@ interface GalleryImagePageProps {
 }
 
 export async function generateStaticParams() {
-  const images = getGalleryImages();
+  const images = await getGalleryImages();
   return images.map((img) => ({ filename: img.filename }));
 }
 
@@ -52,7 +52,7 @@ export default async function GalleryImagePage({ params }: GalleryImagePageProps
     notFound();
   }
 
-  const allImages = getGalleryImages();
+  const allImages = await getGalleryImages();
   const currentIndex = allImages.findIndex(img => img.filename === filename);
   const prevImage = currentIndex > 0 ? allImages[currentIndex - 1] : null;
   const nextImage = currentIndex < allImages.length - 1 ? allImages[currentIndex + 1] : null;

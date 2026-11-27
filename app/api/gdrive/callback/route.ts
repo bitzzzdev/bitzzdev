@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { OAuth2Client } from 'google-auth-library';
-import { Oauth2Client } from 'googleapis';
 import { saveDriveToken, clearDriveToken } from '@/lib/gdrive/token';
 import { getDriveClient } from '@/lib/gdrive/client';
 
@@ -33,7 +32,7 @@ export async function GET(request: NextRequest) {
     const tokenData = {
       access_token: tokens.access_token || '',
       refresh_token: tokens.refresh_token || '',
-      expiry: tokens.expiry ? Date.now() + tokens.expiry * 1000 : Date.now() + 3600000,
+      expiry: tokens.expiry_date ? Date.now() + tokens.expiry_date * 1000 : Date.now() + 3600000,
     };
 
     // Save token

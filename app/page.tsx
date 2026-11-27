@@ -12,7 +12,7 @@ import { xeh, xehTeam, xehProducts } from "@/lib/xeh";
 
 export default async function Home() {
   const repos = await getPublicRepos();
-  const galleryImages = getGalleryImages();
+  const galleryImages = await getGalleryImages();
   const writingPosts = getWritingPosts(true);
 
   return (

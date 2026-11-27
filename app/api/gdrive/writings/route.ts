@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
           const content = await downloadFile(file.id || '');
 
           // Parse frontmatter and content
-          const parsed = parseMarkdownFrontmatter(content.toString('utf-8'), file.name);
+          const parsed = parseMarkdownFrontmatter(content.toString('utf-8'), file.name || '');
 
           return {
             id: file.id || '',
@@ -86,7 +86,7 @@ function parseMarkdownFrontmatter(markdown: string, filename: string) {
   let rawFrontmatter: any = {};
 
   // Try to extract frontmatter
-  const frontmatterRegex = /^---\n(.*?)\n---/s;
+  const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
   const match = markdown.match(frontmatterRegex);
 
   if (match) {

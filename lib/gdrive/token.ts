@@ -15,6 +15,22 @@ function ensureTokenDir() {
  * Note: In production, you may want to use a database or secrets manager instead
  */
 export function getDriveToken(): { access_token: string; refresh_token?: string; expiry?: number } | null {
+  const envToken = process.env.GOOGLE_DRIVE_TOKEN;
+  if (envToken) {
+    try {
+      const parsed = JSON.parse(envToken);
+      if (parsed && parsed.access_token) {
+        return {
+          access_token: parsed.access_token,
+          refresh_token: parsed.refresh_token,
+          expiry: typeof parsed.expiry === 'number' ? parsed.expiry : Date.now() + 3600000,
+        };
+      }
+    } catch (error) {
+      console.error('Error parsing drive token env var:', error);
+    }
+  }
+
   ensureTokenDir();
 
   const tokenPath = path.join(TOKEN_DIR, 'token.json');

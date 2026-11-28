@@ -99,7 +99,7 @@ export default async function GalleryPage() {
                     role="listitem"
                   >
                     <a
-                      href={img.url || `/gallery/${img.filename}`} 
+                      href={`/gallery/${img.filename}`}
                       className="gallery-link"
                       aria-label={`View ${img.title}`}
                     >

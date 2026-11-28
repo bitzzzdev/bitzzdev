@@ -2282,8 +2282,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1px;
-  background: var(--border-faint);
-  border: 1px solid var(--border-faint);
   margin: 0 var(--text-inset);
 }
 

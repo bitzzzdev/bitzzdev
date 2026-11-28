@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 
     const CLIENT_ID = process.env.GOOGLE_DRIVE_CLIENT_ID || '';
     const CLIENT_SECRET = process.env.GOOGLE_DRIVE_CLIENT_SECRET || '';
-    const REDIRECT_URI = `${process.env.NEXTAUTH_URL}/api/auth/callback/drive`;
+    const REDIRECT_URI = `${process.env.NEXTAUTH_URL}/api/gdrive/callback`;
     const AUTH_URL = 'https://accounts.google.com/o/oauth2/v2/auth';
 
     const oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);

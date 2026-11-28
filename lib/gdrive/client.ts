@@ -30,7 +30,7 @@ export function getDriveClient() {
     throw new Error('GOOGLE_DRIVE_CLIENT_ID and GOOGLE_DRIVE_CLIENT_SECRET environment variables are required');
   }
 
-  driveOAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, `${process.env.NEXTAUTH_URL}/api/auth/callback/drive`);
+  driveOAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, `${process.env.NEXTAUTH_URL}/api/gdrive/callback`);
   driveOAuth2Client.setCredentials({ access_token: token.access_token, refresh_token: token.refresh_token });
 
   // Check if token needs refresh and update

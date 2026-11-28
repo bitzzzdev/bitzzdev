@@ -42,7 +42,7 @@ export async function fetchGalleryImages() {
             id: file.id!,
             filename: file.name!,
             title: file.name!.replace(/\.(jpg|jpeg|png|webp)$/i, ''),
-            description: `Image from Google Drive`,
+            description: '',
             category: 'general',
             tags: [],
             date: file.modifiedTime?.split('T')[0] || new Date().toISOString().split('T')[0],

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { OAuth2Client } from 'google-auth-library';
-import { saveDriveToken, clearDriveToken } from '@/lib/gdrive/token';
+import { saveDriveToken } from '@/lib/gdrive/token';
 import { getDriveClient } from '@/lib/gdrive/client';
 
 const CLIENT_ID = process.env.GOOGLE_DRIVE_CLIENT_ID || '';
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
     saveDriveToken(tokenData);
 
     console.log('Google Drive authorization successful');
-    clearDriveToken(); // Clear state cookie
+    // Clear the OAuth state cookie only; do NOT delete the saved token.
 
     return NextResponse.redirect(new URL('/dashboard', request.url));
   } catch (error) {

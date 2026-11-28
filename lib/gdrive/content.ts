@@ -2,6 +2,17 @@ import { NextResponse } from 'next/server';
 import { getDriveClient, getFolderFiles, downloadFile, getFileMetadata } from './client';
 
 /**
+ * Build a publicly embeddable Google Drive image URL.
+ * Uses the Drive thumbnail endpoint, which serves image bytes directly.
+ * The `uc?export=download` webContentLink endpoint is blocked by the
+ * browser (Cross-Origin blocking / ERR_BLOCKED_BY_ORB) when hotlinked via
+ * an <img> src, so gallery images must use the thumbnail endpoint to render.
+ */
+export function getDriveImageUrl(fileId: string, size = 'w2000'): string {
+  return `https://drive.google.com/thumbnail?id=${fileId}&sz=${size}`;
+}
+
+/**
  * Fetch all gallery images from Google Drive
  */
 export async function fetchGalleryImages() {
@@ -39,7 +50,7 @@ export async function fetchGalleryImages() {
             WebContentLink: file.webContentLink || '',
             webViewLink: file.webViewLink || '',
             mimeType: file.mimeType || 'image/jpeg',
-            url: file.webContentLink || file.webViewLink || '',
+            url: file.id ? getDriveImageUrl(file.id) : (file.webContentLink || file.webViewLink || ''),
           };
         } catch (error) {
           console.error(`Error fetching image ${file.name}:`, error);

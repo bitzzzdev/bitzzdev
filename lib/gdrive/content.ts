@@ -8,7 +8,7 @@ import { getDriveClient, getFolderFiles, downloadFile, getFileMetadata } from '.
  * browser (Cross-Origin blocking / ERR_BLOCKED_BY_ORB) when hotlinked via
  * an <img> src, so gallery images must use the thumbnail endpoint to render.
  */
-export function getDriveImageUrl(fileId: string, size = 'w2000'): string {
+export function getDriveImageUrl(fileId: string, size = 'w1600'): string {
   return `https://drive.google.com/thumbnail?id=${fileId}&sz=${size}`;
 }
 

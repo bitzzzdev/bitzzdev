@@ -71,10 +71,10 @@ export async function getFolderFiles(folderPath: string, mimeTypeFilter?: string
     const files = response.data.files || [];
     console.log(`Found ${files.length} files in ${folderPath} folder`);
 
-    // Filter by image MIME type if specified
+    // Filter by MIME type(s) if specified
     let filteredFiles = files;
     if (mimeTypeFilter) {
-      filteredFiles = files.filter(f => f.mimeType?.includes(mimeTypeFilter));
+      filteredFiles = files.filter(f => mimeTypeFilter.split(',').some(mime => f.mimeType?.includes(mime)));
     }
 
     return filteredFiles;

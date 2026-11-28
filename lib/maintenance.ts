@@ -189,70 +189,7 @@ export function createMaintenanceResponse(request: NextRequest): NextResponse {
       <strong>Time:</strong> ${new Date().toISOString()}<br>
       <strong>Path:</strong> ${currentPath}
     </div>
-    <form id="bypassForm" autocomplete="off">
-      <div class="form-group">
-        <label for="email">Admin Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter admin email" required autocomplete="email">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter password" required autocomplete="current-password">
-      </div>
-      <button type="submit" class="btn" id="submitBtn">Access Site</button>
-      <div id="message" class="error" aria-live="polite"></div>
-    </form>
   </div>
-  <script>
-    (function() {
-      const form = document.getElementById('bypassForm');
-      const emailInput = document.getElementById('email');
-      const passwordInput = document.getElementById('password');
-      const submitBtn = document.getElementById('submitBtn');
-      const message = document.getElementById('message');
-      const targetPath = ${JSON.stringify(currentPath)};
-      const origin = ${JSON.stringify(origin)};
-
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        message.textContent = '';
-        message.className = 'error';
-
-        const email = emailInput.value.trim().toLowerCase();
-        const password = passwordInput.value;
-        if (!email || !password) {
-          message.textContent = 'Please enter both email and password';
-          return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Verifying...';
-
-        // Verify credentials by calling the bypass API
-        fetch(origin + '/api/maintenance/bypass', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          credentials: 'same-origin',
-          body: JSON.stringify({ email, password, targetPath })
-        })
-        .then(function(response) {
-          return response.json().then(function(data) {
-            if (response.ok) {
-              message.className = 'success';
-              message.textContent = 'Access granted. Redirecting...';
-              window.location.href = origin + data.targetPath;
-            } else {
-              throw new Error(data.error || 'Invalid credentials');
-            }
-          });
-        })
-        .catch(function(err) {
-          message.textContent = err.message || 'Invalid email or password. Access denied.';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Access Site';
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
   `;

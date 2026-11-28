@@ -3,9 +3,6 @@ import type { NextRequest } from 'next/server';
 import { maintenanceMiddleware } from '@/lib/maintenance';
 import { getSession } from '@/lib/auth';
 
-export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic';
-
 // Paths that require authentication (exact match or prefix, but not auth paths)
 const PROTECTED_PATHS = ['/dashboard'];
 // Paths that should redirect to dashboard if already authenticated

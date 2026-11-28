@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { maintenanceMiddleware, isMaintenanceMode } from '@/lib/maintenance';
+import { maintenanceMiddleware } from '@/lib/maintenance';
 import { getSession } from '@/lib/auth';
 
 export const runtime = 'nodejs';
@@ -11,7 +11,7 @@ const PROTECTED_PATHS = ['/dashboard'];
 // Paths that should redirect to dashboard if already authenticated
 const AUTH_PATHS = ['/dashboard/login'];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   // Check maintenance mode first

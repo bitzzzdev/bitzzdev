@@ -25,7 +25,9 @@ export async function fetchGalleryImages() {
       return [];
     }
 
-    const files = await getFolderFiles('gallery', 'image/jpeg,image/png,image/webp');
+    const files = (await getFolderFiles('gallery', 'image/jpeg,image/png,image/webp')).filter(
+      (file) => !file.name?.startsWith('.')
+    );
 
     const images = await Promise.all(
       files.map(async (file) => {
@@ -51,6 +53,7 @@ export async function fetchGalleryImages() {
             webViewLink: file.webViewLink || '',
             mimeType: file.mimeType || 'image/jpeg',
             url: file.id ? getDriveImageUrl(file.id) : (file.webContentLink || file.webViewLink || ''),
+            indexable: !file.name?.startsWith('.'),
           };
         } catch (error) {
           console.error(`Error fetching image ${file.name}:`, error);

@@ -35,7 +35,7 @@ export default async function GalleryPage() {
         '@id': 'https://bitz.is-a.dev/gallery#gallery',
         name: 'Gallery',
         description: 'A curated gallery of screenshots, diagrams, and visual work from projects and experiments.',
-        image: images.map(img => `https://bitz.is-a.dev/gallery/${img.filename}`),
+        image: images.filter(img => img.indexable).map(img => `https://bitz.is-a.dev/gallery/${img.filename}`),
       },
       {
         '@type': 'BreadcrumbList',
@@ -87,7 +87,7 @@ export default async function GalleryPage() {
 
             {images.length === 0 ? (
               <div className="gallery-empty">
-                <p>No images yet. Upload some from the <a href="/dashboard">dashboard</a>.</p>
+                <p>No images yet.</p>
               </div>
             ) : (
               <div className="gallery-grid" role="list">

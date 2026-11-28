@@ -4,14 +4,14 @@ import { getDriveClient } from '@/lib/gdrive/client';
 import { getSession } from '@/lib/auth';
 
 /**
- * Authorize Google Drive access via dashboard
+ * Authorize Google Drive access
  * POST /api/gdrive/authorize
  */
 export async function POST(request: NextRequest) {
   try {
     const session = await getSession(request);
     if (!session) {
-      return NextResponse.redirect(new URL('/dashboard/login', request.url));
+      return NextResponse.redirect(new URL('/', request.url));
     }
 
     const CLIENT_ID = process.env.GOOGLE_DRIVE_CLIENT_ID || '';

@@ -2290,6 +2290,7 @@ body {
 .gallery-item {
   background: var(--bg);
   position: relative;
+  min-width: 0;
 }
 
 .gallery-link {
@@ -2314,6 +2315,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 4px;
+  overflow-wrap: anywhere;
 }
 
 .gallery-desc {
@@ -2322,6 +2324,7 @@ body {
   color: var(--text-60);
   margin-bottom: 8px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .gallery-meta {

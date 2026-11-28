@@ -20,7 +20,7 @@ export function getDriveClient() {
 
   const token = getDriveToken();
   if (!token) {
-    throw new Error('Drive token not found. Please authorize access via dashboard or API.');
+    throw new Error('Drive token not found. Please authorize access via the API or set GOOGLE_DRIVE_TOKEN.');
   }
 
   const CLIENT_ID = process.env.GOOGLE_DRIVE_CLIENT_ID || '';

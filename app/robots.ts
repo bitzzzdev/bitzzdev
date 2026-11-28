@@ -6,12 +6,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/ascii/", "/ascii-posters/", "/dashboard/"],
+        disallow: ["/ascii/", "/ascii-posters/"],
       },
       {
         userAgent: "Googlebot-Image",
         allow: ["/favicon.png", "/gallery/"],
-        disallow: ["/ascii/", "/ascii-posters/", "/dashboard/"],
+        disallow: ["/ascii/", "/ascii-posters/"],
       },
     ],
     sitemap: "https://bitz.is-a.dev/sitemap.xml",

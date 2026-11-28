@@ -41,11 +41,11 @@ export async function GET(request: NextRequest) {
     console.log('Google Drive authorization successful');
     // Clear the OAuth state cookie only; do NOT delete the saved token.
 
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+    return NextResponse.redirect(new URL('/', request.url));
   } catch (error) {
     console.error('Google Drive callback error:', error);
     return NextResponse.redirect(
-      new URL('/dashboard?error=drive_auth_failed', request.url)
+      new URL('/?error=drive_auth_failed', request.url)
     );
   }
 }

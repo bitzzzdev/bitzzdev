@@ -15,6 +15,7 @@ export interface GalleryImage {
   height?: number;
   order?: number; // for manual ordering within tag/category
   url?: string; // public URL for externally hosted images (for example Google Drive)
+  indexable?: boolean; // whether search engines should index this image
 }
 
 export interface WritingPost {

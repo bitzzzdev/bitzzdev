@@ -44,11 +44,11 @@ async function sendOTPEmail(email: string, code: string): Promise<boolean> {
     await transporter.sendMail({
       from: process.env.SMTP_FROM || ADMIN_EMAIL,
       to: email,
-      subject: 'Your Dashboard Login Code',
+      subject: 'Your Login Code',
       html: `
         <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #333;">Dashboard Login Code</h2>
-          <p>Use the following code to sign in to your dashboard:</p>
+          <h2 style="color: #333;">Login Code</h2>
+          <p>Use the following code to sign in:</p>
           <div style="background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; margin: 20px 0;">
             <span style="font-size: 32px; font-weight: bold; letter-spacing: 8px; color: #333; font-family: monospace;">${code}</span>
           </div>

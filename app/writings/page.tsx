@@ -95,7 +95,7 @@ export default function WritingsPage() {
 
             {posts.length === 0 ? (
               <div className="writings-empty">
-                <p>No writings yet. Create some from the <a href="/dashboard">dashboard</a>.</p>
+                <p>No writings yet.</p>
               </div>
             ) : (
               <div className="writings-grid">

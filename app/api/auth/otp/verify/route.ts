@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
       .sign(JWT_SECRET);
 
     // Set cookie
-    const response = NextResponse.json({ success: true, callbackUrl: callbackUrl || '/dashboard' });
+    const response = NextResponse.json({ success: true, callbackUrl: callbackUrl || '/' });
     response.cookies.set('auth-token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
